@@ -7,12 +7,7 @@ declares its status; active standards are mandatory within their stated scope.
 
 - [Code formatting standard](code-formatting.md) — Prettier configuration and adoption workflow.
 - [Licensing standard](licensing.md) — source-available licensing workflow and validation checklist.
-
-## Draft standards
-
 - [Package management standard](package-management.md) — pnpm usage, version pinning, and CI install rules.
 - [Node.js version standard](nodejs-version.md) — supported Node.js range, `engines`, and `.nvmrc` configuration.
 - [TypeScript standard](typescript.md) — shared strict compiler configuration and its variants.
 - [Code quality standard](code-quality.md) — ESLint flat config, type-aware rules, and React accessibility.
-
-Draft standards become active when their related ADR is accepted.

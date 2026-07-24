@@ -1,6 +1,6 @@
 # ADR 0006: Use ESLint with a shared @mikode/code-quality configuration
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-07-24
 
 ## Context
@@ -25,7 +25,7 @@ MiKode will lint with ESLint using flat config, shared through an independent pa
 named `@mikode/code-quality`.
 
 The package name describes the purpose rather than the tool, parallel to
-`@mikode/code-style` (formatting) and `@mikode/tsconfig` (compiler), so a future
+`@mikode/code-style` (formatting) and `@mikode13/tsconfig` (compiler), so a future
 migration to a different linter would not force a rename. Each tool's configuration
 remains its own package.
 
@@ -45,9 +45,9 @@ The package ships two configurations:
     React solely for JSX;
   - accessibility rules from `eslint-plugin-jsx-a11y`.
 
-Before this ADR is accepted, the rule set is validated in `mikode-code-style` and at
-least one small TypeScript library; findings from that trial update this ADR while it
-remains proposed.
+The rule set must be validated in `mikode-code-style` and at least one small TypeScript
+library before the shared package is released for project adoption; findings from that
+trial must be handled through the normal change-review process.
 
 The configuration MUST NOT enable formatting rules; formatting remains Prettier's
 responsibility. Full architecture-boundary rules (ports and adapters, domain

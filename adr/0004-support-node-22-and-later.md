@@ -1,6 +1,6 @@
 # ADR 0004: Support Node.js 22 and later
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-07-24
 
 ## Context

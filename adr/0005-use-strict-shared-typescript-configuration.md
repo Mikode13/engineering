@@ -1,6 +1,6 @@
-# ADR 0005: Use a strict shared TypeScript configuration via @mikode/tsconfig
+# ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-07-24
 
 ## Context
@@ -23,21 +23,22 @@ Relevant facts at the time of this decision:
 
 ## Decision
 
-MiKode will share one strict TypeScript configuration through an independent package,
-`@mikode/tsconfig`, that projects extend instead of writing their own compiler options.
+MiKode will share one strict TypeScript configuration through the independent
+[`@mikode13/tsconfig`](https://github.com/mikode13/tsconfig) package, which projects extend
+instead of writing their own compiler options.
 
 The package ships four configurations:
 
-- `@mikode/tsconfig/base` — language strictness only, environment-agnostic. Enables
+- `@mikode13/tsconfig/base` — language strictness only, environment-agnostic. Enables
   `strict` plus additional safety options: `noUncheckedIndexedAccess`,
   `noImplicitOverride`, and `noFallthroughCasesInSwitch`.
-- `@mikode/tsconfig/node` — extends base for Node.js libraries and services:
+- `@mikode13/tsconfig/node` — extends base for Node.js libraries and services:
   `module: "nodenext"`, ECMAScript 2023 target and library, and declaration output for
   published packages.
-- `@mikode/tsconfig/browser` — extends base for browser code without JSX (DOM
+- `@mikode13/tsconfig/browser` — extends base for browser code without JSX (DOM
   libraries, universal packages built with a bundler): DOM libraries and bundler
   module resolution.
-- `@mikode/tsconfig/react` — extends browser for React projects, adding
+- `@mikode13/tsconfig/react` — extends browser for React projects, adding
   `jsx: "react-jsx"`.
 
 Projects use TypeScript 6.x. TypeScript 7 is adopted in a follow-up change once
@@ -52,7 +53,8 @@ unavailable to `require()`.
 
 The exact option values are defined in the
 [TypeScript standard](../standards/typescript.md). This repository documents them; the
-executable configuration lives in the independent `@mikode/tsconfig` package.
+executable configuration lives in the independent
+[`@mikode13/tsconfig`](https://github.com/mikode13/tsconfig) package.
 
 ## Alternatives considered
 
@@ -68,7 +70,7 @@ The community `@tsconfig/node22` and related bases are well maintained and infor
 chosen option values. They were not adopted directly because MiKode also wants its
 strictness extras and React variant under one versioned package with one upgrade path.
 The shared package may itself extend a community base internally; that is an
-implementation detail of `@mikode/tsconfig`.
+implementation detail of `@mikode13/tsconfig`.
 
 ### `strict: true` only, or maximum strictness
 
@@ -108,8 +110,8 @@ supported Node.js versions except where a module graph uses top-level await.
 - Projects cannot use TypeScript 7's build-speed improvements yet.
 - ESM-only packages exclude consumers on Node.js versions older than the supported
   floor that cannot `require()` ESM.
-- The `@mikode/tsconfig` package must exist and be published before projects can adopt
-  the standard without copying configuration temporarily.
+- Projects depend on the independently maintained `@mikode13/tsconfig` package and must
+  coordinate configuration changes through package releases.
 
 ## Related standards
 

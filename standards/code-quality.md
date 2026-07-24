@@ -1,6 +1,6 @@
 # Code quality standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-07-24
 - Related ADRs: [ADR 0006: Use ESLint with a shared @mikode/code-quality configuration](../adr/0006-use-eslint-via-code-quality-package.md)
 
@@ -85,8 +85,8 @@ New projects add the configuration and CI check before their first feature. Exis
 projects adopt in one change, fix or explicitly suppress all findings before merging,
 and review suppressions rather than lowering the shared tier.
 
-The shared rule set is validated in `mikode-code-style` and at least one small
-TypeScript library before ADR 0006 is accepted and this standard becomes active.
+The shared rule set MUST be validated in `mikode-code-style` and at least one small
+TypeScript library before the shared package is released for project adoption.
 
 ## References
 

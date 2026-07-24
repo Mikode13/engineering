@@ -1,6 +1,6 @@
 # ADR 0003: Use pnpm as the package manager
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-07-24
 
 ## Context

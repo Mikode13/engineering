@@ -1,6 +1,6 @@
 # Node.js version standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-07-24
 - Related ADRs: [ADR 0004: Support Node.js 22 and later](../adr/0004-support-node-22-and-later.md)
 

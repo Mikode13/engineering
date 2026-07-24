@@ -1,8 +1,8 @@
 # TypeScript standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-07-24
-- Related ADRs: [ADR 0005: Use a strict shared TypeScript configuration via @mikode/tsconfig](../adr/0005-use-strict-shared-typescript-configuration.md)
+- Related ADRs: [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](../adr/0005-use-strict-shared-typescript-configuration.md)
 
 ## Scope
 
@@ -17,9 +17,9 @@ Projects adopting this standard MUST:
 1. Use TypeScript 6.x. TypeScript 7 becomes the required line in a follow-up change once
    typescript-eslint supports it.
 2. Extend the shared configuration instead of defining compiler options directly:
-   `@mikode/tsconfig/node` for Node.js code, `@mikode/tsconfig/browser` for browser
-   code without JSX, `@mikode/tsconfig/react` for React code, or
-   `@mikode/tsconfig/base` when no environment applies.
+   `@mikode13/tsconfig/node` for Node.js code, `@mikode13/tsconfig/browser` for browser
+   code without JSX, `@mikode13/tsconfig/react` for React code, or
+   `@mikode13/tsconfig/base` when no environment applies.
 3. Keep `strict` and the shared safety options enabled; a project MUST NOT weaken an
    option from the shared configuration.
 4. Publish packages as ES modules only, with `"type": "module"` in `package.json`.
@@ -35,7 +35,7 @@ A Node.js project's `tsconfig.json` is:
 
 ```json
 {
-  "extends": "@mikode/tsconfig/node",
+  "extends": "@mikode13/tsconfig/node",
   "compilerOptions": {
     "outDir": "dist"
   },
@@ -43,11 +43,14 @@ A Node.js project's `tsconfig.json` is:
 }
 ```
 
-Until `@mikode/tsconfig` is published, projects copy the equivalent options directly.
-The configurations it ships are documented here so the policy is readable without the
-package source.
+The executable configuration is maintained in the
+[`mikode13/tsconfig`](https://github.com/mikode13/tsconfig) repository. Its current
+`base.json`, `node.json`, `browser.json`, and `react.json` files match the configurations
+documented below. Projects MUST consume the `@mikode13/tsconfig` package entry points
+rather than create a divergent local copy. The configurations it ships are documented
+here so the policy is readable without the package source.
 
-`@mikode/tsconfig/base`:
+`@mikode13/tsconfig/base`:
 
 ```json
 {
@@ -64,7 +67,7 @@ package source.
 }
 ```
 
-`@mikode/tsconfig/node` (extends base):
+`@mikode13/tsconfig/node` (extends base):
 
 ```json
 {
@@ -79,7 +82,7 @@ package source.
 }
 ```
 
-`@mikode/tsconfig/browser` (extends base), for browser or universal code without JSX:
+`@mikode13/tsconfig/browser` (extends base), for browser or universal code without JSX:
 
 ```json
 {
@@ -93,7 +96,7 @@ package source.
 }
 ```
 
-`@mikode/tsconfig/react` (extends browser):
+`@mikode13/tsconfig/react` (extends browser):
 
 ```json
 {
@@ -134,7 +137,8 @@ disable the option.
 
 ## References
 
-- [ADR 0005: Use a strict shared TypeScript configuration via @mikode/tsconfig](../adr/0005-use-strict-shared-typescript-configuration.md)
+- [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](../adr/0005-use-strict-shared-typescript-configuration.md)
+- [@mikode13/tsconfig implementation](https://github.com/mikode13/tsconfig)
 - [TypeScript tsconfig reference](https://www.typescriptlang.org/tsconfig/)
 - [Community tsconfig bases](https://github.com/tsconfig/bases)
 - [Node.js version standard](nodejs-version.md)

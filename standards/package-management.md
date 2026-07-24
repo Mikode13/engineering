@@ -1,6 +1,6 @@
 # Package management standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-07-24
 - Related ADRs: [ADR 0003: Use pnpm as the package manager](../adr/0003-use-pnpm.md)
 
