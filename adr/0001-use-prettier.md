@@ -26,9 +26,10 @@ JavaScript and TypeScript projects.
 
 The initial shared configuration is defined in
 [`standards/code-formatting.md`](../standards/code-formatting.md). Projects will use the
-configuration through `@mikode/code-style/prettier` when that independent package is
-available; this repository documents the policy and does not contain the executable
-package.
+configuration through the
+[`@mikode13/code-style/prettier`](https://github.com/mikode13/code-styiling) export from
+the independent `@mikode13/code-style` package; this repository documents the policy
+and does not contain the executable package.
 
 Each adopting project will:
 
@@ -110,3 +111,4 @@ also preserve the inconsistency and review noise this decision is intended to re
 - [Prettier configuration files](https://prettier.io/docs/configuration)
 - [Prettier CLI](https://prettier.io/docs/cli)
 - [Prettier option philosophy](https://prettier.io/docs/option-philosophy.html)
+- [`@mikode13/code-style` implementation](https://github.com/mikode13/code-styiling)

@@ -44,13 +44,17 @@ Accepted decisions and their active standards:
 - [ADR 0003: Use pnpm as the package manager](adr/0003-use-pnpm.md)
 - [ADR 0004: Support Node.js 22 and later](adr/0004-support-node-22-and-later.md)
 - [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](adr/0005-use-strict-shared-typescript-configuration.md)
-- [ADR 0006: Use ESLint with a shared @mikode/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md)
+- [ADR 0007: Use ESLint 10 with modern React plugins](adr/0007-use-eslint-10-with-modern-react-plugins.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
 - [Node.js version standard](standards/nodejs-version.md)
 - [TypeScript standard](standards/typescript.md)
 - [Code quality standard](standards/code-quality.md)
+
+Superseded decisions, retained as historical records:
+
+- [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.
 
 ## Documenting a new decision
 

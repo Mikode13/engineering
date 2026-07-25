@@ -11,7 +11,13 @@ names. New ADRs should start from the [ADR template](../templates/ADR.template.m
 - [ADR 0003: Use pnpm as the package manager](0003-use-pnpm.md) — establishes pnpm for consistent, strict, reproducible installs across projects.
 - [ADR 0004: Support Node.js 22 and later](0004-support-node-22-and-later.md) — establishes Node.js 22.13 as the support floor with development on the active LTS line.
 - [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](0005-use-strict-shared-typescript-configuration.md) — establishes strict compiler settings shared through the [`mikode13/tsconfig`](https://github.com/mikode13/tsconfig) package.
-- [ADR 0006: Use ESLint with a shared @mikode/code-quality configuration](0006-use-eslint-via-code-quality-package.md) — establishes type-aware linting, import hygiene, and React accessibility rules through an independent package.
+- [ADR 0007: Use ESLint 10 with modern React plugins](0007-use-eslint-10-with-modern-react-plugins.md) — establishes an audit-clean ESLint 10 graph with modern React and static JSX accessibility providers through the [`mikode13/code-quality`](https://github.com/mikode13/code-quality) package.
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
+
+## Superseded decisions
+
+- [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007, which replaced its React and accessibility providers with an ESLint 10-compatible, audit-clean graph.
+
+Superseded decisions remain historical records and are not the current policy.

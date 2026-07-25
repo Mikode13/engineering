@@ -1,7 +1,8 @@
-# ADR 0006: Use ESLint with a shared @mikode/code-quality configuration
+# ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration
 
-- Status: Accepted
+- Status: Superseded
 - Date: 2026-07-24
+- Superseded by: [ADR 0007](0007-use-eslint-10-with-modern-react-plugins.md)
 
 ## Context
 
@@ -21,17 +22,17 @@ Relevant facts at the time of this decision:
 
 ## Decision
 
-MiKode will lint with ESLint using flat config, shared through an independent package
-named `@mikode/code-quality`.
+MiKode will lint with ESLint using flat config, shared through the independent
+[`@mikode13/code-quality`](https://github.com/mikode13/code-quality) package.
 
 The package name describes the purpose rather than the tool, parallel to
-`@mikode/code-style` (formatting) and `@mikode13/tsconfig` (compiler), so a future
+`@mikode13/code-style` (formatting) and `@mikode13/tsconfig` (compiler), so a future
 migration to a different linter would not force a rename. Each tool's configuration
 remains its own package.
 
 The package ships two configurations:
 
-- `@mikode/code-quality/base` — for all TypeScript code:
+- `@mikode13/code-quality/base` — for all TypeScript code:
   - typescript-eslint `strictTypeChecked` and `stylisticTypeChecked` presets, with
     type information provided by `parserOptions.projectService`;
   - basic import hygiene via `eslint-plugin-import-x`: no circular imports, no
@@ -39,7 +40,7 @@ The package ships two configurations:
   - type-aware rules scoped to `*.ts` and `*.tsx` files only. JavaScript tooling files
     (`eslint.config.js`, `prettier.config.mjs`, standalone scripts) are linted with
     syntax-only rules so they do not need to belong to a TypeScript project.
-- `@mikode/code-quality/react` — extends base for React projects:
+- `@mikode13/code-quality/react` — extends base for React projects:
   - `eslint-plugin-react` and `eslint-plugin-react-hooks` recommended rules, with the
     plugin's modern JSX runtime configuration so components are not forced to import
     React solely for JSX;
@@ -56,7 +57,9 @@ here are structural basics, not that architecture layer.
 
 The exact rules and usage are defined in the
 [code quality standard](../standards/code-quality.md). The executable configuration
-lives in the independent `@mikode/code-quality` package, not in this repository.
+lives in the independent
+[`@mikode13/code-quality`](https://github.com/mikode13/code-quality) package, not in
+this repository.
 
 ## Alternatives considered
 
@@ -127,3 +130,4 @@ typescript-eslint 8.65.0 were the latest stable releases.
 - [eslint-plugin-import-x](https://github.com/un-ts/eslint-plugin-import-x)
 - [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+- [`@mikode13/code-quality` implementation](https://github.com/mikode13/code-quality)

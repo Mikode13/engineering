@@ -20,10 +20,12 @@ not formatted as source code unless a project explicitly decides otherwise.
 Projects adopting this standard MUST:
 
 1. Use Prettier as the formatter of record for supported source and documentation files.
-2. Use the configuration in this document, either directly or through the independent
-   `@mikode/code-style/prettier` package.
-3. Keep the Prettier dependency, configuration, and lockfile under version control so
-   local runs, editor integrations, and CI use reproducible behavior.
+2. Install and consume the independent `@mikode13/code-style` package. Its
+   `@mikode13/code-style/prettier` export is the executable source of the shared
+   formatting options.
+3. Keep the Prettier dependency, shared configuration package, project configuration,
+   and lockfile under version control so local runs, editor integrations, and CI use
+   reproducible behavior.
 4. Provide a script or equivalent command for formatting files and a CI check that fails
    when tracked files are not formatted.
 5. Configure ignored paths for generated, vendored, and otherwise excluded files instead
@@ -31,15 +33,30 @@ Projects adopting this standard MUST:
 6. Treat formatting-only changes separately from behavior changes when practical, so
    reviewers can understand the change and adoption history.
 
-Projects MUST NOT use a global Prettier installation or an undocumented editor-specific
-configuration as the source of truth.
+Projects MUST NOT copy the shared option object into a project-local configuration, use
+a global Prettier installation, or use an undocumented editor-specific configuration as
+the source of truth.
 
 The standard does not prescribe architecture, linting, import ordering, naming, or other
 code-quality rules. Those concerns belong in separate standards or project configuration.
 
 ## Required configuration
 
-The following is a valid `.prettierrc.json` configuration:
+Install the shared package alongside its Prettier peer dependency:
+
+```sh
+pnpm add --save-dev @mikode13/code-style prettier
+```
+
+Create `prettier.config.mjs` at the repository root as a thin re-export:
+
+```js
+export { default } from '@mikode13/code-style/prettier';
+```
+
+Projects MUST NOT replace this re-export with a copied `.prettierrc.json` or local
+option object. For reviewability, the current package export contains the following
+values; the published package remains the executable source:
 
 ```json
 {
@@ -106,8 +123,9 @@ SHOULD explain the reason near the exception.
 
 A project MAY change an option only when the default causes a documented compatibility or
 readability problem. The project MUST record the deviation in its own documentation and
-explain why the shared value is unsuitable. A cross-project change to these values requires
-a new or updated ADR.
+explain why the shared value is unsuitable. The project configuration MUST import and
+extend the shared package rather than duplicate the complete option object. A
+cross-project change to these values requires a new or updated ADR.
 
 ## Adoption
 
@@ -115,10 +133,10 @@ New projects should adopt the shared configuration before their first substantia
 Existing projects should adopt it in a dedicated formatting change, then add the CI check
 before subsequent feature work.
 
-When `@mikode/code-style/prettier` becomes available, projects should consume that package
-rather than copying its implementation into this repository. This repository may retain
-the documented option values so the policy remains understandable without reading package
-source code.
+Projects MUST consume `@mikode13/code-style/prettier` rather than copying its
+implementation into an individual project or this repository. This repository retains
+the documented option values so the policy remains understandable without reading
+package source code.
 
 ## References
 
@@ -126,3 +144,4 @@ source code.
 - [Prettier options](https://prettier.io/docs/options.html)
 - [Prettier configuration files](https://prettier.io/docs/configuration)
 - [Prettier CLI](https://prettier.io/docs/cli)
+- [`@mikode13/code-style` implementation](https://github.com/mikode13/code-styiling)
