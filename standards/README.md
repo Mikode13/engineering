@@ -3,6 +3,13 @@
 Standards define rules that MiKode projects should apply consistently. Each document
 declares its status; active standards are mandatory within their stated scope.
 
+## Draft standards
+
+- [Git workflow standard](git-workflow.md) — proposed branch, pull request, squash merge, shared script, and pre-push hook rules.
+
+Draft standards are open for review and are not mandatory until their related ADRs are
+accepted and the standards become active.
+
 ## Active standards
 
 - [Code formatting standard](code-formatting.md) — Prettier configuration and adoption workflow.

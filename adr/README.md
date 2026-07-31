@@ -4,6 +4,12 @@ ADRs record significant cross-project decisions, the alternatives considered, an
 consequences accepted. They are numbered sequentially and use lowercase kebab-case file
 names. New ADRs should start from the [ADR template](../templates/ADR.template.md).
 
+## Proposed decisions
+
+- [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](0008-use-conventional-commits-and-squash-merges.md) — proposes Conventional Commit pull request titles, squash-only default-branch history, shared pre-push checks, and an independent `@mikode13/git-hooks` package.
+
+Proposed decisions are open for review and are not current policy until accepted.
+
 ## Accepted decisions
 
 - [ADR 0001: Use Prettier for cross-project code formatting](0001-use-prettier.md) — establishes Prettier as the default formatter while leaving room to revisit Biome and oxfmt.

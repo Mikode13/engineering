@@ -52,6 +52,11 @@ Accepted decisions and their active standards:
 - [TypeScript standard](standards/typescript.md)
 - [Code quality standard](standards/code-quality.md)
 
+Proposed decisions and draft standards, which are not yet mandatory:
+
+- [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](adr/0008-use-conventional-commits-and-squash-merges.md)
+- [Draft Git workflow standard](standards/git-workflow.md)
+
 Superseded decisions, retained as historical records:
 
 - [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.
