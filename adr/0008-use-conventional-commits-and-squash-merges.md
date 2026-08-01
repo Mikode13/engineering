@@ -1,6 +1,6 @@
 # ADR 0008: Use Conventional Commits and squash merges with shared Git hooks
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-07-31
 
 ## Context
@@ -187,7 +187,7 @@ settings instead.
 
 ## Related standards
 
-- [Git workflow standard](../standards/git-workflow.md) (Draft)
+- [Git workflow standard](../standards/git-workflow.md)
 
 ## References
 
@@ -201,4 +201,5 @@ settings instead.
 - [Git push safety and force-with-lease](https://git-scm.com/docs/git-push#Documentation/git-push.txt---force-with-leaseltrefnamegtltexpectgt)
 - [GitHub: Configuring commit squashing](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests)
 - [GitHub: Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)
+- [`@mikode13/git-hooks` implementation](https://github.com/mikode13/git-hooks)
 - [semantic-release](https://semantic-release.gitbook.io/semantic-release/)

@@ -1,10 +1,8 @@
 # Git workflow standard
 
-- Status: Draft
-- Last reviewed: 2026-07-31
+- Status: Active
+- Last reviewed: 2026-08-01
 - Related ADRs: [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md)
-
-This standard is not mandatory while ADR 0008 remains proposed.
 
 ## Scope
 
@@ -36,8 +34,8 @@ Projects adopting this standard MUST:
    title. The resulting commit on the default branch MUST therefore be a valid
    Conventional Commit.
 8. Install the independent `@mikode13/git-hooks` package directly as a development
-   dependency once it is available. Projects MUST NOT copy its executable configuration
-   or dependency graph locally.
+   dependency. Projects MUST NOT copy its executable configuration or dependency graph
+   locally.
 9. Install hooks through an explicit project-owned `prepare` script. A dependency MUST
    NOT mutate the consuming repository from its own install lifecycle scripts.
 10. Commit the `.husky/pre-push` wrapper created from the
@@ -153,10 +151,9 @@ GitHub repositories MUST:
 6. Require the title-validation and project CI status checks.
 7. Block force pushes to the default branch.
 
-CI MUST pass the pull request title to the validation command exposed by
-`@mikode13/git-hooks`. The package interface and exact workflow snippet must be finalized
-in that package before this draft standard can become active. CI MUST also run the
-project's `check`, `test`, and build jobs independently of local hooks.
+CI MUST pass the pull request title to `mikode-git-hooks lint-title` and the pull request
+source branch to `mikode-git-hooks lint-branch`. CI MUST also run the project's `check`,
+`test`, and build jobs independently of local hooks.
 
 ## Shared package boundary
 
@@ -187,11 +184,9 @@ not an exception.
 
 ## Adoption
 
-Adoption is blocked while ADR 0008 is proposed and until `@mikode13/git-hooks` implements
-and publishes the validation and installation commands. After acceptance and package
-publication, new repositories apply the standard before their first pull request.
-Existing repositories adopt it in a dedicated change that adds the scripts and hook,
-configures CI, and updates GitHub merge settings together.
+New repositories apply the standard before their first pull request. Existing
+repositories adopt it in a dedicated change that adds the scripts and hook, configures
+CI, and updates GitHub merge settings together.
 
 ## References
 
@@ -205,3 +200,4 @@ configures CI, and updates GitHub merge settings together.
 - [Git push safety and force-with-lease](https://git-scm.com/docs/git-push#Documentation/git-push.txt---force-with-leaseltrefnamegtltexpectgt)
 - [GitHub: Configuring commit squashing](https://docs.github.com/en/repositories/configuring-branches-and-merges/in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests)
 - [GitHub: Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges/in-your-repository/managing-rulesets/available-rules-for-rulesets)
+- [`@mikode13/git-hooks` implementation](https://github.com/mikode13/git-hooks)
