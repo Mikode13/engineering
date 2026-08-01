@@ -2,6 +2,9 @@
 
 - Status: Proposed
 - Date: {{DATE}}
+<!-- Choose one or more controlled domains from adr/README.md. -->
+- Domains: {{DOMAINS}}
+- Applies to: {{APPLICABILITY}}
 <!-- Remove the next two lines when they do not apply. -->
 - Supersedes: [ADR {{SUPERSEDED_NUMBER}}]({{SUPERSEDED_FILE}})
 - Superseded by: [ADR {{SUPERSEDING_NUMBER}}]({{SUPERSEDING_FILE}})

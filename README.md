@@ -19,6 +19,10 @@ standard consistently.
 ADRs preserve the reasoning behind significant decisions. They are historical records and
 should not be rewritten to hide the trade-offs of an earlier decision.
 
+ADRs remain in one chronological sequence and use Markdown metadata for their domains and
+applicability. The ADR index exposes that metadata so decisions can be found by status,
+domain, or project scope without reorganizing historical files.
+
 See the [ADR index](adr/README.md).
 
 ### Standards
@@ -62,8 +66,9 @@ Superseded decisions, retained as historical records:
 
 Before adding a decision, confirm that it affects more than one MiKode project. Describe
 the problem and constraints, research realistic alternatives, and record the proposed
-decision in an ADR. Once the decision is confirmed, mark the ADR `Accepted`, update the
-related standard, add or update a template when needed, and update the indexes.
+decision in an ADR. Classify it with the controlled domains and an explicit `Applies to`
+scope from the ADR index. Once the decision is confirmed, mark the ADR `Accepted`, update
+the related standard, add or update a template when needed, and update the indexes.
 
 Use relative links for documents in this repository and authoritative links for external
 facts. Keep historical reasoning in ADRs and active rules in standards.

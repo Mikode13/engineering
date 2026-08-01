@@ -116,6 +116,10 @@ The README should link to documents rather than duplicating their full content.
 
 ADRs record significant technical decisions and their reasoning.
 
+Keep ADR files in one flat, chronological sequence. Use the controlled `Domains` and
+free-text `Applies to` Markdown metadata defined in `adr/README.md` so decisions remain
+searchable without domain directories.
+
 An ADR answers:
 
 > Why was this decision made, which alternatives were considered, and what consequences
@@ -245,6 +249,8 @@ Use this structure unless a documented reason requires otherwise:
 
 - Status: Proposed | Accepted | Superseded | Deprecated
 - Date: YYYY-MM-DD
+- Domains: Shared, Frontend, Backend, and/or Delivery
+- Applies to: explicit repository, project, or technology scope
 - Supersedes: ADR NNNN, when applicable
 - Superseded by: ADR NNNN, when applicable
 
@@ -297,7 +303,8 @@ Examples:
 
 Numbers are sequential and must not be reused.
 
-Use lowercase `kebab-case`.
+Use lowercase `kebab-case` and keep every ADR directly under `adr/`; domains belong in
+metadata and the index, not in the file path.
 
 ---
 
@@ -525,16 +532,17 @@ When working in this repository, agents MUST:
 7. Keep ADR history intact.
 8. Update root and directory indexes when documents are added, renamed, deprecated, or
    superseded.
-9. Use relative links for repository documents.
-10. Check for duplicated or conflicting rules.
-11. Keep examples aligned with the active standards.
-12. Avoid adding executable package implementations.
-13. Avoid adding unnecessary tooling to this repository.
-14. Explain meaningful trade-offs before recommending a cross-project standard.
-15. Add references for version-sensitive or legally significant claims.
-16. Make the smallest coherent change that completes the requested task.
-17. Clearly identify assumptions and unresolved decisions.
-18. Check formatting and links before considering a documentation change complete.
+9. Classify every ADR with controlled domains and an explicit applicability statement.
+10. Use relative links for repository documents.
+11. Check for duplicated or conflicting rules.
+12. Keep examples aligned with the active standards.
+13. Avoid adding executable package implementations.
+14. Avoid adding unnecessary tooling to this repository.
+15. Explain meaningful trade-offs before recommending a cross-project standard.
+16. Add references for version-sensitive or legally significant claims.
+17. Make the smallest coherent change that completes the requested task.
+18. Clearly identify assumptions and unresolved decisions.
+19. Check formatting and links before considering a documentation change complete.
 
 Agents MUST NOT:
 
@@ -600,7 +608,7 @@ Before completing a change, verify:
 - [ ] The ADR and standard do not duplicate each other unnecessarily.
 - [ ] File names use lowercase `kebab-case`.
 - [ ] ADR numbering is sequential and unique.
-- [ ] Status and dates are present where required.
+- [ ] Status, dates, domains, and applicability are present where required.
 - [ ] Relative links work.
 - [ ] Indexes are updated.
 - [ ] External factual claims have reliable references.

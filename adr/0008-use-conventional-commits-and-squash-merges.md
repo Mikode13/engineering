@@ -2,6 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-07-31
+- Domains: Shared, Delivery
+- Applies to: MiKode repositories hosted on GitHub; shared hooks target Node.js and pnpm
 
 ## Context
 

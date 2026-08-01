@@ -2,6 +2,8 @@
 
 - Status: Superseded
 - Date: 2026-07-24
+- Domains: Shared, Frontend
+- Applies to: TypeScript projects, with additional rules for React projects
 - Superseded by: [ADR 0007](0007-use-eslint-10-with-modern-react-plugins.md)
 
 ## Context
