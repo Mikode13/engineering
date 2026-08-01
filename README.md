@@ -45,12 +45,14 @@ Accepted decisions and their active standards:
 - [ADR 0004: Support Node.js 22 and later](adr/0004-support-node-22-and-later.md)
 - [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](adr/0005-use-strict-shared-typescript-configuration.md)
 - [ADR 0007: Use ESLint 10 with modern React plugins](adr/0007-use-eslint-10-with-modern-react-plugins.md)
+- [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](adr/0008-use-conventional-commits-and-squash-merges.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
 - [Node.js version standard](standards/nodejs-version.md)
 - [TypeScript standard](standards/typescript.md)
 - [Code quality standard](standards/code-quality.md)
+- [Git workflow standard](standards/git-workflow.md)
 
 Superseded decisions, retained as historical records:
 

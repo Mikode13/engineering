@@ -11,3 +11,4 @@ declares its status; active standards are mandatory within their stated scope.
 - [Node.js version standard](nodejs-version.md) — supported Node.js range, `engines`, and `.nvmrc` configuration.
 - [TypeScript standard](typescript.md) — shared strict compiler configuration and its variants.
 - [Code quality standard](code-quality.md) — ESLint 10 flat config, type-aware rules, and modern React and accessibility providers.
+- [Git workflow standard](git-workflow.md) — branch, pull request, squash merge, shared script, and pre-push hook rules.
