@@ -4,21 +4,43 @@ ADRs record significant cross-project decisions, the alternatives considered, an
 consequences accepted. They are numbered sequentially and use lowercase kebab-case file
 names. New ADRs should start from the [ADR template](../templates/ADR.template.md).
 
+ADRs stay in one flat chronological sequence. Each ADR declares one or more controlled
+domains and an explicit applicability statement in Markdown metadata. Domains are
+navigational labels rather than directory or ownership boundaries, so a decision may
+belong to more than one domain.
+
+## Domains
+
+- **Shared** — engineering policy, language tooling, and practices used across project
+  types.
+- **Frontend** — browser applications, user interfaces, accessibility, and client-side
+  concerns.
+- **Backend** — services, APIs, persistence, and server-side concerns.
+- **Delivery** — continuous integration, releases, deployments, and repository delivery
+  workflows.
+
+New domains should be added only when concrete decisions no longer fit this vocabulary.
+Do not create empty domain directories or renumber ADRs by domain.
+
 ## Accepted decisions
 
-- [ADR 0001: Use Prettier for cross-project code formatting](0001-use-prettier.md) — establishes Prettier as the default formatter while leaving room to revisit Biome and oxfmt.
-- [ADR 0002: Use the Commons Clause with the MIT License for source-available software](0002-use-commons-clause-with-mit.md) — establishes the source-available licensing model for MiKode software.
-- [ADR 0003: Use pnpm as the package manager](0003-use-pnpm.md) — establishes pnpm for consistent, strict, reproducible installs across projects.
-- [ADR 0004: Support Node.js 22 and later](0004-support-node-22-and-later.md) — establishes Node.js 22.13 as the support floor with development on the active LTS line.
-- [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](0005-use-strict-shared-typescript-configuration.md) — establishes strict compiler settings shared through the [`mikode13/tsconfig`](https://github.com/mikode13/tsconfig) package.
-- [ADR 0007: Use ESLint 10 with modern React plugins](0007-use-eslint-10-with-modern-react-plugins.md) — establishes an audit-clean ESLint 10 graph with modern React and static JSX accessibility providers through the [`mikode13/code-quality`](https://github.com/mikode13/code-quality) package.
-- [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](0008-use-conventional-commits-and-squash-merges.md) — establishes Conventional Commit pull request titles, squash-only default-branch history, shared pre-push checks, and the independent [`@mikode13/git-hooks`](https://github.com/mikode13/git-hooks) package.
+| ADR | Domains | Applies to | Decision |
+| --- | --- | --- | --- |
+| [0001](0001-use-prettier.md) | Shared | JavaScript and TypeScript projects | Use Prettier as the default formatter while retaining room to revisit Biome and oxfmt. |
+| [0002](0002-use-commons-clause-with-mit.md) | Shared | MiKode software adopting the source-available policy | Combine the MIT License with the Commons Clause License Condition v1.0. |
+| [0003](0003-use-pnpm.md) | Shared | JavaScript and TypeScript projects that install registry dependencies | Use pnpm for consistent, strict, and reproducible dependency management. |
+| [0004](0004-support-node-22-and-later.md) | Shared | Node.js libraries, applications, services, and tools | Support maintained LTS lines from Node.js 22.13 and develop primarily on Node.js 24. |
+| [0005](0005-use-strict-shared-typescript-configuration.md) | Shared | TypeScript libraries and applications | Extend strict shared configurations from `@mikode13/tsconfig`. |
+| [0007](0007-use-eslint-10-with-modern-react-plugins.md) | Shared, Frontend | TypeScript projects, with additional rules for React projects | Use an audit-clean ESLint 10 graph with modern React and accessibility providers. |
+| [0008](0008-use-conventional-commits-and-squash-merges.md) | Shared, Delivery | MiKode repositories hosted on GitHub; shared hooks target Node.js and pnpm | Use Conventional Commit PR titles, squash-only history, and shared Git hooks. |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
 
 ## Superseded decisions
 
-- [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007, which replaced its React and accessibility providers with an ESLint 10-compatible, audit-clean graph.
+| ADR | Domains | Applies to | Superseded by |
+| --- | --- | --- | --- |
+| [0006](0006-use-eslint-via-code-quality-package.md) | Shared, Frontend | TypeScript projects, with additional rules for React projects | [ADR 0007](0007-use-eslint-10-with-modern-react-plugins.md), which replaced its React and accessibility providers with an ESLint 10-compatible, audit-clean graph. |
 
 Superseded decisions remain historical records and are not the current policy.

@@ -2,6 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-07-24
+- Domains: Shared
+- Applies to: TypeScript libraries and applications
 
 ## Context
 
