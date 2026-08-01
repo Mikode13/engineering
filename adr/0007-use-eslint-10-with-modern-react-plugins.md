@@ -2,6 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-07-25
+- Domains: Shared, Frontend
+- Applies to: TypeScript projects, with additional rules for React projects
 - Supersedes: [ADR 0006](0006-use-eslint-via-code-quality-package.md)
 
 ## Context
