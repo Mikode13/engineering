@@ -50,6 +50,7 @@ Accepted decisions and their active standards:
 - [ADR 0005: Use a strict shared TypeScript configuration via @mikode13/tsconfig](adr/0005-use-strict-shared-typescript-configuration.md)
 - [ADR 0007: Use ESLint 10 with modern React plugins](adr/0007-use-eslint-10-with-modern-react-plugins.md)
 - [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](adr/0008-use-conventional-commits-and-squash-merges.md)
+- [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
@@ -57,6 +58,7 @@ Accepted decisions and their active standards:
 - [TypeScript standard](standards/typescript.md)
 - [Code quality standard](standards/code-quality.md)
 - [Git workflow standard](standards/git-workflow.md)
+- [Testing standard](standards/testing.md)
 
 Superseded decisions, retained as historical records:
 
