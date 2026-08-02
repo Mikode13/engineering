@@ -15,7 +15,7 @@ declares its status; active standards are mandatory within their stated scope.
 
 ## Draft standards
 
-- [Testing standard](testing.md) — Vitest, test boundaries, shared scripts, deterministic gates, and diagnostic coverage.
+- [Testing standard](testing.md) — Vitest, Playwright, fixed test organization, deterministic data, regression tests, and shared scripts.
 
 Draft standards describe proposed rules. They are not mandatory until their related ADR
 is accepted and the standard is activated.

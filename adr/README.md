@@ -41,7 +41,7 @@ superseding ADR rather than rewriting their historical reasoning.
 
 | ADR | Domains | Applies to | Proposal |
 | --- | --- | --- | --- |
-| [0009](0009-use-vitest-with-risk-based-testing.md) | Shared, Delivery | JavaScript and TypeScript repositories with executable code or consumable technical configuration | Use Vitest with behavior-case unit tests, critical-path integration tests, and diagnostic coverage without a global percentage gate. |
+| [0009](0009-use-vitest-and-playwright-with-risk-based-testing.md) | Shared, Delivery | JavaScript and TypeScript repositories with executable code or consumable technical configuration | Use Vitest and Playwright with fixed test organization, regression tests, risk-based requirements, and diagnostic coverage. |
 
 Proposed decisions are under review and are not mandatory until accepted.
 

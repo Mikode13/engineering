@@ -60,7 +60,7 @@ Accepted decisions and their active standards:
 
 Proposed decisions and draft standards:
 
-- [ADR 0009: Use Vitest with risk-based testing requirements](adr/0009-use-vitest-with-risk-based-testing.md)
+- [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
 - [Draft testing standard](standards/testing.md)
 
 Superseded decisions, retained as historical records:
