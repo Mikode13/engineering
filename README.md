@@ -58,6 +58,11 @@ Accepted decisions and their active standards:
 - [Code quality standard](standards/code-quality.md)
 - [Git workflow standard](standards/git-workflow.md)
 
+Proposed decisions and draft standards:
+
+- [ADR 0009: Use Vitest with risk-based testing requirements](adr/0009-use-vitest-with-risk-based-testing.md)
+- [Draft testing standard](standards/testing.md)
+
 Superseded decisions, retained as historical records:
 
 - [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.

@@ -37,6 +37,14 @@ Do not create empty domain directories or renumber ADRs by domain.
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
 
+## Proposed decisions
+
+| ADR | Domains | Applies to | Proposal |
+| --- | --- | --- | --- |
+| [0009](0009-use-vitest-with-risk-based-testing.md) | Shared, Delivery | JavaScript and TypeScript repositories with executable code or consumable technical configuration | Use Vitest with behavior-case unit tests, critical-path integration tests, and diagnostic coverage without a global percentage gate. |
+
+Proposed decisions are under review and are not mandatory until accepted.
+
 ## Superseded decisions
 
 | ADR | Domains | Applies to | Superseded by |

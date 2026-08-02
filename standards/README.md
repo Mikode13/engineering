@@ -12,3 +12,10 @@ declares its status; active standards are mandatory within their stated scope.
 - [TypeScript standard](typescript.md) — shared strict compiler configuration and its variants.
 - [Code quality standard](code-quality.md) — ESLint 10 flat config, type-aware rules, and modern React and accessibility providers.
 - [Git workflow standard](git-workflow.md) — branch, pull request, squash merge, shared script, and pre-push hook rules.
+
+## Draft standards
+
+- [Testing standard](testing.md) — Vitest, test boundaries, shared scripts, deterministic gates, and diagnostic coverage.
+
+Draft standards describe proposed rules. They are not mandatory until their related ADR
+is accepted and the standard is activated.
