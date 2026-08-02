@@ -1,6 +1,6 @@
 # Testing standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-08-02
 - Related ADRs: [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
 
@@ -378,10 +378,6 @@ The standard is project-independent: adoption instructions and configuration MUS
 tied to a named pilot repository. Published `@mikode13/tsconfig` compiler presets do not
 change merely to support the runners; a configuration repository may still need its own
 integration tests to verify the configuration it publishes.
-
-This standard remains Draft until ADR 0009 is accepted. Draft adoption may produce
-feedback, but failures against this document are warnings rather than violations of an
-active standard.
 
 ## References
 

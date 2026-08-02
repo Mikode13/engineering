@@ -1,6 +1,6 @@
 # ADR 0009: Use Vitest and Playwright with risk-based testing requirements
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-08-02
 - Domains: Shared, Delivery
 - Applies to: MiKode JavaScript and TypeScript repositories with executable code or consumable technical configuration
