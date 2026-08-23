@@ -13,6 +13,7 @@ declares its status; active standards are mandatory within their stated scope.
 - [Code quality standard](code-quality.md) — ESLint 10 flat config, type-aware rules, and modern React and accessibility providers.
 - [Git workflow standard](git-workflow.md) — branch, pull request, squash merge, shared script, and pre-push hook rules.
 - [Testing standard](testing.md) — Vitest, Playwright, fixed test organization, deterministic data, regression tests, and shared scripts.
+- [Continuous integration standard](continuous-integration.md) — centralized GitHub Actions workflows, required checks, execution profiles, and controlled rollout.
 
 ## Draft standards
 

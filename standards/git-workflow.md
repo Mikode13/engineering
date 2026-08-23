@@ -1,8 +1,8 @@
 # Git workflow standard
 
 - Status: Active
-- Last reviewed: 2026-08-01
-- Related ADRs: [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md)
+- Last reviewed: 2026-08-23
+- Related ADRs: [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -148,12 +148,14 @@ GitHub repositories MUST:
    as the default squash commit message.
 4. Protect the default branch with a ruleset that requires a pull request.
 5. Require the squash merge type.
-6. Require the title-validation and project CI status checks.
+6. Require the aggregate `CI / required` status check from the
+   [Continuous integration standard](continuous-integration.md).
 7. Block force pushes to the default branch.
 
 CI MUST pass the pull request title to `mikode-git-hooks lint-title` and the pull request
 source branch to `mikode-git-hooks lint-branch`. CI MUST also run the project's `check`,
-`test`, and build jobs independently of local hooks.
+`test`, and applicable build jobs independently of local hooks, following the
+[Continuous integration standard](continuous-integration.md).
 
 ## Shared package boundary
 
@@ -201,3 +203,4 @@ CI, and updates GitHub merge settings together.
 - [GitHub: Configuring commit squashing](https://docs.github.com/en/repositories/configuring-branches-and-merges/in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests)
 - [GitHub: Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges/in-your-repository/managing-rulesets/available-rules-for-rulesets)
 - [`@mikode13/git-hooks` implementation](https://github.com/mikode13/git-hooks)
+- [Continuous integration standard](continuous-integration.md)
