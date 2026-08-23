@@ -40,7 +40,9 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-There are currently no proposed decisions.
+| ADR | Domains | Applies to | Decision |
+| --- | --- | --- | --- |
+| [0010](0010-use-github-actions-with-centralized-reusable-ci-workflows.md) | Shared, Delivery | MiKode repositories hosted on GitHub | Use GitHub Actions with centralized, SHA-pinned reusable CI workflows and one ruleset-compatible required check. |
 
 ## Superseded decisions
 

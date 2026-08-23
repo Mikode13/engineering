@@ -60,6 +60,10 @@ Accepted decisions and their active standards:
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
 
+Proposed decisions, which are not yet mandatory:
+
+- [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+
 Superseded decisions, retained as historical records:
 
 - [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.
