@@ -34,15 +34,14 @@ Do not create empty domain directories or renumber ADRs by domain.
 | [0007](0007-use-eslint-10-with-modern-react-plugins.md) | Shared, Frontend | TypeScript projects, with additional rules for React projects | Use an audit-clean ESLint 10 graph with modern React and accessibility providers. |
 | [0008](0008-use-conventional-commits-and-squash-merges.md) | Shared, Delivery | MiKode repositories hosted on GitHub; shared hooks target Node.js and pnpm | Use Conventional Commit PR titles, squash-only history, and shared Git hooks. |
 | [0009](0009-use-vitest-and-playwright-with-risk-based-testing.md) | Shared, Delivery | JavaScript and TypeScript repositories with executable code or consumable technical configuration | Use Vitest and Playwright with fixed test organization, regression tests, risk-based requirements, and diagnostic coverage. |
+| [0010](0010-use-github-actions-with-centralized-reusable-ci-workflows.md) | Shared, Delivery | MiKode repositories hosted on GitHub | Use GitHub Actions with centralized, SHA-pinned reusable CI workflows and one ruleset-compatible required check. |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR | Domains | Applies to | Decision |
-| --- | --- | --- | --- |
-| [0010](0010-use-github-actions-with-centralized-reusable-ci-workflows.md) | Shared, Delivery | MiKode repositories hosted on GitHub | Use GitHub Actions with centralized, SHA-pinned reusable CI workflows and one ruleset-compatible required check. |
+There are currently no proposed decisions.
 
 ## Superseded decisions
 

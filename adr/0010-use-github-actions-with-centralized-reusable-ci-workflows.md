@@ -1,6 +1,6 @@
 # ADR 0010: Use GitHub Actions with centralized reusable CI workflows
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-08-23
 - Domains: Shared, Delivery
 - Applies to: MiKode repositories hosted on GitHub
@@ -208,16 +208,16 @@ branch, so they are insufficient as the CI boundary.
   already merged.
 - The central workflow repository needs meaningful fixtures, validation, staged rollout,
   and rollback discipline.
+- `harness` alone cannot represent every future repository profile, so the initial canary
+  and contract fixtures reduce but do not eliminate rollout risk.
 
 ## Related standards
 
+- [Continuous integration standard](../standards/continuous-integration.md)
 - [Git workflow standard](../standards/git-workflow.md)
 - [Testing standard](../standards/testing.md)
 - [Node.js version standard](../standards/nodejs-version.md)
 - [Package management standard](../standards/package-management.md)
-
-A dedicated continuous integration standard will be drafted if this decision is
-accepted.
 
 ## References
 

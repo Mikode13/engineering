@@ -1,8 +1,8 @@
 # Testing standard
 
 - Status: Active
-- Last reviewed: 2026-08-02
-- Related ADRs: [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
+- Last reviewed: 2026-08-23
+- Related ADRs: [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -119,9 +119,10 @@ that credentials, request formats, SDK behavior, and response normalization rema
 compatible with the live provider. They MUST be separately selectable because they may
 be slow, flaky, rate-limited, secret-dependent, or billable.
 
-The future CI/CD standard will decide whether external tests run manually, on a schedule,
-or in a protected environment. Until then, they are opt-in and not required by the
-default merge gate.
+The [Continuous integration standard](continuous-integration.md) requires these tests to
+be manually runnable and scheduled when the boundary exists. They are not part of the
+default merge gate unless the repository documents a reliable provider sandbox and the
+stronger requirement.
 
 ### End to end
 
@@ -297,8 +298,8 @@ export default defineConfig({
 ```
 
 Applications MUST install the Playwright browser binaries required by their configured
-browser projects. The future CI/CD standard will define the shared installation and cache
-workflow.
+browser projects. The [Continuous integration standard](continuous-integration.md)
+requires application CI to perform that installation before the end-to-end suite.
 
 ## TypeScript and code-quality configuration
 
@@ -402,3 +403,4 @@ integration tests to verify the configuration it publishes.
 - [Git workflow standard](git-workflow.md)
 - [TypeScript standard](typescript.md)
 - [Code quality standard](code-quality.md)
+- [Continuous integration standard](continuous-integration.md)

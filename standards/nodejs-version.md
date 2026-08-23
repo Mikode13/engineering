@@ -1,8 +1,8 @@
 # Node.js version standard
 
 - Status: Active
-- Last reviewed: 2026-07-24
-- Related ADRs: [ADR 0004: Support Node.js 22 and later](../adr/0004-support-node-22-and-later.md)
+- Last reviewed: 2026-08-23
+- Related ADRs: [ADR 0004: Support Node.js 22 and later](../adr/0004-support-node-22-and-later.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -17,8 +17,9 @@ Projects adopting this standard MUST:
    unavailable in Node.js 22.
 2. Declare the supported range in the `package.json` `engines` field.
 3. Pin the development version with an `.nvmrc` file at the repository root.
-4. Run CI on Node.js 24, and SHOULD also run the test suite on Node.js 22 for published
-   packages so the declared floor is actually verified.
+4. Run static quality checks on Node.js 24, and run the mandatory test suite plus every
+   applicable build on Node.js 22 and 24, following the
+   [Continuous integration standard](continuous-integration.md).
 5. Treat raising the minimum version of a published package as a breaking change.
 
 Projects SHOULD review the minimum version when the Node.js release schedule changes
@@ -70,3 +71,4 @@ on the declared floor before publishing under it.
 - [Evolving the Node.js release schedule](https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule)
 - [npm `engines` field](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#engines)
 - [nvm `.nvmrc` usage](https://github.com/nvm-sh/nvm#nvmrc)
+- [Continuous integration standard](continuous-integration.md)
