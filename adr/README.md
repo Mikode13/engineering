@@ -41,7 +41,9 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-There are currently no proposed decisions.
+| ADR | Domains | Applies to | Decision |
+| --- | --- | --- | --- |
+| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
 
 ## Superseded decisions
 
