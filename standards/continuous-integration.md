@@ -102,11 +102,15 @@ The documentation profile MUST validate:
 - repository-specific document invariants, such as ADR metadata, numbering, status, and
   index consistency when applicable.
 
-Internal failures are deterministic and MUST block the pull request. A complete external
-URL scan MUST run separately on a schedule because remote downtime, rate limiting, and
-automation blocking can produce failures unrelated to the change. The scheduled scan
-MUST report broken links for review but MUST NOT retroactively mark an otherwise healthy
-default-branch CI run as failed.
+Internal failures are deterministic and MUST block the pull request. External URL scans
+remain outside the required documentation profile because remote downtime, rate
+limiting, and automation blocking can produce failures unrelated to the change.
+
+The scheduled external URL scan described by ADR 0010 is not currently required while
+that part of the decision is being reconsidered. A follow-up decision MUST define whether
+to adopt it and, if adopted, its trigger, reporting behavior, and ownership. Until then,
+repositories MAY run external URL scans manually as non-blocking diagnostics, but no
+recurring cadence is mandated.
 
 ### Application end-to-end capability
 
