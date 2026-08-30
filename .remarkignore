@@ -1,0 +1,2 @@
+# Placeholder links resolve only after the ADR template is instantiated.
+templates/ADR.template.md

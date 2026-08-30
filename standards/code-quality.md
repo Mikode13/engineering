@@ -2,7 +2,10 @@
 
 - Status: Active
 - Last reviewed: 2026-07-25
-- Related ADRs: [ADR 0007: Use ESLint 10 with modern React plugins](../adr/0007-use-eslint-10-with-modern-react-plugins.md), which supersedes [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](../adr/0006-use-eslint-via-code-quality-package.md)
+- Related ADRs:
+  [ADR 0007: Use ESLint 10 with modern React plugins](../adr/0007-use-eslint-10-with-modern-react-plugins.md),
+  which supersedes
+  [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](../adr/0006-use-eslint-via-code-quality-package.md)
 
 ## Scope
 

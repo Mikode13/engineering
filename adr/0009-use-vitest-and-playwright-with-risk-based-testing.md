@@ -3,7 +3,8 @@
 - Status: Accepted
 - Date: 2026-08-02
 - Domains: Shared, Delivery
-- Applies to: MiKode JavaScript and TypeScript repositories with executable code or consumable technical configuration
+- Applies to: MiKode JavaScript and TypeScript repositories with executable code or
+  consumable technical configuration
 
 ## Context
 

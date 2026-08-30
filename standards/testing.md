@@ -2,7 +2,9 @@
 
 - Status: Active
 - Last reviewed: 2026-08-23
-- Related ADRs: [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- Related ADRs:
+  [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md),
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -188,19 +190,19 @@ runner-specific support stay under the separate `e2e/` root. Runner configuratio
 
 Test and support files MUST use these suffixes:
 
-| Purpose | Required path and suffix |
-| --- | --- |
-| Unit | `tests/unit/**/*.unit.test.{ts,tsx}` |
-| Component | `tests/component/**/*.component.test.{ts,tsx}` |
-| Local integration | `tests/integration/**/*.integration.test.{ts,tsx}` |
-| External integration | `tests/external/**/*.external.test.{ts,tsx}` |
-| End to end | `e2e/specs/**/*.e2e.test.{ts,tsx}` |
-| Test-data factory | `tests/support/factories/**/*.factory.ts` |
-| Test-data builder | `tests/support/builders/**/*.builder.ts` |
-| Shared fixture | `tests/support/fixtures/**/*.fixture.ts` |
-| Test fake | `tests/support/fakes/**/*.fake.ts` |
-| Playwright fixture | `e2e/fixtures/**/*.fixture.ts` |
-| Playwright page object | `e2e/pages/**/*.page.ts` |
+| Purpose                | Required path and suffix                           |
+| ---------------------- | -------------------------------------------------- |
+| Unit                   | `tests/unit/**/*.unit.test.{ts,tsx}`               |
+| Component              | `tests/component/**/*.component.test.{ts,tsx}`     |
+| Local integration      | `tests/integration/**/*.integration.test.{ts,tsx}` |
+| External integration   | `tests/external/**/*.external.test.{ts,tsx}`       |
+| End to end             | `e2e/specs/**/*.e2e.test.{ts,tsx}`                 |
+| Test-data factory      | `tests/support/factories/**/*.factory.ts`          |
+| Test-data builder      | `tests/support/builders/**/*.builder.ts`           |
+| Shared fixture         | `tests/support/fixtures/**/*.fixture.ts`           |
+| Test fake              | `tests/support/fakes/**/*.fake.ts`                 |
+| Playwright fixture     | `e2e/fixtures/**/*.fixture.ts`                     |
+| Playwright page object | `e2e/pages/**/*.page.ts`                           |
 
 Paths below a category SHOULD mirror the production capability or source hierarchy when
 that makes navigation clearer. The category root and suffix remain mandatory.
@@ -246,21 +248,21 @@ A project with every Vitest boundary exposes:
 
 ```json
 {
-  "scripts": {
-    "test": "pnpm run test:unit && pnpm run test:component && pnpm run test:integration",
-    "test:unit": "vitest run --project unit",
-    "test:unit:watch": "vitest --project unit",
-    "test:component": "vitest run --project component",
-    "test:integration": "vitest run --project integration",
-    "test:integration:external": "vitest run --project external",
-    "test:coverage": "vitest run --project unit --project component --project integration --coverage"
-  },
-  "devDependencies": {
-    "@vitest/browser-playwright": "^4.1.10",
-    "@vitest/coverage-v8": "^4.1.10",
-    "playwright": "^1.62.1",
-    "vitest": "^4.1.10"
-  }
+	"scripts": {
+		"test": "pnpm run test:unit && pnpm run test:component && pnpm run test:integration",
+		"test:unit": "vitest run --project unit",
+		"test:unit:watch": "vitest --project unit",
+		"test:component": "vitest run --project component",
+		"test:integration": "vitest run --project integration",
+		"test:integration:external": "vitest run --project external",
+		"test:coverage": "vitest run --project unit --project component --project integration --coverage"
+	},
+	"devDependencies": {
+		"@vitest/browser-playwright": "^4.1.10",
+		"@vitest/coverage-v8": "^4.1.10",
+		"playwright": "^1.62.1",
+		"vitest": "^4.1.10"
+	}
 }
 ```
 
@@ -268,12 +270,12 @@ An application with end-to-end flows additionally exposes:
 
 ```json
 {
-  "scripts": {
-    "test:e2e": "playwright test"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.62.1"
-  }
+	"scripts": {
+		"test:e2e": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.62.1"
+	}
 }
 ```
 
@@ -312,11 +314,11 @@ local configuration. A Node.js `tests/tsconfig.json` starts with:
 
 ```json
 {
-  "extends": "@mikode13/tsconfig/node",
-  "compilerOptions": {
-    "noEmit": true
-  },
-  "include": ["**/*.ts", "**/*.tsx"]
+	"extends": "@mikode13/tsconfig/node",
+	"compilerOptions": {
+		"noEmit": true
+	},
+	"include": ["**/*.ts", "**/*.tsx"]
 }
 ```
 

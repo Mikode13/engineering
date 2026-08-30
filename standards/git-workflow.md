@@ -2,7 +2,9 @@
 
 - Status: Active
 - Last reviewed: 2026-08-23
-- Related ADRs: [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- Related ADRs:
+  [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md),
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -111,17 +113,17 @@ A typical project exposes this script interface:
 
 ```json
 {
-  "scripts": {
-    "prepare": "mikode-git-hooks install",
-    "format:check": "prettier . --check",
-    "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
-    "test": "<PROJECT_TEST_COMMAND>",
-    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
-  },
-  "devDependencies": {
-    "@mikode13/git-hooks": "<PINNED_VERSION>"
-  }
+	"scripts": {
+		"prepare": "mikode-git-hooks install",
+		"format:check": "prettier . --check",
+		"lint": "eslint . --max-warnings 0",
+		"typecheck": "tsc --noEmit",
+		"test": "<PROJECT_TEST_COMMAND>",
+		"check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
+	},
+	"devDependencies": {
+		"@mikode13/git-hooks": "<PINNED_VERSION>"
+	}
 }
 ```
 

@@ -1,9 +1,10 @@
 # Husky hook templates
 
-These templates implement the local portion of the draft
-[Git workflow standard](../../standards/git-workflow.md). They are not mandatory while
-[ADR 0008](../../adr/0008-use-conventional-commits-and-squash-merges.md) remains
-proposed, and adoption is blocked until `@mikode13/git-hooks` is published.
+These templates implement the local portion of the active
+[Git workflow standard](../../standards/git-workflow.md), established by accepted
+[ADR 0008](../../adr/0008-use-conventional-commits-and-squash-merges.md). Repositories in
+scope use the published `@mikode13/git-hooks` package and copy only the project-owned hook
+wrapper described here.
 
 ## Available templates
 
@@ -30,17 +31,17 @@ Before copying the hook, ensure `package.json` exposes:
 
 ```json
 {
-  "scripts": {
-    "prepare": "mikode-git-hooks install",
-    "format:check": "prettier . --check",
-    "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
-    "test": "<PROJECT_TEST_COMMAND>",
-    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
-  },
-  "devDependencies": {
-    "@mikode13/git-hooks": "<PINNED_VERSION>"
-  }
+	"scripts": {
+		"prepare": "mikode-git-hooks install",
+		"format:check": "prettier . --check",
+		"lint": "eslint . --max-warnings 0",
+		"typecheck": "tsc --noEmit",
+		"test": "<PROJECT_TEST_COMMAND>",
+		"check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
+	},
+	"devDependencies": {
+		"@mikode13/git-hooks": "<PINNED_VERSION>"
+	}
 }
 ```
 

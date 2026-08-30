@@ -47,10 +47,10 @@ without it.
 
 ```json
 {
-  "packageManager": "pnpm@11.17.0",
-  "scripts": {
-    "preinstall": "npx only-allow pnpm"
-  }
+	"packageManager": "pnpm@11.17.0",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm"
+	}
 }
 ```
 

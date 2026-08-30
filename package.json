@@ -1,0 +1,32 @@
+{
+	"name": "@mikode13/engineering",
+	"version": "0.0.0",
+	"private": true,
+	"description": "MiKode cross-project engineering decisions, standards, and documentation templates.",
+	"license": "CC-BY-4.0",
+	"engines": {
+		"node": "^22.13.0 || ^24.0.0"
+	},
+	"packageManager": "pnpm@11.17.0",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"prepare": "mikode-git-hooks install",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check",
+		"lint:markdown": "markdownlint-cli2 README.md AGENTS.md \"adr/**/*.md\" \"standards/**/*.md\" \"templates/**/*.md\"",
+		"lint": "pnpm run lint:markdown",
+		"typecheck": "node --check prettier.config.mjs",
+		"links:internal": "remark --quiet --frail --use remark-validate-links .",
+		"test": "pnpm run links:internal",
+		"check": "pnpm run format:check && pnpm run lint && pnpm run typecheck",
+		"docs:check": "pnpm run check && pnpm test"
+	},
+	"devDependencies": {
+		"@mikode13/code-style": "0.1.0",
+		"@mikode13/git-hooks": "0.1.0",
+		"markdownlint-cli2": "0.23.2",
+		"prettier": "3.9.6",
+		"remark-cli": "12.0.1",
+		"remark-validate-links": "13.1.0"
+	}
+}

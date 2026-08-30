@@ -61,12 +61,12 @@ generated `CHANGELOG.md`; GitHub Releases are the human-readable changelog.
 
 The squash commits added since the most recent release tag determine the next version:
 
-| Change | Stable version effect |
-| --- | --- |
-| `fix` | Patch |
-| `feat` | Minor |
-| Any allowed type with `!` or a `BREAKING CHANGE` footer | Major |
-| `build`, `chore`, `ci`, `docs`, `perf`, `refactor`, `revert`, `style`, or `test` without a breaking marker | No release |
+| Change                                                                                                     | Stable version effect |
+| ---------------------------------------------------------------------------------------------------------- | --------------------- |
+| `fix`                                                                                                      | Patch                 |
+| `feat`                                                                                                     | Minor                 |
+| Any allowed type with `!` or a `BREAKING CHANGE` footer                                                    | Major                 |
+| `build`, `chore`, `ci`, `docs`, `perf`, `refactor`, `revert`, `style`, or `test` without a breaking marker | No release            |
 
 When multiple unreleased commits exist, the highest required increment wins and every
 releasable commit appears in the generated notes. The shared configuration must override

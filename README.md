@@ -64,7 +64,8 @@ Accepted decisions and their active standards:
 
 Superseded decisions, retained as historical records:
 
-- [ADR 0006: Use ESLint with a shared @mikode13/code-quality configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.
+- [ADR 0006: Use ESLint with a shared @mikode13/code-quality
+  configuration](adr/0006-use-eslint-via-code-quality-package.md) — superseded by ADR 0007.
 
 ## Documenting a new decision
 
@@ -76,6 +77,20 @@ the related standard, add or update a template when needed, and update the index
 
 Use relative links for documents in this repository and authoritative links for external
 facts. Keep historical reasoning in ADRs and active rules in standards.
+
+## Validation
+
+Install the pinned documentation tooling and run the same deterministic checks used by
+continuous integration:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm run docs:check
+```
+
+The command checks formatting, Markdown structure, and internal relative links. External
+URLs are intentionally outside the pull request gate because remote availability is not
+deterministic.
 
 ## License
 

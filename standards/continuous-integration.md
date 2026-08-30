@@ -57,15 +57,15 @@ The caller selects the smallest profile that represents the repository. Capabili
 extend a profile, but a repository MUST NOT disable an applicable required job merely to
 shorten CI.
 
-| Job | Pull request | Default branch | Applicability |
-| --- | --- | --- | --- |
-| Pull request title and source branch | Required | Not applicable | Pull requests |
-| `pnpm run check` on Node.js 24 | Required | Required | Node.js repositories |
-| `pnpm test` on Node.js 22 and 24 | Required | Required | Repositories in the testing-standard scope |
-| `pnpm run build` on Node.js 22 and 24 | Required | Required | Projects that build executable or distributable output |
-| Package dry run on Node.js 24 | Required | Required | Publishable npm packages |
-| Documentation validation | Required | Required | Documentation repositories |
-| `pnpm run test:e2e` | Required | Required | Applications with an end-to-end boundary |
+| Job                                   | Pull request | Default branch | Applicability                                          |
+| ------------------------------------- | ------------ | -------------- | ------------------------------------------------------ |
+| Pull request title and source branch  | Required     | Not applicable | Pull requests                                          |
+| `pnpm run check` on Node.js 24        | Required     | Required       | Node.js repositories                                   |
+| `pnpm test` on Node.js 22 and 24      | Required     | Required       | Repositories in the testing-standard scope             |
+| `pnpm run build` on Node.js 22 and 24 | Required     | Required       | Projects that build executable or distributable output |
+| Package dry run on Node.js 24         | Required     | Required       | Publishable npm packages                               |
+| Documentation validation              | Required     | Required       | Documentation repositories                             |
+| `pnpm run test:e2e`                   | Required     | Required       | Applications with an end-to-end boundary               |
 
 Pull request metadata validation MUST pass the title to
 `mikode-git-hooks lint-title` and the source branch to
