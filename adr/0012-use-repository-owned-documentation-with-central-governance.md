@@ -25,16 +25,15 @@ Three ownership scopes must remain distinct:
 
 Project decisions also need a durable but lightweight record. Small implementation choices
 do not justify a separate document when the code can communicate them. More significant
-project choices should remain easy to review, transfer to Obsidian, and revisit without
-creating a second local ADR system beside the organization-wide ADR sequence.
+project choices should remain easy to review, reuse, and revisit without creating a
+second local ADR system beside the organization-wide ADR sequence.
 
 GitHub can inherit supported community health files from a public `.github` repository
 when a repository has no local version. Those inherited files are displayed by GitHub but
 are not present in the consuming repository's clone, history, package, or download. GitHub
 does not support an inherited default license, so an effective `LICENSE` must remain in
-each repository. Obsidian stores note-level properties as YAML front matter and can search
-those structured properties. These behaviors were verified against the official
-documentation on 2026-08-29.
+each repository. These behaviors were verified against the official documentation on
+2026-08-29.
 
 The language and writing style of MiKode documentation require a separate decision. This
 ADR defines ownership, required artifacts, and information architecture without defining
@@ -53,7 +52,7 @@ GitHub-specific organization defaults in `Mikode13/.github`.
 | Project purpose, usage, and navigation                                        | The project's `README.md` and local `docs/`    |
 | Instructions and context for coding agents                                    | The project's root `AGENTS.md`                 |
 | Effective licensing terms                                                     | The project's root `LICENSE`                   |
-| Significant project-specific decisions and lessons                            | The project's `docs/decisions.md`              |
+| Significant project-specific decisions                                        | The project's `docs/decisions.md`              |
 | Cross-project decisions, standards, handbook guidance, and reusable templates | `Mikode13/engineering`                         |
 | Supported organization profile and community health defaults                  | `Mikode13/.github`                             |
 | Reusable GitHub workflows                                                     | `Mikode13/.github`, as established by ADR 0010 |
@@ -64,26 +63,12 @@ Every MiKode project repository must contain the following artifacts from initia
 - `LICENSE`, completed for that repository and included in its history and distributed
   artifacts when applicable;
 - `AGENTS.md`, as the predictable root entry point for agent-specific project context and
-  instructions; and
-- `docs/decisions.md`, even before the first significant project decision is recorded.
+  instructions.
 
-An initially empty decision log must still contain a useful title and purpose statement,
-such as "This file records the choices made for this project." It must also contain this
-minimal file-level front matter, with the placeholder completed for the project:
-
-```yaml
----
-type: project-decisions
-project: { { PROJECT_NAME } }
-tags:
-  - mikode
-  - project-decisions
----
-```
-
-The front matter describes the complete decision log and exists to make logs discoverable
-after they are opened in Obsidian. It must not be expanded into a general configuration
-format or used as metadata for individual entries.
+The repository must create `docs/decisions.md` when it records its first significant
+project-specific decision. It must not create an empty placeholder decision log during
+project initialization. The log is plain Markdown and requires no tool-specific front
+matter.
 
 ### Recording project decisions
 
@@ -95,16 +80,17 @@ types, tests, and comments when a comment adds information the code cannot expre
 must not be copied into `docs/decisions.md` merely to create an exhaustive activity log.
 
 A significant project-specific choice must be appended to `docs/decisions.md` when its
-rationale, rejected alternatives, consequences, or transferable lesson would help a
-future maintainer understand why the project has its current shape. Entries will follow
-the narrative structure already used by `harness`:
+rationale, consequences, or other useful context would help a future maintainer understand
+why the project has its current shape. Each entry must contain:
 
 - a descriptive heading and optional inline tags;
 - **Decision**;
 - **Context**;
-- **Alternatives considered**;
-- **Consequences**; and
-- **Lesson**.
+- **Consequences**.
+
+An entry may also contain **Alternatives considered** when alternatives were genuinely
+evaluated and **Lesson** when the decision produced a useful transferable insight. These
+sections must not be added as empty or formulaic placeholders.
 
 The log is chronological and remains one Markdown file per project. Additional files in
 `docs/` may explain project concepts, operations, or architecture when they deserve their
@@ -171,14 +157,6 @@ but they would add ceremony, fragment discovery, and blur the boundary with cros
 ADRs. A single narrative decision log is sufficient for project-specific learning and
 rationale.
 
-### Omit structured metadata from decision logs
-
-The path and heading alone could identify each log and avoid YAML completely. Minimal
-front matter was selected because the logs are explicitly intended for Obsidian, where
-file-level properties improve search and grouping. More extensive front matter and
-per-entry schemas were rejected because they would add maintenance without improving the
-narrative record.
-
 ### Let each agent choose the document structure
 
 Agent autonomy would require less governance initially, but it would reproduce the
@@ -199,23 +177,21 @@ authority.
   guidance.
 - GitHub-supported defaults can be changed once for the organization while projects
   retain an explicit override path.
-- Minimal metadata makes project decision logs discoverable in Obsidian without imposing
-  a metadata schema on every entry.
+- Plain Markdown decision logs remain portable across documentation tools.
 - A single documentation skill and shared templates can produce consistent results during
   initialization and later maintenance.
 
 ### Negative
 
-- Every repository must maintain four baseline artifacts even when its documentation is
-  initially small.
+- Every repository must maintain three baseline artifacts even when its documentation is
+  initially small, and repositories with significant decisions must additionally
+  maintain a decision log.
 - Completed template copies can drift from later central improvements and may require
   deliberate migration.
 - A single chronological decision log can become long and will need disciplined entries
   and navigation as a project grows.
 - The decision log does not provide the formal status, immutability, or supersession model
   of an ADR.
-- Minimal front matter introduces a small YAML surface and its project value must be
-  updated if a repository is renamed.
 - Organization defaults inherited from `.github` are not visible in project clones or
   history, so maintainers must understand which guidance is local and which is inherited.
 - The public `.github` repository cannot contain private operating details.
@@ -232,6 +208,5 @@ authority.
 - [GitHub: Creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 - [GitHub: Customizing an organization's profile](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile)
 - [GitHub: Relative links](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links)
-- [Obsidian: Properties](https://help.obsidian.md/properties)
 - [AGENTS.md open format](https://agents.md/)
 - [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
