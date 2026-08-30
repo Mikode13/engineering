@@ -13,9 +13,13 @@ executable logic or publish consumable technical configuration. It defines test 
 test boundaries, regression requirements, file organization, test-data construction, the
 shared script interface, the deterministic local gate, and the role of coverage.
 
-Documentation-only repositories, including `mikode-engineering`, are exempt because they
-have no executable behavior to test. Their link and formatting validation remains part of
-their own change review.
+Documentation-only repositories, including `mikode-engineering`, are exempt from the
+application and package test interface. Their formatting, links, structure, and
+repository-specific invariants are validated through `docs:check`. Small validation
+scripts MAY use platform-native focused tests invoked by that command; they MUST NOT
+expose a placeholder `test` script or activate the complete Vitest organization merely to
+imitate a source-code project. Reusable validation tooling or product behavior remains in
+scope for this standard and belongs in an appropriate implementation repository.
 
 ## Rules
 

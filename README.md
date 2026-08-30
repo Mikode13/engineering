@@ -88,8 +88,9 @@ pnpm install --frozen-lockfile
 pnpm run docs:check
 ```
 
-The command checks formatting, Markdown structure, and internal relative links. External
-URLs are intentionally outside the pull request gate because remote availability is not
+The command checks formatting, Markdown structure, internal relative links, validation
+tool behavior, and engineering-specific ADR and standard index invariants. External URLs
+are intentionally outside the pull request gate because remote availability is not
 deterministic.
 
 ## License
