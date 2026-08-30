@@ -4,6 +4,8 @@
 - Date: 2026-08-23
 - Domains: Shared, Delivery
 - Applies to: MiKode repositories hosted on GitHub
+- External validation policy superseded by:
+  [ADR 0013: Keep external validations manual by default](0013-keep-external-validations-manual-by-default.md)
 
 ## Context
 
