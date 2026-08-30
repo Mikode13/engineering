@@ -19,6 +19,8 @@ declares its status; active standards are mandatory within their stated scope.
   deterministic data, regression tests, and shared scripts.
 - [Continuous integration standard](continuous-integration.md) — centralized GitHub
   Actions workflows, required checks, execution profiles, and controlled rollout.
+- [Documentation standard](documentation.md) — ownership, baseline project artifacts,
+  project decision logs, and shared documentation distribution.
 
 ## Draft standards
 

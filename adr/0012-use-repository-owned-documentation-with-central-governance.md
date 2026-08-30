@@ -1,6 +1,6 @@
 # ADR 0012: Use repository-owned documentation with central governance
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-08-29
 - Domains: Shared
 - Applies to: MiKode repositories and organization-wide documentation
@@ -201,6 +201,7 @@ authority.
 
 ## Related standards
 
+- [Documentation standard](../standards/documentation.md)
 - [Licensing standard](../standards/licensing.md)
 
 ## References
