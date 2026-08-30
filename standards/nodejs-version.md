@@ -2,7 +2,9 @@
 
 - Status: Active
 - Last reviewed: 2026-08-23
-- Related ADRs: [ADR 0004: Support Node.js 22 and later](../adr/0004-support-node-22-and-later.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- Related ADRs:
+  [ADR 0004: Support Node.js 22 and later](../adr/0004-support-node-22-and-later.md),
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -31,9 +33,9 @@ Projects SHOULD review the minimum version when the Node.js release schedule cha
 
 ```json
 {
-  "engines": {
-    "node": "^22.13.0 || ^24.0.0"
-  }
+	"engines": {
+		"node": "^22.13.0 || ^24.0.0"
+	}
 }
 ```
 

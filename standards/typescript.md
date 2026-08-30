@@ -35,11 +35,11 @@ A Node.js project's `tsconfig.json` is:
 
 ```json
 {
-  "extends": "@mikode13/tsconfig/node",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src"]
+	"extends": "@mikode13/tsconfig/node",
+	"compilerOptions": {
+		"outDir": "dist"
+	},
+	"include": ["src"]
 }
 ```
 
@@ -54,16 +54,16 @@ here so the policy is readable without the package source.
 
 ```json
 {
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noFallthroughCasesInSwitch": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
-  }
+	"compilerOptions": {
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noFallthroughCasesInSwitch": true,
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"skipLibCheck": true
+	}
 }
 ```
 
@@ -71,14 +71,14 @@ here so the policy is readable without the package source.
 
 ```json
 {
-  "compilerOptions": {
-    "module": "nodenext",
-    "target": "es2023",
-    "lib": ["es2023"],
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
-  }
+	"compilerOptions": {
+		"module": "nodenext",
+		"target": "es2023",
+		"lib": ["es2023"],
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true
+	}
 }
 ```
 
@@ -86,13 +86,13 @@ here so the policy is readable without the package source.
 
 ```json
 {
-  "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "es2022",
-    "lib": ["es2022", "dom", "dom.iterable"],
-    "noEmit": true
-  }
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"target": "es2022",
+		"lib": ["es2022", "dom", "dom.iterable"],
+		"noEmit": true
+	}
 }
 ```
 
@@ -100,9 +100,9 @@ here so the policy is readable without the package source.
 
 ```json
 {
-  "compilerOptions": {
-    "jsx": "react-jsx"
-  }
+	"compilerOptions": {
+		"jsx": "react-jsx"
+	}
 }
 ```
 

@@ -41,7 +41,7 @@ For an npm package using this custom license, npm documents the following metada
 
 ```json
 {
-  "license": "SEE LICENSE IN LICENSE"
+	"license": "SEE LICENSE IN LICENSE"
 }
 ```
 

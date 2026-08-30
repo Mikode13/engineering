@@ -6,8 +6,10 @@ placeholder, verify the result, and copy the completed file into the target repo
 ## Available templates
 
 - [ADR.template.md](ADR.template.md) — starting file for a new Architecture Decision Record.
-- [LICENSE.template](LICENSE.template) — MIT License text with the Commons Clause License Condition v1.0.
-- [Husky hook templates](husky/README.md) — draft pre-push hook for shared checks and tests.
+- [LICENSE.template](LICENSE.template) — MIT License text with the Commons Clause License
+  Condition v1.0.
+- [Husky hook templates](husky/README.md) — shared pre-push hooks for source-code and
+  documentation project checks.
 
 ### ADR.template.md replacements
 

@@ -2,7 +2,9 @@
 
 - Status: Active
 - Last reviewed: 2026-08-23
-- Related ADRs: [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md), [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- Related ADRs:
+  [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](../adr/0008-use-conventional-commits-and-squash-merges.md),
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 
 ## Scope
 
@@ -39,11 +41,13 @@ Projects adopting this standard MUST:
 9. Install hooks through an explicit project-owned `prepare` script. A dependency MUST
    NOT mutate the consuming repository from its own install lifecycle scripts.
 10. Commit the `.husky/pre-push` wrapper created from the
-    [shared template](../templates/husky/pre-push.template).
-11. Provide `format:check`, `lint`, `typecheck`, `test`, and `check` package scripts. The
-    `check` script MUST run formatting, linting, and type checking, and MUST NOT run tests
-    or a build.
-12. Run `pnpm run check` and then `pnpm test` from `pre-push`.
+    [shared template for the project profile](../templates/husky/README.md).
+11. Source-code projects MUST provide `format:check`, `lint`, `typecheck`, `test`, and
+    `check` package scripts. The `check` script MUST run formatting, linting, and type
+    checking, and MUST NOT run tests or a build.
+12. Source-code projects MUST run `pnpm run check` and then `pnpm test` from `pre-push`.
+    Documentation-only repositories MUST use the explicit script and hook interface in
+    the documentation exception instead of inventing these capabilities.
 13. Repeat required checks in CI and validate every pull request title before allowing a
     merge. A local hook is feedback, not an enforcement boundary.
 
@@ -107,21 +111,23 @@ NOT invent incompatible project-local ticket formats.
 
 ## Required scripts and hooks
 
+### Source-code projects
+
 A typical project exposes this script interface:
 
 ```json
 {
-  "scripts": {
-    "prepare": "mikode-git-hooks install",
-    "format:check": "prettier . --check",
-    "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
-    "test": "<PROJECT_TEST_COMMAND>",
-    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
-  },
-  "devDependencies": {
-    "@mikode13/git-hooks": "<PINNED_VERSION>"
-  }
+	"scripts": {
+		"prepare": "mikode-git-hooks install",
+		"format:check": "prettier . --check",
+		"lint": "eslint . --max-warnings 0",
+		"typecheck": "tsc --noEmit",
+		"test": "<PROJECT_TEST_COMMAND>",
+		"check": "pnpm run format:check && pnpm run lint && pnpm run typecheck"
+	},
+	"devDependencies": {
+		"@mikode13/git-hooks": "<PINNED_VERSION>"
+	}
 }
 ```
 
@@ -138,6 +144,38 @@ pnpm run check && pnpm test
 `build` is deliberately excluded. Projects run their build in CI through a separate
 script or job.
 
+### Documentation-only repositories
+
+A documentation-only repository using the documentation CI profile exposes one honest
+aggregate interface:
+
+```json
+{
+	"scripts": {
+		"prepare": "mikode-git-hooks install",
+		"format:check": "prettier . --check",
+		"lint:markdown": "<PROJECT_MARKDOWN_LINT_COMMAND>",
+		"links:internal": "<PROJECT_INTERNAL_LINK_COMMAND>",
+		"docs:invariants": "<PROJECT_DOCUMENT_INVARIANT_COMMAND>",
+		"docs:check": "pnpm run format:check && pnpm run lint:markdown && pnpm run links:internal && pnpm run docs:invariants"
+	},
+	"devDependencies": {
+		"@mikode13/git-hooks": "<PINNED_VERSION>"
+	}
+}
+```
+
+Replace every placeholder with a meaningful project command. A repository MAY add
+focused validation-tool tests to `docs:check`, but it MUST NOT expose `typecheck`, `test`,
+or `check` scripts whose only purpose is to satisfy the source-code interface.
+
+Copy [`pre-push-docs.template`](../templates/husky/pre-push-docs.template) to
+`.husky/pre-push`. The documentation hook runs:
+
+```sh
+pnpm run docs:check
+```
+
 ## Required repository and CI configuration
 
 GitHub repositories MUST:
@@ -153,8 +191,9 @@ GitHub repositories MUST:
 7. Block force pushes to the default branch.
 
 CI MUST pass the pull request title to `mikode-git-hooks lint-title` and the pull request
-source branch to `mikode-git-hooks lint-branch`. CI MUST also run the project's `check`,
-`test`, and applicable build jobs independently of local hooks, following the
+source branch to `mikode-git-hooks lint-branch`. CI MUST also run the source-code
+project's `check`, `test`, and applicable build jobs, or the documentation project's
+`docs:check`, independently of local hooks, following the
 [Continuous integration standard](continuous-integration.md).
 
 ## Shared package boundary
@@ -173,6 +212,14 @@ This engineering repository owns only the ADR, standard, and copyable hook templ
 MUST NOT contain the package implementation.
 
 ## Exceptions
+
+A documentation-only repository selecting the documentation CI profile MUST provide a
+deterministic `docs:check` command that covers formatting, Markdown structure, internal
+links, assets, and repository-specific document invariants. It MUST install
+`@mikode13/git-hooks` through `prepare` and use the documentation pre-push template, but
+it MAY omit `lint`, `typecheck`, `test`, and `check` scripts when it has no corresponding
+source-code capability. Placeholder commands are prohibited. This is the standard
+documentation interface, not a project-local deviation.
 
 A MiKode repository outside the Node.js/pnpm ecosystem MUST follow the branch, pull
 request, squash merge, and CI rules, but MAY use ecosystem-native tooling instead of

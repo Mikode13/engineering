@@ -60,21 +60,21 @@ values; the published package remains the executable source:
 
 ```json
 {
-  "singleQuote": true,
-  "semi": true,
-  "trailingComma": "all",
-  "arrowParens": "avoid",
-  "quoteProps": "as-needed",
-  "useTabs": true,
-  "tabWidth": 2,
-  "printWidth": 100,
-  "endOfLine": "lf",
-  "bracketSpacing": true,
-  "bracketSameLine": false,
-  "jsxSingleQuote": false,
-  "proseWrap": "preserve",
-  "objectWrap": "preserve",
-  "singleAttributePerLine": false
+	"singleQuote": true,
+	"semi": true,
+	"trailingComma": "all",
+	"arrowParens": "avoid",
+	"quoteProps": "as-needed",
+	"useTabs": true,
+	"tabWidth": 2,
+	"printWidth": 100,
+	"endOfLine": "lf",
+	"bracketSpacing": true,
+	"bracketSameLine": false,
+	"jsxSingleQuote": false,
+	"proseWrap": "preserve",
+	"objectWrap": "preserve",
+	"singleAttributePerLine": false
 }
 ```
 
@@ -97,10 +97,10 @@ Typical project scripts are:
 
 ```json
 {
-  "scripts": {
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
-  }
+	"scripts": {
+		"format": "prettier . --write",
+		"format:check": "prettier . --check"
+	}
 }
 ```
 

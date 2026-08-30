@@ -57,15 +57,15 @@ The caller selects the smallest profile that represents the repository. Capabili
 extend a profile, but a repository MUST NOT disable an applicable required job merely to
 shorten CI.
 
-| Job | Pull request | Default branch | Applicability |
-| --- | --- | --- | --- |
-| Pull request title and source branch | Required | Not applicable | Pull requests |
-| `pnpm run check` on Node.js 24 | Required | Required | Node.js repositories |
-| `pnpm test` on Node.js 22 and 24 | Required | Required | Repositories in the testing-standard scope |
-| `pnpm run build` on Node.js 22 and 24 | Required | Required | Projects that build executable or distributable output |
-| Package dry run on Node.js 24 | Required | Required | Publishable npm packages |
-| Documentation validation | Required | Required | Documentation repositories |
-| `pnpm run test:e2e` | Required | Required | Applications with an end-to-end boundary |
+| Job                                   | Pull request | Default branch | Applicability                                          |
+| ------------------------------------- | ------------ | -------------- | ------------------------------------------------------ |
+| Pull request title and source branch  | Required     | Not applicable | Pull requests                                          |
+| `pnpm run check` on Node.js 24        | Required     | Required       | Node.js repositories                                   |
+| `pnpm test` on Node.js 22 and 24      | Required     | Required       | Repositories in the testing-standard scope             |
+| `pnpm run build` on Node.js 22 and 24 | Required     | Required       | Projects that build executable or distributable output |
+| Package dry run on Node.js 24         | Required     | Required       | Publishable npm packages                               |
+| Documentation validation              | Required     | Required       | Documentation repositories                             |
+| `pnpm run test:e2e`                   | Required     | Required       | Applications with an end-to-end boundary               |
 
 Pull request metadata validation MUST pass the title to
 `mikode-git-hooks lint-title` and the source branch to
@@ -102,11 +102,15 @@ The documentation profile MUST validate:
 - repository-specific document invariants, such as ADR metadata, numbering, status, and
   index consistency when applicable.
 
-Internal failures are deterministic and MUST block the pull request. A complete external
-URL scan MUST run separately on a schedule because remote downtime, rate limiting, and
-automation blocking can produce failures unrelated to the change. The scheduled scan
-MUST report broken links for review but MUST NOT retroactively mark an otherwise healthy
-default-branch CI run as failed.
+Internal failures are deterministic and MUST block the pull request. External URL scans
+remain outside the required documentation profile because remote downtime, rate
+limiting, and automation blocking can produce failures unrelated to the change.
+
+The scheduled external URL scan described by ADR 0010 is not currently required while
+that part of the decision is being reconsidered. A follow-up decision MUST define whether
+to adopt it and, if adopted, its trigger, reporting behavior, and ownership. Until then,
+repositories MAY run external URL scans manually as non-blocking diagnostics, but no
+recurring cadence is mandated.
 
 ### Application end-to-end capability
 
