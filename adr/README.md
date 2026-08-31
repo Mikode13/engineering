@@ -43,10 +43,10 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR                                                                   | Domains          | Applies to                                                                                  | Decision                                                                                                        |
-| --------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [0011](0011-use-semantic-release-for-automated-npm-publication.md)    | Shared, Delivery | Independently versioned public npm packages owned by MiKode                                 | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
-| [0014](0014-use-concise-explanatory-technical-documentation.md)       | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents | Use concise, technical, explanatory documentation structured for understanding and scanning.                    |
+| ADR                                                                | Domains          | Applies to                                                                                     | Decision                                                                                                        |
+| ------------------------------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode                                    | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
+| [0014](0014-use-concise-explanatory-technical-documentation.md)    | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents | Use concise, technical, explanatory documentation structured for understanding and scanning.                    |
 
 ## Superseded decisions
 
