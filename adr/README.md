@@ -36,6 +36,7 @@ Do not create empty domain directories or renumber ADRs by domain.
 | [0009](0009-use-vitest-and-playwright-with-risk-based-testing.md)          | Shared, Delivery | MiKode JavaScript and TypeScript repositories with executable code or consumable technical configuration | Use Vitest and Playwright with fixed test organization, regression tests, risk-based requirements, and diagnostic coverage. |
 | [0010](0010-use-github-actions-with-centralized-reusable-ci-workflows.md)  | Shared, Delivery | MiKode repositories hosted on GitHub                                                                     | Use GitHub Actions with centralized, SHA-pinned reusable CI workflows and one ruleset-compatible required check.            |
 | [0012](0012-use-repository-owned-documentation-with-central-governance.md) | Shared           | MiKode repositories and organization-wide documentation                                                  | Keep project documentation with its owning repository while governing shared documentation centrally.                       |
+| [0013](0013-keep-external-validations-manual-by-default.md)                | Shared, Delivery | MiKode CI checks that depend on external URLs, real providers, or third-party systems                    | Keep external validations manual and outside required CI unless a concrete future use case justifies automation.            |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.

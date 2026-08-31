@@ -1,8 +1,10 @@
 # Continuous integration standard
 
 - Status: Active
-- Last reviewed: 2026-08-23
-- Related ADRs: [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- Last reviewed: 2026-08-30
+- Related ADRs:
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md),
+  [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md)
 
 ## Scope
 
@@ -105,12 +107,9 @@ The documentation profile MUST validate:
 Internal failures are deterministic and MUST block the pull request. External URL scans
 remain outside the required documentation profile because remote downtime, rate
 limiting, and automation blocking can produce failures unrelated to the change.
-
-The scheduled external URL scan described by ADR 0010 is not currently required while
-that part of the decision is being reconsidered. A follow-up decision MUST define whether
-to adopt it and, if adopted, its trigger, reporting behavior, and ownership. Until then,
-repositories MAY run external URL scans manually as non-blocking diagnostics, but no
-recurring cadence is mandated.
+Repositories MAY run them manually as non-blocking diagnostics. This standard does not
+require recurring external URL scans; future automation requires a concrete use case and
+a separate monitoring or operations decision.
 
 ### Application end-to-end capability
 
@@ -122,15 +121,14 @@ decision defines a shared browser support matrix.
 ## External integration tests
 
 Tests that contact real providers MUST remain behind
-`pnpm run test:integration:external`. They MUST be runnable with `workflow_dispatch` and
-MUST run on a documented repository-appropriate schedule when the project has this
-boundary.
+`pnpm run test:integration:external`. Repositories MAY expose that command through
+`workflow_dispatch` when manual execution is useful. This standard does not require
+recurring execution; future automation requires a concrete use case and a separate
+monitoring or operations decision.
 
-External integration tests are not part of `CI / required` by default. A repository MAY
-make them blocking only when it has a reliable provider sandbox and documents the reason,
-credentials, expected availability, cost exposure, and failure-response owner. This
-stronger gate does not permit real-provider tests to join `pnpm test` or the local
-pre-push hook.
+External integration tests MUST NOT be part of `CI / required` by default. They MUST NOT
+join `pnpm test` or the local pre-push hook. A separate decision is required before a
+repository makes external validation blocking or automated.
 
 ## Required caller configuration
 
@@ -224,6 +222,7 @@ independent pull requests so one failed profile does not block the complete roll
 ## References
 
 - [ADR 0010](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- [ADR 0013](../adr/0013-keep-external-validations-manual-by-default.md)
 - [Git workflow standard](git-workflow.md)
 - [Testing standard](testing.md)
 - [Node.js version standard](nodejs-version.md)

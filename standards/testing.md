@@ -1,10 +1,11 @@
 # Testing standard
 
 - Status: Active
-- Last reviewed: 2026-08-23
+- Last reviewed: 2026-08-30
 - Related ADRs:
   [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md),
-  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+  [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md),
+  [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md)
 
 ## Scope
 
@@ -125,10 +126,12 @@ that credentials, request formats, SDK behavior, and response normalization rema
 compatible with the live provider. They MUST be separately selectable because they may
 be slow, flaky, rate-limited, secret-dependent, or billable.
 
-The [Continuous integration standard](continuous-integration.md) requires these tests to
-be manually runnable and scheduled when the boundary exists. They are not part of the
-default merge gate unless the repository documents a reliable provider sandbox and the
-stronger requirement.
+The [Continuous integration standard](continuous-integration.md) keeps these tests outside
+the default merge gate. A repository MAY expose them for manual execution when useful,
+but MiKode does not require recurring execution. Blocking or automating external
+validation requires a separate decision justified by a concrete use case. Repeated
+detection of provider degradation or availability is monitoring or operations work, not
+a testing requirement defined by this standard.
 
 ### End to end
 
@@ -389,6 +392,7 @@ integration tests to verify the configuration it publishes.
 ## References
 
 - [ADR 0009](../adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
+- [ADR 0013](../adr/0013-keep-external-validations-manual-by-default.md)
 - [Vitest getting started](https://vitest.dev/guide/)
 - [Vitest command-line interface](https://vitest.dev/guide/cli)
 - [Vitest test projects](https://vitest.dev/guide/projects)
