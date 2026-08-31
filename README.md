@@ -52,6 +52,7 @@ Accepted decisions and their active standards:
 - [ADR 0008: Use Conventional Commits and squash merges with shared Git hooks](adr/0008-use-conventional-commits-and-squash-merges.md)
 - [ADR 0009: Use Vitest and Playwright with risk-based testing requirements](adr/0009-use-vitest-and-playwright-with-risk-based-testing.md)
 - [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
+- [ADR 0012: Use repository-owned documentation with central governance](adr/0012-use-repository-owned-documentation-with-central-governance.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
@@ -61,6 +62,7 @@ Accepted decisions and their active standards:
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
 - [Continuous integration standard](standards/continuous-integration.md)
+- [Documentation standard](standards/documentation.md)
 
 Superseded decisions, retained as historical records:
 
