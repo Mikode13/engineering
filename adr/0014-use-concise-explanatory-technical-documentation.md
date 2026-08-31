@@ -1,6 +1,6 @@
 # ADR 0014: Use concise explanatory writing for technical documentation
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-08-31
 - Domains: Shared
 - Applies to: MiKode technical documentation across repositories and organization-wide engineering documents
