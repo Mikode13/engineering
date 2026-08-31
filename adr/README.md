@@ -37,16 +37,16 @@ Do not create empty domain directories or renumber ADRs by domain.
 | [0010](0010-use-github-actions-with-centralized-reusable-ci-workflows.md)  | Shared, Delivery | MiKode repositories hosted on GitHub                                                                     | Use GitHub Actions with centralized, SHA-pinned reusable CI workflows and one ruleset-compatible required check.            |
 | [0012](0012-use-repository-owned-documentation-with-central-governance.md) | Shared           | MiKode repositories and organization-wide documentation                                                  | Keep project documentation with its owning repository while governing shared documentation centrally.                       |
 | [0013](0013-keep-external-validations-manual-by-default.md)                | Shared, Delivery | MiKode CI checks that depend on external URLs, real providers, or third-party systems                    | Keep external validations manual and outside required CI unless a concrete future use case justifies automation.            |
+| [0014](0014-use-concise-explanatory-technical-documentation.md)            | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents          | Use concise, technical, explanatory documentation structured for understanding and scanning.                                |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR                                                                | Domains          | Applies to                                                                                     | Decision                                                                                                        |
-| ------------------------------------------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode                                    | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
-| [0014](0014-use-concise-explanatory-technical-documentation.md)    | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents | Use concise, technical, explanatory documentation structured for understanding and scanning.                    |
+| ADR                                                                | Domains          | Applies to                                                  | Decision                                                                                                        |
+| ------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
 
 ## Superseded decisions
 
