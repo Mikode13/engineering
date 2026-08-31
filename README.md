@@ -54,6 +54,7 @@ Accepted decisions and their active standards:
 - [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 - [ADR 0012: Use repository-owned documentation with central governance](adr/0012-use-repository-owned-documentation-with-central-governance.md)
 - [ADR 0013: Keep external validations manual by default](adr/0013-keep-external-validations-manual-by-default.md)
+- [ADR 0014: Use concise explanatory writing for technical documentation](adr/0014-use-concise-explanatory-technical-documentation.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
@@ -64,6 +65,7 @@ Accepted decisions and their active standards:
 - [Testing standard](standards/testing.md)
 - [Continuous integration standard](standards/continuous-integration.md)
 - [Documentation standard](standards/documentation.md)
+- [Documentation writing standard](standards/documentation-writing.md)
 
 Superseded decisions, retained as historical records:
 

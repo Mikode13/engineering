@@ -21,6 +21,8 @@ declares its status; active standards are mandatory within their stated scope.
   Actions workflows, required checks, execution profiles, and controlled rollout.
 - [Documentation standard](documentation.md) — ownership, baseline project artifacts,
   project decision logs, and shared documentation distribution.
+- [Documentation writing standard](documentation-writing.md) — technical writing style,
+  document structure, examples, diagrams, references, and README expectations.
 
 ## Draft standards
 
