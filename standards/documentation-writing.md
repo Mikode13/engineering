@@ -1,6 +1,6 @@
 # Documentation writing standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-08-31
 - Related ADRs: [ADR 0014: Use concise explanatory writing for technical documentation](../adr/0014-use-concise-explanatory-technical-documentation.md)
 
