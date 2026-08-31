@@ -24,4 +24,5 @@ declares its status; active standards are mandatory within their stated scope.
 
 ## Draft standards
 
-There are currently no draft standards.
+- [Documentation writing standard](documentation-writing.md) — technical writing style,
+  document structure, examples, diagrams, references, and README expectations.
