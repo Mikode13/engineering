@@ -67,6 +67,27 @@ latest reviewed central revision, then pin the selected revision as required by 
 The stable aggregate `CI / required` check and the pull-request metadata checks established
 by ADR 0010 remain shared requirements regardless of the selected capabilities.
 
+## Acceptance criteria
+
+Before this decision is accepted, trial the proposed ADR together with its Draft continuous
+integration standard against `Mikode13/skills`, which currently has no CI caller and does not
+own a Node.js or pnpm runtime.
+
+Without being given an implementation recipe, an agent should be able to:
+
+- classify `skills` as requiring the Documentation capability;
+- avoid adding Source, Tests, Build, Package, or End-to-end capabilities without evidence
+  that their applicability rules are met;
+- inspect the current central CI contract and recognize that the existing profile-based
+  implementation cannot provide the proposed Documentation capability independently of
+  repository Node.js/pnpm tooling; and
+- report that central CI gap rather than manufacture `package.json`, pnpm configuration,
+  placeholder commands, or a repository-local reinterpretation of the capability.
+
+The trial validates that the architectural decision plus current policy provide enough
+criteria for an agent to reach the correct boundary. It does not require the capability-based
+central workflow to exist before the ADR is accepted.
+
 ## Alternatives considered
 
 ### Keep mutually exclusive profiles
