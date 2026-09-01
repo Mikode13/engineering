@@ -63,9 +63,13 @@ Accepted decisions and their active standards:
 - [Code quality standard](standards/code-quality.md)
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
-- [Continuous integration standard](standards/continuous-integration.md)
 - [Documentation standard](standards/documentation.md)
 - [Documentation writing standard](standards/documentation-writing.md)
+
+Draft standards under proposed decisions:
+
+- [Continuous integration standard](standards/continuous-integration.md) — proposed
+  capability-based revision; it is not binding while its related ADR remains proposed.
 
 Superseded decisions, retained as historical records:
 
