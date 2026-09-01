@@ -321,4 +321,4 @@ another repository to change its known-good CI revision.
 - [GitHub: GitHub-hosted runners reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)
 - [GitHub: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 - [GitHub: Control workflow concurrency](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
-- [GitHub: Automatically merging a pull request](https://docs.github.com/en/pull-requests/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
+- [GitHub: Automatically merging a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request)
