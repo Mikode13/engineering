@@ -1,13 +1,11 @@
 # Continuous integration standard
 
-- Status: Draft
+- Status: Active
 - Last reviewed: 2026-09-01
 - Related ADRs:
   [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md),
   [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md),
   [ADR 0015: Compose CI by capability](../adr/0015-compose-ci-by-capability.md)
-- Activation: This draft replaces the profile-selection rules of the active standard when
-  ADR 0015 is accepted.
 
 ## Scope
 
@@ -289,7 +287,7 @@ runtime it claims to support, even when its matrix differs from Node.js 22 and 2
 
 ## Adoption
 
-After ADR 0015 is accepted, capability-based CI is adopted in this order:
+Capability-based CI is adopted in this order:
 
 1. Add the capability contract, common implementations, static validation, and contract
    fixtures to `Mikode13/.github`.
@@ -317,7 +315,7 @@ another repository to change its known-good CI revision.
 - [Package management standard](package-management.md)
 - [GitHub: Reusing workflow configurations](https://docs.github.com/en/actions/concepts/workflows-and-actions/reusing-workflow-configurations)
 - [GitHub: Reuse workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows)
-- [GitHub: Creating rulesets for repositories in an organization](https://docs.github.com/en/organizations/managing-organization-settings/creating-rulesets-for-repositories-in-your-organization)
+- [GitHub: Creating rulesets for repositories in an organization](https://docs.github.com/en/organizations/managing-organization-settings/creating-rulesets-for-repositories-in-an-organization)
 - [GitHub: GitHub-hosted runners reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)
 - [GitHub: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 - [GitHub: Control workflow concurrency](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency)
