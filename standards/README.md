@@ -17,8 +17,6 @@ declares its status; active standards are mandatory within their stated scope.
   script, and pre-push hook rules.
 - [Testing standard](testing.md) — Vitest, Playwright, fixed test organization,
   deterministic data, regression tests, and shared scripts.
-- [Continuous integration standard](continuous-integration.md) — centralized GitHub
-  Actions workflows, required checks, execution profiles, and controlled rollout.
 - [Documentation standard](documentation.md) — ownership, baseline project artifacts,
   project decision logs, and shared documentation distribution.
 - [Documentation writing standard](documentation-writing.md) — technical writing style,
@@ -26,4 +24,5 @@ declares its status; active standards are mandatory within their stated scope.
 
 ## Draft standards
 
-There are currently no draft standards.
+- [Continuous integration standard](continuous-integration.md) — proposed capability-based
+  selection, canonical validation contracts, immutable CI revisions, and controlled rollout.
