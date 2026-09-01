@@ -88,6 +88,11 @@ The trial validates that the architectural decision plus current policy provide 
 criteria for an agent to reach the correct boundary. It does not require the
 capability-based central workflow to exist before the ADR is accepted.
 
+The acceptance trial was completed against `Mikode13/skills` on 2026-09-01. The agent
+selected only the Documentation capability, rejected unrelated capabilities, inspected the
+current central CI revision, and identified the Node.js/pnpm coupling as a central contract
+gap rather than adding artificial repository tooling.
+
 ## Alternatives considered
 
 ### Keep mutually exclusive profiles
