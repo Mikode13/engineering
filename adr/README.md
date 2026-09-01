@@ -44,9 +44,10 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR                                                                | Domains          | Applies to                                                  | Decision                                                                                                        |
-| ------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
+| ADR                                                                | Domains          | Applies to                                                        | Decision                                                                                                        |
+| ------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode       | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
+| [0015](0015-compose-ci-by-capability.md)                           | Shared, Delivery | MiKode repositories using centralized reusable CI workflows       | Compose CI from capabilities while retaining profiles as convenience presets and compatibility shims.           |
 
 ## Superseded decisions
 
