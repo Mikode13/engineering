@@ -85,8 +85,8 @@ Without being given an implementation recipe, an agent should be able to:
   placeholder commands, or a repository-local reinterpretation of the capability.
 
 The trial validates that the architectural decision plus current policy provide enough
-criteria for an agent to reach the correct boundary. It does not require the capability-based
-central workflow to exist before the ADR is accepted.
+criteria for an agent to reach the correct boundary. It does not require the
+capability-based central workflow to exist before the ADR is accepted.
 
 ## Alternatives considered
 
