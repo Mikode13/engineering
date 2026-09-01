@@ -72,14 +72,14 @@ Before configuring CI, inspect the repository and determine which validation bou
 actually owns. Use the following applicability rules for the capabilities currently covered
 by this standard:
 
-| Capability | Required when |
-| ---------- | ------------- |
-| Documentation | Documentation or content is a first-class repository artifact, or the repository owns dedicated documentation invariants that require CI validation. |
-| Source | The repository contains executable source or consumable technical configuration in the scope of the applicable code-quality rules. |
-| Tests | The repository is in scope for the testing standard's mandatory offline suite. |
-| Build | The repository produces executable or distributable output through a build step. |
-| Package | The repository publishes an npm package and therefore requires artifact validation before release. |
-| End-to-end | An application has the end-to-end boundary defined by the testing standard. |
+| Capability    | Required when                                                                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Documentation | Documentation or content is a first-class repository artifact, or the repository owns dedicated documentation invariants that require CI validation.              |
+| Source        | The repository contains executable source or consumable technical configuration in the scope of the applicable code-quality rules.                                |
+| Tests         | The repository is in scope for the testing standard's mandatory offline suite.                                                                                     |
+| Build         | The repository produces executable or distributable output through a build step.                                                                                   |
+| Package       | The repository publishes an npm package and therefore requires artifact validation before release.                                                                 |
+| End-to-end    | An application has the end-to-end boundary defined by the testing standard.                                                                                         |
 
 Pull request title and source-branch validation are shared enforcement and run for every pull
 request; repositories do not select them as a capability.
@@ -196,15 +196,15 @@ The current validation responsibilities map to jobs as follows. Exact job organi
 change inside the central workflow while preserving these requirements and the stable
 aggregate result.
 
-| Validation responsibility | Pull request | Default branch |
-| ------------------------- | ------------ | -------------- |
-| Pull request title and source branch | Required | Not applicable |
-| Source | When applicable | When applicable |
-| Tests | When applicable | When applicable |
-| Build | When applicable | When applicable |
-| Package | When applicable | When applicable |
-| Documentation | When applicable | When applicable |
-| End-to-end | When applicable | When applicable |
+| Validation responsibility            | Pull request    | Default branch |
+| ------------------------------------ | --------------- | -------------- |
+| Pull request title and source branch | Required        | Not applicable |
+| Source                               | When applicable | When applicable |
+| Tests                                | When applicable | When applicable |
+| Build                                | When applicable | When applicable |
+| Package                              | When applicable | When applicable |
+| Documentation                        | When applicable | When applicable |
+| End-to-end                           | When applicable | When applicable |
 
 Pull request metadata validation MUST pass the title to
 `mikode-git-hooks lint-title` and the source branch to
