@@ -55,6 +55,7 @@ Accepted decisions and active standards:
 - [ADR 0012: Use repository-owned documentation with central governance](adr/0012-use-repository-owned-documentation-with-central-governance.md)
 - [ADR 0013: Keep external validations manual by default](adr/0013-keep-external-validations-manual-by-default.md)
 - [ADR 0014: Use concise explanatory writing for technical documentation](adr/0014-use-concise-explanatory-technical-documentation.md)
+- [ADR 0015: Compose CI by capability](adr/0015-compose-ci-by-capability.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
@@ -63,13 +64,9 @@ Accepted decisions and active standards:
 - [Code quality standard](standards/code-quality.md)
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
+- [Continuous integration standard](standards/continuous-integration.md)
 - [Documentation standard](standards/documentation.md)
 - [Documentation writing standard](standards/documentation-writing.md)
-
-Draft standards under proposed decisions:
-
-- [Continuous integration standard](standards/continuous-integration.md) — proposed
-  capability-based revision; it is not binding while its related ADR remains proposed.
 
 Superseded decisions, retained as historical records:
 
