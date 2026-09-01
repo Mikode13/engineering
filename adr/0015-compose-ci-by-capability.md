@@ -24,6 +24,11 @@ intrinsic properties of documentation itself.
 Treating profiles as mutually exclusive repository types would either force unnecessary
 tooling into repositories or require an increasing number of combined profiles.
 
+At the same time, composition must not turn capability selection into an invitation for each
+repository or agent to reinterpret what a check means. MiKode needs one reviewed execution
+contract for common validation while still allowing repositories to add invariants that are
+specific to their own domain.
+
 ## Decision
 
 This ADR refines the profile-selection model introduced by ADR 0010. The remaining ADR 0010
@@ -32,9 +37,15 @@ decisions remain in force.
 MiKode CI will model validation as **composable capabilities** rather than treating
 repository profiles as mutually exclusive types.
 
-A capability defines the result that CI must validate, not the runtime or package manager
-used to implement that validation. Relevant capabilities include documentation validation,
-source checks and tests, package validation, builds, and end-to-end tests.
+A capability defines a validation responsibility, not the runtime or package manager used
+to implement it. The active capability catalogue is part of the central CI contract and is
+not fixed by this ADR.
+
+Each capability will have a canonical MiKode-owned contract and common implementation.
+Repositories select applicable capabilities; they do not independently redefine the common
+meaning of those capabilities or choose alternate implementations merely by convention.
+Repository-owned validation may extend a capability only for invariants that are genuinely
+specific to that repository.
 
 Repositories may enable multiple applicable capabilities together. The central workflow
 must set up only the tooling required by the enabled checks.
@@ -45,12 +56,13 @@ repository is. New combined profiles must not be introduced merely to represent 
 combinations.
 
 The documentation capability must not, by itself, require Node.js, pnpm, `package.json`, or
-a pnpm lockfile. A repository may still use Node.js and pnpm to implement its documentation
-validation when that tooling is genuinely useful.
+a pnpm lockfile. A repository may still use Node.js and pnpm when the canonical or
+repository-specific documentation validation genuinely requires that tooling.
 
-Repository-owned validation remains responsible for repository-specific invariants. The
-central workflow should provide orchestration and shared enforcement rather than duplicate
-every project's validation logic.
+Capability availability, preset expansion, and their executable contract are versioned with
+the reusable CI workflow. A consuming repository must reason from the same pinned workflow
+revision that it executes. Initial CI adoption or a deliberate CI update may evaluate the
+latest reviewed central revision, then pin the selected revision as required by ADR 0010.
 
 The stable aggregate `CI / required` check and the pull-request metadata checks established
 by ADR 0010 remain shared requirements regardless of the selected capabilities.
@@ -68,6 +80,12 @@ infrastructure or remain exceptions.
 Profiles such as `node-docs`, `package-docs`, or future combinations would solve individual
 cases but create a combinatorial interface that grows as capabilities are added.
 
+### Let each repository define how a capability is implemented
+
+This maximizes local flexibility but makes the same capability mean different things across
+repositories and pushes policy decisions back onto maintainers and agents. It was rejected
+in favor of canonical common implementations plus explicit repository-specific invariants.
+
 ### Expose only one arbitrary repository command
 
 A single configurable command would be flexible, but it would discard useful central
@@ -80,22 +98,24 @@ other capabilities already standardized by MiKode.
 
 - Documentation repositories can use the documentation CI contract without adopting an
   unrelated runtime or package manager.
-- Repositories can combine documentation, source, package, build, and end-to-end validation
-  without creating bespoke profile combinations.
-- `Mikode13/engineering` can keep its existing Node.js/pnpm documentation tooling because it
+- Repositories can combine applicable validation responsibilities without creating bespoke
+  profile combinations.
+- Common capability behavior stays deterministic instead of depending on repository-local
+  interpretation.
+- `Mikode13/engineering` can keep its existing Node.js/pnpm documentation tooling where it
   serves real repository invariants.
-- New repositories select checks based on actual capabilities instead of being forced into
-  one repository category.
 - Existing profiles can remain available while the central workflow migrates incrementally.
+- SHA-pinned consumers resolve capabilities against the same CI revision they actually run.
 
 ### Negative
 
 - The reusable workflow contract becomes more expressive and therefore slightly more
   complex.
 - Tool setup must become conditional instead of being implied by one profile.
+- The central CI implementation must maintain a clear, versioned capability contract.
 - Existing profile behavior needs compatibility tests during migration.
-- The CI standard and reusable workflow must define which capabilities are implied by each
-  retained preset.
+- The CI standard must define applicability rules so repositories and agents can determine
+  which available capabilities are required.
 
 ## Related standards
 
