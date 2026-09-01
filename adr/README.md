@@ -38,6 +38,7 @@ Do not create empty domain directories or renumber ADRs by domain.
 | [0012](0012-use-repository-owned-documentation-with-central-governance.md) | Shared           | MiKode repositories and organization-wide documentation                                                  | Keep project documentation with its owning repository while governing shared documentation centrally.                       |
 | [0013](0013-keep-external-validations-manual-by-default.md)                | Shared, Delivery | MiKode CI checks that depend on external URLs, real providers, or third-party systems                    | Keep external validations manual and outside required CI unless a concrete future use case justifies automation.            |
 | [0014](0014-use-concise-explanatory-technical-documentation.md)            | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents           | Use concise, technical, explanatory documentation structured for understanding and scanning.                                |
+| [0015](0015-compose-ci-by-capability.md)                                   | Shared, Delivery | MiKode repositories using centralized reusable CI workflows                                              | Compose CI from canonical capabilities while retaining profiles as convenience presets.                                     |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
