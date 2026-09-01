@@ -41,7 +41,7 @@ See the [templates index](templates/README.md).
 
 ## Current standards and decisions
 
-Accepted decisions and their active standards:
+Accepted decisions and active standards:
 
 - [ADR 0001: Use Prettier for cross-project code formatting](adr/0001-use-prettier.md)
 - [ADR 0002: Use the Commons Clause with the MIT License for source-available software](adr/0002-use-commons-clause-with-mit.md)
