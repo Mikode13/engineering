@@ -1,6 +1,6 @@
 # ADR 0015: Compose CI by capability
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-09-01
 - Domains: Shared, Delivery
 - Applies to: MiKode repositories using centralized reusable CI workflows
