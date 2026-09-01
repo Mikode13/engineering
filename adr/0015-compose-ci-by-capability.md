@@ -26,6 +26,9 @@ tooling into repositories or require an increasing number of combined profiles.
 
 ## Decision
 
+This ADR refines the profile-selection model introduced by ADR 0010. The remaining ADR 0010
+decisions remain in force.
+
 MiKode CI will model validation as **composable capabilities** rather than treating
 repository profiles as mutually exclusive types.
 
