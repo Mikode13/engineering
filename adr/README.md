@@ -45,9 +45,10 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR                                                                | Domains          | Applies to                                                  | Decision                                                                                                        |
-| ------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs. |
+| ADR                                                                | Domains          | Applies to                                                                                  | Decision                                                                                                                                                                               |
+| ------------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [0011](0011-use-semantic-release-for-automated-npm-publication.md) | Shared, Delivery | Independently versioned public npm packages owned by MiKode                                 | Use semantic-release to publish independently versioned npm packages from successful definitive `main` CI runs.                                                                        |
+| [0016](0016-centralize-cross-platform-script-utilities.md)         | Shared, Delivery | MiKode Node.js and TypeScript repositories with `package.json` build or maintenance scripts | Centralize cross-platform-unsafe operations needed by build/maintenance scripts in a shared MiKode package, instead of a per-repository third-party dependency or hand-rolled command. |
 
 ## Superseded decisions
 
