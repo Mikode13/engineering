@@ -21,9 +21,17 @@ The team considered the following constraints:
   npm supply-chain attacks delivered their payload through install-time lifecycle
   scripts (`postinstall` and similar), so the package manager's default behavior toward
   those scripts is a security property.
+- Repository tooling rules must not accidentally become runtime or installation
+  requirements for downstream package consumers.
 - The tool must work well for single-package repositories now and support workspaces if
   a monorepo is created later, without requiring one.
 - The tool must support the Node.js versions MiKode targets.
+
+The distinction between repository tooling and package behavior matters for published
+libraries. A lifecycle script added only to enforce how contributors install the source
+repository is still published in `package.json`; consumers then receive it as a dependency
+lifecycle script. pnpm treats dependency install scripts as reviewable build behavior, so a
+repository-only guard can otherwise leak into the consumer's installation contract.
 
 ## Decision
 
@@ -33,6 +41,11 @@ Each adopting project will pin its pnpm version in the `package.json` `packageMa
 field, commit `pnpm-lock.yaml`, and use pnpm commands in scripts, documentation, and CI.
 The exact rules are defined in the
 [package management standard](../standards/package-management.md).
+
+Package-manager enforcement is a repository concern. A published package must not expose a
+lifecycle script whose only purpose is to force contributors to use pnpm in the source
+repository. Published lifecycle scripts are justified only by behavior the package itself
+requires when installed or prepared by a consumer.
 
 Choosing pnpm does not imply adopting a monorepo. Workspace features remain available
 but are a separate, project-level decision.
@@ -82,6 +95,8 @@ non-transferable documentation.
 - Strict dependency isolation catches undeclared dependencies at development time.
 - Install-time lifecycle scripts of dependencies do not run unless explicitly approved,
   closing the default install-script path used by several npm supply-chain attacks.
+- Repository-only package-manager enforcement does not force downstream consumers to
+  approve or deny lifecycle scripts that the published package does not need.
 - The shared store makes installs fast and disk-efficient across many small projects.
 - Workspaces are available later without changing package manager.
 
@@ -96,6 +111,9 @@ non-transferable documentation.
 - Dependencies that legitimately need install scripts (native modules such as `sharp`
   or `esbuild`) fail to build until they are allowlisted, which adds a review step to
   adding such dependencies.
+- Published package repositories cannot rely on a published `preinstall` guard solely to
+  enforce contributor package-manager choice; that enforcement must remain repository
+  tooling or policy.
 - Contributors coming from npm must learn minor command differences.
 
 ## Related standards
@@ -105,11 +123,14 @@ non-transferable documentation.
 ## References
 
 Version-sensitive research performed on 2026-07-24. pnpm 11.17.0 was the latest stable
-release and requires Node.js 22.13 or later.
+release and requires Node.js 22.13 or later. Dependency build-script behavior was reviewed
+again on 2026-09-05 when clarifying the boundary between repository tooling and published
+package lifecycle scripts.
 
 - [pnpm motivation](https://pnpm.io/motivation)
 - [pnpm installation](https://pnpm.io/installation)
 - [pnpm settings](https://pnpm.io/settings)
+- [pnpm build settings](https://pnpm.io/settings/build)
 - [pnpm 10 release discussion (lifecycle scripts disabled by default)](https://github.com/orgs/pnpm/discussions/8945)
 - [Socket: pnpm 10.0.0 blocks lifecycle scripts by default](https://socket.dev/blog/pnpm-10-0-0-blocks-lifecycle-scripts-by-default)
 - [Node.js Corepack documentation](https://nodejs.org/api/corepack.html)
