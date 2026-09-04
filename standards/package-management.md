@@ -1,7 +1,7 @@
 # Package management standard
 
 - Status: Active
-- Last reviewed: 2026-07-24
+- Last reviewed: 2026-09-05
 - Related ADRs: [ADR 0003: Use pnpm as the package manager](../adr/0003-use-pnpm.md)
 
 ## Scope
@@ -23,8 +23,8 @@ Projects adopting this standard MUST:
    legitimately needs its install scripts (typically native modules), allow that
    specific dependency in the `allowBuilds` map in `pnpm-workspace.yaml` and treat the
    entry as a reviewable change.
-7. Include a `preinstall` guard so that running npm or Yarn in the repository fails
-   immediately instead of creating a foreign lockfile.
+7. Use a `preinstall` package-manager guard when the repository is not published as an npm
+   package and preventing accidental npm or Yarn installs is useful.
 
 Projects MUST NOT:
 
@@ -32,6 +32,9 @@ Projects MUST NOT:
   lockfiles, and no npm, Yarn, or Bun commands in scripts, CI, or documentation.
 - Enable `dangerouslyAllowAllBuilds` or otherwise re-enable dependency lifecycle
   scripts globally; install-time script execution stays opt-in per dependency.
+- Publish a lifecycle script whose only purpose is enforcing the package manager used by
+  contributors to the source repository. A consumer of a MiKode package must not need to
+  approve or explicitly deny an install script that has no consumer-facing build purpose.
 - Depend on Corepack. Corepack is not distributed with Node.js 25 and later, so no
   script, CI step, or documented setup path may assume it is present.
 
@@ -43,20 +46,33 @@ without it.
 
 ## Required configuration
 
-`package.json` MUST contain a pinned pnpm version and the package-manager guard:
+Every adopting `package.json` MUST pin pnpm exactly:
 
 ```json
 {
-	"packageManager": "pnpm@11.17.0",
-	"scripts": {
-		"preinstall": "npx only-allow pnpm"
-	}
+	"packageManager": "pnpm@11.17.0"
 }
 ```
 
 The version is an exact version, not a range. Renovate-style tooling or a deliberate
 manual update changes it; individual developers do not need matching global installs
 because pnpm defers to the pinned version.
+
+A repository that is not published as an npm package SHOULD also fail fast when a
+contributor invokes another package manager:
+
+```json
+{
+	"scripts": {
+		"preinstall": "npx only-allow pnpm"
+	}
+}
+```
+
+Published packages MUST omit this guard from the package manifest that consumers install.
+Repository package-manager policy is a contributor concern, not a dependency build step.
+The committed pnpm lockfile, CI, and review still enforce the repository's package-manager
+choice.
 
 The CI install step is:
 
@@ -74,6 +90,10 @@ allowBuilds:
   sharp: true
 ```
 
+A dependency whose lifecycle scripts are intentionally unnecessary MAY be explicitly
+denied with `false`. MiKode-owned published packages SHOULD avoid unnecessary lifecycle
+scripts rather than requiring every consumer to carry such denials.
+
 ## Exceptions
 
 A project MAY use a different package manager only when an external platform requires it
@@ -82,9 +102,14 @@ exception and its reason in its README.
 
 ## Adoption
 
-New projects start with `pnpm init` and the configuration above. Existing projects with
-another lockfile migrate with `pnpm import`, which converts the existing lockfile, then
-delete the old lockfile in the same change.
+New projects start with `pnpm init`, pin pnpm, and add the package-manager guard only when
+the repository will not publish that script to consumers. Existing projects with another
+lockfile migrate with `pnpm import`, which converts the existing lockfile, then delete the
+old lockfile in the same change.
+
+Existing MiKode packages that publish a contributor-only `preinstall` guard SHOULD remove
+it in their next meaningful package-maintenance change. Consumers MAY explicitly deny the
+legacy script with `allowBuilds: false` until the published package no longer contains it.
 
 ## References
 
@@ -92,7 +117,7 @@ delete the old lockfile in the same change.
 - [pnpm installation](https://pnpm.io/installation)
 - [pnpm CLI: install](https://pnpm.io/cli/install)
 - [pnpm CLI: import](https://pnpm.io/cli/import)
-- [pnpm settings](https://pnpm.io/settings)
+- [pnpm build settings](https://pnpm.io/settings/build)
 - [pnpm 11.0 release notes](https://pnpm.io/blog/releases/11.0)
 - [pnpm: only allow pnpm](https://pnpm.io/only-allow-pnpm)
 - [npm `packageManager` field](https://nodejs.org/api/packages.html#packagemanager)
