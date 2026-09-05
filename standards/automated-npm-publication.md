@@ -77,7 +77,7 @@ for a stable public contract and verifies all of the following:
 - its release caller is pinned to a reviewed central workflow revision;
 - npm Trusted Publishing is configured for the exact package, repository, and workflow;
 - the source version is `0.0.0-development`; and
-- the package contents and consumer-facing entry points are validated before publication.
+- the exact activation commit has passed the required CI result.
 
 For an unpublished package, the first qualifying automated release MUST be `1.0.0`. For
 a package with existing public `0.x` versions, maintainers MUST first reconcile the
