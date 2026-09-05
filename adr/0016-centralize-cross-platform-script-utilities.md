@@ -34,7 +34,7 @@ justifies a narrower scope.
 
 We decided to use Node's built-in filesystem APIs because consumers are Node.js
 packages, so this adds no extra runtime dependency. Additional utilities are deferred
-until another MiKode repository demonstrates a concrete need.
+until repeated use across MiKode repositories demonstrates a concrete shared need.
 
 ## Alternatives considered
 
@@ -45,10 +45,10 @@ existing `fetch` and `harness` implementations demonstrate.
 
 ### Use an existing cross-platform library directly
 
-A library such as `rimraf` could provide cross-platform removal without a new MiKode
-implementation. Rejected as the shared answer because each repository would still
-depend on, configure, and update the library separately, with no common MiKode
-contract or maintenance location.
+An existing library such as `rimraf` could implement `clean` inside the shared package.
+Rejected for the initial implementation because Node already provides the required
+recursive, forced removal behavior, so adding another dependency provides no
+demonstrated benefit for the current contract.
 
 ### Require a POSIX-compatible shell on Windows
 
