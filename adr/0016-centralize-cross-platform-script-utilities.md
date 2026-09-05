@@ -1,6 +1,6 @@
 # ADR 0016: Centralize cross-platform script utilities in a shared MiKode package
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-09-05
 - Domains: Shared, Delivery
 - Applies to: MiKode Node.js and TypeScript repositories with `package.json` build or
@@ -80,8 +80,8 @@ real use case requires it.
 
 ## Related standards
 
-None yet. A usage standard can be considered after the package contract is settled and
-this ADR moves to `Accepted`.
+None yet. A usage standard may be considered if repeated adoption creates a need beyond
+the package's current documentation.
 
 ## References
 
