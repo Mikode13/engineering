@@ -56,6 +56,7 @@ Accepted decisions and active standards:
 - [ADR 0013: Keep external validations manual by default](adr/0013-keep-external-validations-manual-by-default.md)
 - [ADR 0014: Use concise explanatory writing for technical documentation](adr/0014-use-concise-explanatory-technical-documentation.md)
 - [ADR 0015: Compose CI by capability](adr/0015-compose-ci-by-capability.md)
+- [ADR 0016: Centralize cross-platform script utilities in a shared MiKode package](adr/0016-centralize-cross-platform-script-utilities.md)
 - [Code formatting standard](standards/code-formatting.md)
 - [Licensing standard](standards/licensing.md)
 - [Package management standard](standards/package-management.md)
@@ -65,6 +66,7 @@ Accepted decisions and active standards:
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
 - [Continuous integration standard](standards/continuous-integration.md)
+- [Cross-platform script utilities standard](standards/cross-platform-script-utilities.md)
 - [Documentation standard](standards/documentation.md)
 - [Documentation writing standard](standards/documentation-writing.md)
 
