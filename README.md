@@ -66,6 +66,7 @@ Accepted decisions and active standards:
 - [Git workflow standard](standards/git-workflow.md)
 - [Testing standard](standards/testing.md)
 - [Continuous integration standard](standards/continuous-integration.md)
+- [Cross-platform script utilities standard](standards/cross-platform-script-utilities.md)
 - [Documentation standard](standards/documentation.md)
 - [Documentation writing standard](standards/documentation-writing.md)
 

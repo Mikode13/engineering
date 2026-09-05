@@ -80,8 +80,7 @@ real use case requires it.
 
 ## Related standards
 
-None yet. A usage standard may be considered if repeated adoption creates a need beyond
-the package's current documentation.
+[Cross-platform script utilities standard](../standards/cross-platform-script-utilities.md)
 
 ## References
 
