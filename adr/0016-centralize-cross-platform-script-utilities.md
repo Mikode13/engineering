@@ -13,7 +13,7 @@ MiKode repositories need to run build and maintenance operations through
 Windows `cmd.exe`, which is the default shell used by `npm` and `pnpm` there.
 
 This need already exists in two repositories. `fetch` has a Node-based clean script,
-while `mikode-harness` still uses the incompatible shell command in its build script.
+while `harness` still uses the incompatible shell command in its build script.
 The same operation therefore has two different solutions, one of which does not work
 on every supported platform.
 
@@ -32,18 +32,23 @@ The CLI rejects an empty path, a filesystem root, and the current working direct
 It allows paths outside the current working directory because no current requirement
 justifies a narrower scope.
 
-The implementation uses Node's built-in `node:fs` APIs. This is an implementation
-choice, not a permanent architectural constraint; the public function and CLI
-contract are the stable boundary. Additional utilities are deferred until another
-MiKode repository demonstrates a concrete need.
+We decided to use Node's built-in filesystem APIs because consumers are Node.js
+packages, so this adds no extra runtime dependency. Additional utilities are deferred
+until another MiKode repository demonstrates a concrete need.
 
 ## Alternatives considered
 
 ### Keep solving the problem in each repository
 
 Rejected because it duplicates ownership and produces inconsistent behavior, as the
-existing `fetch` and `mikode-harness` implementations demonstrate. This includes
-choosing `rimraf` or embedding a Node one-liner independently in each repository.
+existing `fetch` and `harness` implementations demonstrate.
+
+### Use an existing cross-platform library directly
+
+A library such as `rimraf` could provide cross-platform removal without a new MiKode
+implementation. Rejected as the shared answer because each repository would still
+depend on, configure, and update the library separately, with no common MiKode
+contract or maintenance location.
 
 ### Require a POSIX-compatible shell on Windows
 
@@ -82,5 +87,6 @@ this ADR moves to `Accepted`.
 
 - [`fetch` clean script](https://github.com/Mikode13/fetch/blob/main/scripts/clean.mjs)
 - [`harness` build script](https://github.com/Mikode13/harness/blob/main/package.json)
+- [`rimraf` package](https://www.npmjs.com/package/rimraf)
 - [`@mikode13/cross-platform` implementation repository](https://github.com/Mikode13/cross-platform)
 - [Node.js `fs/promises.rm` API](https://nodejs.org/api/fs.html#fspromisesrmpath-options)
