@@ -1,6 +1,6 @@
 # ADR 0011: Use semantic-release for automated npm publication
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-08-27
 - Domains: Shared, Delivery
 - Applies to: Independently versioned public npm packages owned by MiKode
@@ -228,6 +228,7 @@ deployment remains an explicit pending decision.
 
 ## Related standards
 
+- [Automated npm publication standard](../standards/automated-npm-publication.md)
 - [Continuous integration standard](../standards/continuous-integration.md)
 - [Git workflow standard](../standards/git-workflow.md)
 - [Package management standard](../standards/package-management.md)

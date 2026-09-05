@@ -19,6 +19,8 @@ declares its status; active standards are mandatory within their stated scope.
   deterministic data, regression tests, and shared scripts.
 - [Continuous integration standard](continuous-integration.md) — composable capabilities,
   canonical validation contracts, immutable CI revisions, and controlled rollout.
+- [Automated npm publication standard](automated-npm-publication.md) — semantic-release
+  versioning, trusted publication, and guarded recovery.
 - [Cross-platform script utilities standard](cross-platform-script-utilities.md) — portable
   build and maintenance operations and shared-utility reuse guidance.
 - [Documentation standard](documentation.md) — ownership, baseline project artifacts,
