@@ -19,8 +19,8 @@ declares its status; active standards are mandatory within their stated scope.
   deterministic data, regression tests, and shared scripts.
 - [Continuous integration standard](continuous-integration.md) — composable capabilities,
   canonical validation contracts, immutable CI revisions, and controlled rollout.
-- [Cross-platform script utilities standard](cross-platform-script-utilities.md) — shared
-  usage of `@mikode13/cross-platform` for cross-platform directory removal in scripts.
+- [Cross-platform script utilities standard](cross-platform-script-utilities.md) — portable
+  build and maintenance operations and shared-utility reuse guidance.
 - [Documentation standard](documentation.md) — ownership, baseline project artifacts,
   project decision logs, and shared documentation distribution.
 - [Documentation writing standard](documentation-writing.md) — technical writing style,
