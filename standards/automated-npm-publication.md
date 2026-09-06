@@ -1,7 +1,7 @@
 # Automated npm publication standard
 
 - Status: Active
-- Last reviewed: 2026-09-05
+- Last reviewed: 2026-09-06
 - Related ADRs:
   [ADR 0011: Use semantic-release for automated npm publication](../adr/0011-use-semantic-release-for-automated-npm-publication.md)
 
@@ -33,6 +33,13 @@ shared configuration MUST override semantic-release defaults so non-breaking `pe
 produces a major release.
 
 The workflow MUST complete successfully without publishing when no commit is releasable.
+
+### Artifact preparation
+
+The release workflow MUST rebuild package output from the exact checked-out commit
+using the committed frozen lockfile, create and inspect the publishable tarball, and
+verify that every declared public entry point is present. It MUST NOT reuse artifacts
+produced by the preceding CI workflow.
 
 ### Release output
 
