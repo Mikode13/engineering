@@ -22,6 +22,18 @@ belong to more than one domain.
 New domains should be added only when concrete decisions no longer fit this vocabulary.
 Do not create empty domain directories or renumber ADRs by domain.
 
+## Adding a decision
+
+1. Start from the [ADR template](../templates/ADR.template.md) and use the next sequential
+   number.
+2. Describe the problem, realistic alternatives, selected decision, and consequences.
+3. Use one or more domains from this index and state the applicability explicitly.
+4. Keep the status `Proposed` until the decision is explicitly accepted.
+5. Add the ADR to the matching status section in this index.
+
+Do not rewrite an accepted ADR to change its history. Create a superseding ADR and update
+the affected standard when an accepted decision changes.
+
 ## Accepted decisions
 
 | ADR                                                                        | Domains          | Applies to                                                                                               | Decision                                                                                                                                                                                  |

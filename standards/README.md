@@ -3,6 +3,15 @@
 Standards define rules that MiKode projects should apply consistently. Each document
 declares its status; active standards are mandatory within their stated scope.
 
+## Adding a standard
+
+A standard should state its status, review date, related ADRs, scope, active rules,
+exceptions, and adoption path when those sections add useful information. Keep historical
+reasoning in the related ADR and avoid duplicating it.
+
+New standards remain `Draft` until their decision is accepted or they are explicitly
+approved. Add each standard once under the matching status section in this index.
+
 ## Active standards
 
 - [Code formatting standard](code-formatting.md) — Prettier configuration and adoption workflow.
