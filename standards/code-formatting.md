@@ -144,4 +144,4 @@ package source code.
 - [Prettier options](https://prettier.io/docs/options.html)
 - [Prettier configuration files](https://prettier.io/docs/configuration)
 - [Prettier CLI](https://prettier.io/docs/cli)
-- [`@mikode13/code-style` implementation](https://github.com/mikode13/code-styiling)
+- [`@mikode13/code-style` implementation](https://github.com/Mikode13/code-style)
