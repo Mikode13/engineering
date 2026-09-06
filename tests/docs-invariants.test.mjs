@@ -13,7 +13,7 @@ const createFixture = () => {
 
 	writeFileSync(
 		path.join(root, 'README.md'),
-		'[ADR 0001](adr/0001-use-example.md)\n[Example standard](standards/example.md)\n',
+		'[ADRs](adr/README.md)\n[Standards](standards/README.md)\n[Templates](templates/README.md)\n',
 	);
 	writeFileSync(
 		path.join(root, 'adr', '0001-use-example.md'),
@@ -46,6 +46,20 @@ const withFixture = assertion => {
 
 test('accepts a consistent engineering document set', () => {
 	withFixture(root => assert.deepEqual(validateEngineeringDocs(root), []));
+});
+
+test('rejects a root README that does not link to a canonical index', () => {
+	withFixture(root => {
+		const readmePath = path.join(root, 'README.md');
+		const readme = readFileSync(readmePath, 'utf8');
+		writeFileSync(readmePath, readme.replace('[Templates](templates/README.md)\n', ''));
+
+		assert.ok(
+			validateEngineeringDocs(root).includes(
+				'README.md: missing navigation link to templates/README.md',
+			),
+		);
+	});
 });
 
 test('rejects an ADR missing from its index', () => {

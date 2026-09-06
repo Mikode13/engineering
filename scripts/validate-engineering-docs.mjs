@@ -19,6 +19,8 @@ const STANDARD_INDEX_SECTIONS = {
 	Draft: 'Draft standards',
 };
 
+const ROOT_INDEX_LINKS = ['adr/README.md', 'standards/README.md', 'templates/README.md'];
+
 const normalizeWhitespace = value => value.trim().replace(/\s+/g, ' ');
 
 const readDocument = file => readFileSync(file, 'utf8');
@@ -126,7 +128,6 @@ const validateAdrs = root => {
 		.filter(file => file !== 'README.md' && file.endsWith('.md'))
 		.sort();
 	const indexRows = adrIndexRows(readDocument(path.join(directory, 'README.md')));
-	const rootReadme = readDocument(path.join(root, 'README.md'));
 
 	files.forEach((file, index) => {
 		const filename = /^(\d{4})-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/.exec(file);
@@ -187,15 +188,6 @@ const validateAdrs = root => {
 				errors.push(`adr/${file}: ADR index applicability does not match document metadata`);
 			}
 		}
-
-		const rootLink = `adr/${file}`;
-		const rootOccurrences = rootReadme.split(rootLink).length - 1;
-		if (status === 'Proposed' && rootOccurrences !== 0) {
-			errors.push(`adr/${file}: proposed ADRs must not be indexed in the root README`);
-		}
-		if (status !== 'Proposed' && rootOccurrences === 0) {
-			errors.push(`adr/${file}: ${status} ADR is missing from the root README`);
-		}
 	});
 
 	for (const row of indexRows) {
@@ -214,7 +206,6 @@ const validateStandards = root => {
 		.filter(file => file !== 'README.md' && file.endsWith('.md'))
 		.sort();
 	const indexEntries = standardIndexEntries(readDocument(path.join(directory, 'README.md')));
-	const rootReadme = readDocument(path.join(root, 'README.md'));
 
 	for (const file of files) {
 		if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.md$/.test(file)) {
@@ -238,10 +229,6 @@ const validateStandards = root => {
 				errors.push(`standards/${file}: status ${status} must be indexed under ${expectedSection}`);
 			}
 		}
-
-		if (status === 'Active' && !rootReadme.includes(`standards/${file}`)) {
-			errors.push(`standards/${file}: active standard is missing from the root README`);
-		}
 	}
 
 	for (const entry of indexEntries) {
@@ -253,7 +240,24 @@ const validateStandards = root => {
 	return errors;
 };
 
-export const validateEngineeringDocs = root => [...validateAdrs(root), ...validateStandards(root)];
+const validateRootNavigation = root => {
+	const errors = [];
+	const rootReadme = readDocument(path.join(root, 'README.md'));
+
+	for (const link of ROOT_INDEX_LINKS) {
+		if (!rootReadme.includes(`](${link})`)) {
+			errors.push(`README.md: missing navigation link to ${link}`);
+		}
+	}
+
+	return errors;
+};
+
+export const validateEngineeringDocs = root => [
+	...validateRootNavigation(root),
+	...validateAdrs(root),
+	...validateStandards(root),
+];
 
 const currentFile = fileURLToPath(import.meta.url);
 if (process.argv[1] && path.resolve(process.argv[1]) === currentFile) {

@@ -31,8 +31,8 @@ Optional replacements:
 
 Replace the guidance sentences in each section with real content, keep the status
 `Proposed` until the decision is confirmed, and add the new ADR to the
-[ADR index](../adr/README.md) and root README. The full format rules are defined in
-[AGENTS.md](../AGENTS.md).
+[ADR index](../adr/README.md). The template and ADR index define the authoring and indexing
+rules.
 
 The license template is not legal advice and is not effective for a project until it has
 been completed, placed at the target repository's root, referenced by package metadata,
