@@ -59,7 +59,9 @@ superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-There are currently no proposed decisions.
+| ADR                                                        | Domains          | Applies to                           | Decision                                                                                         |
+| ---------------------------------------------------------- | ---------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| [0017](0017-use-ai-as-a-required-pull-request-reviewer.md) | Shared, Delivery | MiKode repositories hosted on GitHub | Require an automated AI review as an independent second opinion before a pull request can merge. |
 
 ## Superseded decisions
 

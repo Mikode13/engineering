@@ -39,4 +39,5 @@ approved. Add each standard once under the matching status section in this index
 
 ## Draft standards
 
-There are currently no draft standards.
+- [Automated pull request review standard](automated-pull-request-review.md) — required AI
+  second-opinion review, enforcement, provider operation, and guarded rollout.

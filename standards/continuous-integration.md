@@ -5,7 +5,8 @@
 - Related ADRs:
   [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md),
   [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md),
-  [ADR 0015: Compose CI by capability](../adr/0015-compose-ci-by-capability.md)
+  [ADR 0015: Compose CI by capability](../adr/0015-compose-ci-by-capability.md), and
+  [ADR 0017: Use AI as a required pull request reviewer](../adr/0017-use-ai-as-a-required-pull-request-reviewer.md)
 
 ## Scope
 
@@ -45,8 +46,9 @@ MiKode repositories MUST:
 12. Install only the tooling required by the enabled checks. When a repository installs
     registry dependencies, it MUST use the lockfile and frozen-install behavior required by
     its applicable ecosystem standard.
-13. Keep the mandatory pull request gate independent of real-provider credentials, network
-    availability, rate limits, and paid usage.
+13. Keep the deterministic `CI / required` gate independent of real-provider credentials,
+    network availability, rate limits, and paid usage. Separate review gates MAY depend on
+    external providers when governed by their own accepted decision and active standard.
 14. Repeat all applicable project checks on the definitive default-branch commit after a
     squash merge, excluding pull-request-only metadata validation.
 15. Prevent release and deployment workflows from consuming a default-branch commit whose
@@ -309,6 +311,8 @@ another repository to change its known-good CI revision.
 - [ADR 0010](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md)
 - [ADR 0013](../adr/0013-keep-external-validations-manual-by-default.md)
 - [ADR 0015](../adr/0015-compose-ci-by-capability.md)
+- [ADR 0017](../adr/0017-use-ai-as-a-required-pull-request-reviewer.md)
+- [Automated pull request review standard](automated-pull-request-review.md)
 - [Git workflow standard](git-workflow.md)
 - [Testing standard](testing.md)
 - [Node.js version standard](nodejs-version.md)
