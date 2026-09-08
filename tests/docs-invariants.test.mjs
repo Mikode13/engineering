@@ -21,7 +21,7 @@ const createFixture = () => {
 	);
 	writeFileSync(
 		path.join(root, 'adr', 'README.md'),
-		'# ADRs\n\n## Accepted decisions\n\n| ADR | Domains | Applies to | Decision |\n| --- | --- | --- | --- |\n| [0001](0001-use-example.md) | Shared | Example projects | Use example. |\n\n## Proposed decisions\n\n## Superseded decisions\n',
+		'# ADRs\n\n## Decisions\n\n| ADR | Status | Domains | Applies to | Decision |\n| --- | --- | --- | --- | --- |\n| [0001](0001-use-example.md) | Accepted | Shared | Example projects | Use example. |\n',
 	);
 	writeFileSync(
 		path.join(root, 'standards', 'example.md'),
@@ -64,10 +64,7 @@ test('rejects a root README that does not link to a canonical index', () => {
 
 test('rejects an ADR missing from its index', () => {
 	withFixture(root => {
-		writeFileSync(
-			path.join(root, 'adr', 'README.md'),
-			'# ADRs\n\n## Accepted decisions\n\n## Proposed decisions\n\n## Superseded decisions\n',
-		);
+		writeFileSync(path.join(root, 'adr', 'README.md'), '# ADRs\n\n## Decisions\n');
 
 		assert.ok(
 			validateEngineeringDocs(root).includes(
@@ -77,16 +74,15 @@ test('rejects an ADR missing from its index', () => {
 	});
 });
 
-test('rejects an ADR indexed under a section that contradicts its status', () => {
+test('rejects an ADR index status that contradicts its document', () => {
 	withFixture(root => {
-		writeFileSync(
-			path.join(root, 'adr', 'README.md'),
-			'# ADRs\n\n## Accepted decisions\n\n## Proposed decisions\n\n| ADR | Domains | Applies to | Decision |\n| --- | --- | --- | --- |\n| [0001](0001-use-example.md) | Shared | Example projects | Use example. |\n\n## Superseded decisions\n',
-		);
+		const indexPath = path.join(root, 'adr', 'README.md');
+		const index = readFileSync(indexPath, 'utf8');
+		writeFileSync(indexPath, index.replace('| Accepted |', '| Proposed |'));
 
 		assert.ok(
 			validateEngineeringDocs(root).includes(
-				'adr/0001-use-example.md: status Accepted must be indexed under Accepted decisions',
+				'adr/0001-use-example.md: ADR index status does not match document metadata',
 			),
 		);
 	});
