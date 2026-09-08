@@ -53,15 +53,14 @@ the affected standard when an accepted decision changes.
 | [0014](0014-use-concise-explanatory-technical-documentation.md)            | Shared           | MiKode technical documentation across repositories and organization-wide engineering documents           | Use concise, technical, explanatory documentation structured for understanding and scanning.                                                                                              |
 | [0015](0015-compose-ci-by-capability.md)                                   | Shared, Delivery | MiKode repositories using centralized reusable CI workflows                                              | Compose CI from canonical capabilities while retaining profiles as convenience presets.                                                                                                   |
 | [0016](0016-centralize-cross-platform-script-utilities.md)                 | Shared, Delivery | MiKode Node.js and TypeScript repositories with `package.json` build or maintenance scripts              | Centralizes cross-platform-unsafe operations needed by build/maintenance scripts in a shared MiKode package, rather than per-repository third-party dependencies or hand-rolled commands. |
+| [0017](0017-use-ai-as-a-required-pull-request-reviewer.md)                 | Shared, Delivery | MiKode repositories hosted on GitHub                                                                     | Require an automated AI review as an independent second opinion before a pull request can merge.                                                                                          |
 
 The decisions above are accepted. Any change to them should be documented in a new or
 superseding ADR rather than rewriting their historical reasoning.
 
 ## Proposed decisions
 
-| ADR                                                        | Domains          | Applies to                           | Decision                                                                                         |
-| ---------------------------------------------------------- | ---------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| [0017](0017-use-ai-as-a-required-pull-request-reviewer.md) | Shared, Delivery | MiKode repositories hosted on GitHub | Require an automated AI review as an independent second opinion before a pull request can merge. |
+There are currently no proposed decisions.
 
 ## Superseded decisions
 

@@ -1,6 +1,6 @@
 # ADR 0017: Use AI as a required pull request reviewer
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-09-07
 - Domains: Shared, Delivery
 - Applies to: MiKode repositories hosted on GitHub

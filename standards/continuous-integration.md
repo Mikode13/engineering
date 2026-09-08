@@ -1,7 +1,7 @@
 # Continuous integration standard
 
 - Status: Active
-- Last reviewed: 2026-09-01
+- Last reviewed: 2026-09-08
 - Related ADRs:
   [ADR 0010: Use GitHub Actions with centralized reusable CI workflows](../adr/0010-use-github-actions-with-centralized-reusable-ci-workflows.md),
   [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md),

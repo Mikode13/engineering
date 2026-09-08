@@ -1,7 +1,7 @@
 # Automated pull request review standard
 
-- Status: Draft
-- Last reviewed: 2026-09-07
+- Status: Active
+- Last reviewed: 2026-09-08
 - Related ADRs:
   [ADR 0017: Use AI as a required pull request reviewer](../adr/0017-use-ai-as-a-required-pull-request-reviewer.md)
 
@@ -154,5 +154,6 @@ review requires a new ADR.
 - [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md)
 - [Continuous integration standard](continuous-integration.md)
 - [Git workflow standard](git-workflow.md)
+- [Anthropic: Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions)
 - [GitHub: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 - [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
