@@ -20,8 +20,8 @@
 		"docs:check": "pnpm run format:check && pnpm run lint:markdown && pnpm run links:internal && pnpm run docs:invariants:test && pnpm run docs:invariants"
 	},
 	"devDependencies": {
-		"@mikode13/code-style": "0.1.0",
-		"@mikode13/git-hooks": "0.1.0",
+		"@mikode13/code-style": "1.0.0",
+		"@mikode13/git-hooks": "1.0.0",
 		"markdownlint-cli2": "0.23.2",
 		"prettier": "3.9.6",
 		"remark-cli": "12.0.1",
