@@ -6,12 +6,7 @@ const ADR_STATUSES = new Set(['Accepted', 'Deprecated', 'Proposed', 'Superseded'
 const ADR_DOMAINS = new Set(['Backend', 'Delivery', 'Frontend', 'Shared']);
 const STANDARD_STATUSES = new Set(['Active', 'Deprecated', 'Draft']);
 
-const ADR_INDEX_SECTIONS = {
-	Accepted: 'Accepted decisions',
-	Deprecated: 'Deprecated decisions',
-	Proposed: 'Proposed decisions',
-	Superseded: 'Superseded decisions',
-};
+const ADR_INDEX_SECTION = 'Decisions';
 
 const STANDARD_INDEX_SECTIONS = {
 	Active: 'Active standards',
@@ -90,13 +85,16 @@ const adrIndexRows = markdown => {
 
 	for (const [section, lines] of markdownSections(markdown)) {
 		for (const line of lines) {
-			const row = /^\|\s*\[(\d{4})\]\(([^)]+\.md)\)\s*\|\s*([^|]+)\|\s*([^|]+)\|/.exec(line);
+			const row = /^\|\s*\[(\d{4})\]\(([^)]+\.md)\)\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/.exec(
+				line,
+			);
 			if (row) {
 				rows.push({
 					number: row[1],
 					file: row[2],
-					domains: normalizeWhitespace(row[3]),
-					appliesTo: normalizeWhitespace(row[4]),
+					status: normalizeWhitespace(row[3]),
+					domains: normalizeWhitespace(row[4]),
+					appliesTo: normalizeWhitespace(row[5]),
 					section,
 				});
 			}
@@ -174,9 +172,11 @@ const validateAdrs = root => {
 			errors.push(`adr/${file}: expected exactly one ADR index row, found ${matchingRows.length}`);
 		} else {
 			const row = matchingRows[0];
-			const expectedSection = ADR_INDEX_SECTIONS[status];
-			if (expectedSection && row.section !== expectedSection) {
-				errors.push(`adr/${file}: status ${status} must be indexed under ${expectedSection}`);
+			if (row.section !== ADR_INDEX_SECTION) {
+				errors.push(`adr/${file}: ADR index row must be under ${ADR_INDEX_SECTION}`);
+			}
+			if (row.status !== status) {
+				errors.push(`adr/${file}: ADR index status does not match document metadata`);
 			}
 			if (row.number !== number) {
 				errors.push(`adr/${file}: ADR index number ${row.number} does not match filename`);

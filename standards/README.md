@@ -28,6 +28,8 @@ approved. Add each standard once under the matching status section in this index
   deterministic data, regression tests, and shared scripts.
 - [Continuous integration standard](continuous-integration.md) — composable capabilities,
   canonical validation contracts, immutable CI revisions, and controlled rollout.
+- [Automated pull request review standard](automated-pull-request-review.md) — required AI
+  second-opinion review, enforcement, provider operation, and guarded rollout.
 - [Automated npm publication standard](automated-npm-publication.md) — semantic-release
   versioning, trusted publication, and guarded recovery.
 - [Cross-platform script utilities standard](cross-platform-script-utilities.md) — portable
