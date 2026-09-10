@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@mikode13/code-style':
-        specifier: 0.1.0
-        version: 0.1.0(prettier@3.9.6)
+        specifier: 1.0.0
+        version: 1.0.0(prettier@3.9.6)
       '@mikode13/git-hooks':
-        specifier: 0.1.0
-        version: 0.1.0(@types/node@22.20.1)(typescript@7.0.2)
+        specifier: 1.0.0
+        version: 1.0.0(@types/node@22.20.1)(typescript@7.0.2)
       markdownlint-cli2:
         specifier: 0.23.2
         version: 0.23.2(supports-color@9.4.0)
@@ -97,14 +97,14 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@mikode13/code-style@0.1.0':
-    resolution: {integrity: sha512-YxaezqA4UeAFH1UyBryAj9lPce7xk6Cl8z2J9rPgBBBCZk5LtP9yxqr2tvs1swB9b2syyT1gBz3ApJdlyyUCDQ==}
-    engines: {node: '>=20'}
+  '@mikode13/code-style@1.0.0':
+    resolution: {integrity: sha512-6p4LIIP8D4hj25lrwE51aq+mngupVd46LvmFwVPflAGuHf7DXoTP/RTtLb66Vv9wclzO45H6aDBLxpA4DjP+Qg==}
+    engines: {node: ^22.13.0 || ^24.0.0}
     peerDependencies:
       prettier: ^3.5.0
 
-  '@mikode13/git-hooks@0.1.0':
-    resolution: {integrity: sha512-uUFvtF1vv6Cb9ShYwH6Y9PTTKuMnz7thyMOt1dYk7ZrskRviwgDmdbuJI0LTPcagFMri10qNGMIHocbsMzbrJQ==}
+  '@mikode13/git-hooks@1.0.0':
+    resolution: {integrity: sha512-2NX7pfsUEhjcOB7hJ2dUzSK0C261DGKva32L7YvaAuPQIzb7kBohJNcIcUndH7zTWEbs2RjECWfw3s7tPcfAMQ==}
     engines: {node: ^22.13.0 || ^24.0.0}
     hasBin: true
 
@@ -1271,11 +1271,11 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@mikode13/code-style@0.1.0(prettier@3.9.6)':
+  '@mikode13/code-style@1.0.0(prettier@3.9.6)':
     dependencies:
       prettier: 3.9.6
 
-  '@mikode13/git-hooks@0.1.0(@types/node@22.20.1)(typescript@7.0.2)':
+  '@mikode13/git-hooks@1.0.0(@types/node@22.20.1)(typescript@7.0.2)':
     dependencies:
       '@commitlint/config-conventional': 21.2.0
       '@commitlint/lint': 21.2.0
