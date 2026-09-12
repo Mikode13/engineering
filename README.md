@@ -19,6 +19,9 @@ project artifacts, and current architecture documentation. The
 [documentation writing standard](standards/documentation-writing.md) defines the expected
 technical writing style.
 
+The proposed [agent context and skill routing standard](standards/agent-context-and-skill-routing.md)
+describes selective skill loading and the planned shared entry point; it is not active policy.
+
 ## Documenting a decision
 
 Use the [ADR template](templates/ADR.template.md) and the next number from the

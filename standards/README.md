@@ -39,5 +39,7 @@ approved. Add each standard once under the matching status section in this index
 
 ## Draft standards
 
+- [Agent context and skill routing standard](agent-context-and-skill-routing.md) —
+  progressive loading, shared workflow selection, and verified host adoption.
 - [Documentation standard](documentation.md) — ownership, baseline project artifacts,
   current architecture, project decision logs, and shared documentation distribution.
