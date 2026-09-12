@@ -34,11 +34,10 @@ approved. Add each standard once under the matching status section in this index
   versioning, trusted publication, and guarded recovery.
 - [Cross-platform script utilities standard](cross-platform-script-utilities.md) — portable
   build and maintenance operations and shared-utility reuse guidance.
-- [Documentation standard](documentation.md) — ownership, baseline project artifacts,
-  project decision logs, and shared documentation distribution.
 - [Documentation writing standard](documentation-writing.md) — technical writing style,
   document structure, examples, diagrams, references, and README expectations.
 
 ## Draft standards
 
-There are currently no draft standards.
+- [Documentation standard](documentation.md) — ownership, baseline project artifacts,
+  current architecture, project decision logs, and shared documentation distribution.
