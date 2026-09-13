@@ -1,7 +1,7 @@
 # Automated npm publication standard
 
 - Status: Active
-- Last reviewed: 2026-09-06
+- Last reviewed: 2026-09-13
 - Related ADRs:
   [ADR 0011: Use semantic-release for automated npm publication](../adr/0011-use-semantic-release-for-automated-npm-publication.md)
 
@@ -92,6 +92,21 @@ newest npm version with a matching Git tag on the released commit. Its stability
 request MUST contain a valid breaking-change marker so semantic-release advances it to
 `1.0.0`.
 
+npm registers a Trusted Publisher only for a package that already exists on the registry,
+so a package that has never been published cannot satisfy that checklist item as written.
+Its maintainers MUST first create the package with one manual bootstrap publication,
+register the Trusted Publisher against it, and only then merge the stability pull request.
+A bootstrap version is not a release: it MUST NOT receive a Git tag, so semantic-release
+still calculates `1.0.0`, it is not the `0.x` history the reconciliation rule above refers
+to, and it SHOULD be deprecated once the first automated release is published. This npm
+behavior was verified against npm documentation and npm CLI 11.16.0 on 2026-09-13.
+
+The registered publisher MUST allow the `npm publish` action. npm always allows
+`npm stage publish` and treats direct publication as a separate choice, while the release
+workflow publishes directly. npm validates no part of the configuration when it is saved,
+and it answers an unmatched token exchange with the same `404` it returns for a missing
+package, so a mismatch surfaces only as a failed release job.
+
 Automated public `0.x` or prerelease channels MUST NOT be introduced without a separate
 decision defining branches, npm distribution tags, and promotion policy.
 
@@ -123,7 +138,8 @@ NOT be used as the routine rollback mechanism.
 
 1. Implement and validate the reusable release workflow in `Mikode13/.github`.
 2. Enforce the canonical CI result in each adopting package repository.
-3. Configure npm Trusted Publishing and reconcile any existing registry, tag, and
+3. Configure npm Trusted Publishing, creating the package with a bootstrap publication
+   first when it has never been published, and reconcile any existing registry, tag, and
    GitHub Release history.
 4. Add the SHA-pinned caller in a stability pull request and validate its package
    contents before merge.
