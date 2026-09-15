@@ -1,7 +1,7 @@
 # Automated pull request review standard
 
 - Status: Active
-- Last reviewed: 2026-09-11
+- Last reviewed: 2026-09-15
 - Related ADRs:
   [ADR 0017: Use AI as a required pull request reviewer](../adr/0017-use-ai-as-a-required-pull-request-reviewer.md)
 
@@ -99,11 +99,36 @@ The implementation MUST:
 Limits MUST reduce redundant work rather than silently truncate a review into a clean
 result.
 
+## Required check and rulesets
+
+The caller job MUST be named `AI Review` and the called aggregate job MUST be named
+`required`, so GitHub reports the required status context as `AI Review / required`. A
+local implementation MUST report the same context, so that moving it to the reusable
+workflow changes no ruleset.
+
+GitHub reports a job skipped by its condition as successful, and a skipped required check
+does not prevent a merge. The job that reports `AI Review / required` MUST therefore run
+for every non-draft pull request targeting the default branch, and MUST fail whenever it
+cannot publish a completed review for the current head commit: when analysis failed, was
+cancelled, or was skipped, when the trusted reviewer implementation is unavailable, and
+when the pull request comes from a fork that cannot receive the provider credential. Only a
+draft pull request MAY skip it.
+
+The check MUST be required through an organization ruleset dedicated to the review, whose
+target lists only repositories that run the reviewer. It MUST NOT be added to a ruleset
+that also targets repositories without the reviewer, such as the one that requires
+`CI / required`, because a check that nothing reports blocks every pull request there. The
+ruleset MUST NOT require the check for a repository until that repository has produced a
+successful `AI Review / required` result under that exact name.
+
 ## Provider, account, and budget
 
-The initial implementation uses Claude through Claude Code GitHub Actions, authenticated
-with a dedicated MiKode-owned provider account rather than a maintainer's personal
-development account. The exact model MAY change after evaluation without changing the ADR.
+The initial implementation runs Claude through the `single-turn` command of
+[`@mikode13/harness-cli`](https://github.com/Mikode13/harness-cli), authenticated with a
+dedicated MiKode-owned provider account rather than a maintainer's personal development
+account. The command and the review skill MUST be pinned to exact revisions, and the
+reviewer MUST NOT run with provider permission prompts bypassed. The exact model MAY change
+after evaluation without changing the ADR.
 
 The provider account MAY also run scheduled MiKode automations. Its total recurring cost
 MUST NOT exceed EUR 30 per month without a reviewed update to this standard. Pull request
@@ -124,6 +149,14 @@ linked content MUST be treated as untrusted review input. They MUST NOT override
 reviewer's trusted skill, standard, permissions, output contract, or security rules. A
 pull request description MAY state intent, but it MUST NOT waive review rules, accept risk,
 or grant an exemption.
+
+The reviewer implementation, its instructions, and the repository context it treats as
+trusted MUST come from a trusted revision: the pinned reusable workflow, or the base
+revision for a local implementation. They MUST NOT be read from the pull request head.
+GitHub reads a `pull_request` workflow from the head, so a pull request that changes the
+review caller or a local implementation changes the gate that judges it. Maintainers MUST
+review such a change as a change to the gate rather than rely on its own
+`AI Review / required` result.
 
 Analysis MUST use read-only repository access and MUST NOT execute pull request code with
 provider credentials or a privileged GitHub token. Publication MUST use the minimum
@@ -146,18 +179,42 @@ The pull request MUST record the reason, the reviewed head commit, and the perso
 the risk. A provider failure or quota incident MUST NOT silently disable the gate for later
 pull requests.
 
+The review ruleset SHOULD grant that bypass only to authorized maintainers and only for
+pull requests, so each exception is a decision about one merge. Disabling the ruleset or
+removing a repository from its target is not an exception mechanism, because it disables
+the gate for every other pull request at the same time.
+
 ## Adoption
 
 1. Create and validate the portable MiKode review skill.
-2. Implement the reusable review workflow in `Mikode13/.github` with fixtures for clean,
-   blocked, incomplete, obsolete, pre-existing, and adversarial results.
+2. Pilot the executable reviewer in one canary repository, as described below.
 3. Evaluate representative historical changes with known defects and known-good changes.
-4. Enable a blocking pilot in selected repositories. The first pilot is blocking; there is
-   no advisory-only rollout stage.
+4. Move the proven implementation to `Mikode13/.github` as the reusable review workflow,
+   with fixtures for clean, blocked, incomplete, obsolete, pre-existing, and adversarial
+   results, and replace the canary's local implementation with a pinned caller.
 5. Measure useful findings, false positives, omissions, duration, token use, and quota
    consumption before broader adoption.
-6. Adopt the reviewed workflow through immutable caller revisions and enable the required
-   check and conversation-resolution rules in each repository.
+6. Adopt the reviewed workflow through immutable caller revisions, add each repository to
+   the review ruleset target once its check has reported successfully, and require
+   conversation resolution there.
+
+`slop-lab` is the canary. It MAY run a local, temporary implementation before the reusable
+workflow exists, so the central workflow is built from exercised provider execution,
+structured output, and publication rather than from assumptions. The local implementation
+MUST follow every other rule in this standard. The pilot is blocking; there is no
+advisory-only stage.
+
+The pull request that introduces a local implementation cannot be reviewed by it, because
+its base revision does not carry the reviewer yet. That pull request merges on
+`CI / required` and human review, and its failing `AI Review / required` is expected. The
+canary's review ruleset is enabled only after a later pull request produces a successful
+result.
+
+Promotion replaces the local implementation with a caller pinned to the reusable workflow's
+full commit SHA and repeats the canary's cases to confirm that the results do not change.
+The check name, and therefore the ruleset, stays the same. The pinned SHA is the rollback
+target from then on, and later reviewer changes reach each repository through a reviewed
+pull request that updates it.
 
 If the pilot is not reliable enough, pause further adoption while retaining the decision
 and improve or replace the implementation through this standard. Removing the required AI
@@ -169,6 +226,12 @@ review requires a new ADR.
 - [ADR 0013: Keep external validations manual by default](../adr/0013-keep-external-validations-manual-by-default.md)
 - [Continuous integration standard](continuous-integration.md)
 - [Git workflow standard](git-workflow.md)
-- [Anthropic: Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions)
+- [`Mikode13/harness-cli`](https://github.com/Mikode13/harness-cli)
+- [GitHub: Using conditions to control job execution](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/using-conditions-to-control-job-execution)
+- [GitHub: Creating rulesets for a repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)
 - [GitHub: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 - [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+
+Version-sensitive research performed on 2026-09-15: GitHub documents that a job skipped by
+its condition reports success and does not block a required check, and that a ruleset
+bypass can be limited to pull requests.
