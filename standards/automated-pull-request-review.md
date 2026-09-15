@@ -115,15 +115,20 @@ for every non-draft pull request targeting the default branch, and MUST fail whe
 cannot publish a completed review for the current head commit: when analysis failed, was
 cancelled, or was skipped, when the trusted reviewer implementation is unavailable, and
 when the pull request comes from a fork that cannot receive the provider credential. Only a
-draft pull request MAY skip it.
+draft pull request MAY skip it. A workflow that a ruleset requires runs only for the default
+activity types, so marking a draft ready does not start it again; such a workflow MUST fail
+for a draft instead of skipping it, and it MUST NOT use `cancel-in-progress`, which GitHub
+advises against for required workflows, so a superseded run has to stop itself.
 
 The check MUST be required through an organization ruleset dedicated to the review, whose
 target lists only repositories that run the reviewer. It MUST NOT be added to a ruleset
 that also targets repositories without the reviewer, such as the one that requires
 `CI / required`, because a check that nothing reports blocks every pull request there. The
 ruleset MUST NOT require the check for a repository until that repository has produced a
-successful `AI Review / required` result under that exact name, and until its workflow
-satisfies the trusted-revision rule in [Security boundary](#security-boundary).
+successful `AI Review / required` result under that exact name, and until its source
+satisfies [Security boundary](#security-boundary). When the rule itself is what runs a required
+workflow, the first adopting pull request is that result, and the pull-request-only bypass
+covers a failure of the run's own plumbing.
 
 ## Provider, account, and budget
 
@@ -215,22 +220,22 @@ the gate for every other pull request at the same time.
 `slop-lab` is the canary. It MAY run a local, temporary implementation before the reusable
 workflow exists, so the central workflow is built from exercised provider execution,
 structured output, and publication rather than from assumptions. The local implementation
-MUST follow every other rule in this standard, except that its workflow MAY be read from the
-pull request head while its check is not required and only trusted maintainers and their
-agents push branches to the canary. The pilot becomes blocking as soon as its check can be
-required; there is no advisory-only stage beyond that point.
+MUST follow every other rule in this standard, except that, while its check is not required
+and only trusted maintainers and their agents push branches to the canary, `AI Review /
+required` MAY come from a source that a branch could imitate. The pilot becomes blocking as
+soon as its check can be required; there is no advisory-only stage beyond that point.
 
 The pull request that introduces a local implementation cannot be reviewed by it, because
 its base revision does not carry the reviewer yet. That pull request merges on
-`CI / required` and human review, and its failing `AI Review / required` is expected. The
-canary's review ruleset is enabled only after a later pull request produces a successful
-result and the workflow is loaded from a trusted revision.
+`CI / required` and human review, without a review of its own. The canary's review ruleset
+is enabled only once its check comes from a source that a branch cannot act as.
 
-Promotion replaces the local implementation with a caller pinned to the reusable workflow's
-full commit SHA and repeats the canary's cases to confirm that the results do not change.
-The check name, and therefore the ruleset, stays the same. The pinned SHA is the rollback
-target from then on, and later reviewer changes reach each repository through a reviewed
-pull request that updates it.
+Promotion replaces the local implementation with the central workflow, pinned to a full
+commit SHA either by a caller in each repository or by a ruleset rule that requires it, and
+repeats the canary's cases to confirm that the results do not change. The pinned SHA is the
+rollback target from then on. With a caller, later reviewer changes reach each repository
+through a reviewed pull request that updates it; with a required workflow, they follow a
+reviewed pull request in `Mikode13/.github` with a change to the SHA that the ruleset pins.
 
 If the pilot is not reliable enough, pause further adoption while retaining the decision
 and improve or replace the implementation through this standard. Removing the required AI
@@ -254,5 +259,7 @@ Version-sensitive research performed on 2026-09-15: GitHub documents that a job 
 its condition reports success and does not block a required check, that a ruleset bypass can
 be limited to pull requests, that a job triggered by `pull_request` cannot use an environment
 whose deployment branches exclude `refs/pull/*/merge`, that a required status check can name
-an app as its expected source, and that push rulesets are available only to private and
-internal repositories.
+an app as its expected source, that push rulesets are available only to private and
+internal repositories, and that a ruleset runs a required workflow only for the default
+activity types of its events. Since December 2025, `pull_request_target` runs from the
+default branch, and environment rules for it are evaluated against the default branch.
