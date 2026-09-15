@@ -221,9 +221,10 @@ the gate for every other pull request at the same time.
 workflow exists, so the central workflow is built from exercised provider execution,
 structured output, and publication rather than from assumptions. The local implementation
 MUST follow every other rule in this standard, except that, while its check is not required
-and only trusted maintainers and their agents push branches to the canary, `AI Review /
-required` MAY come from a source that a branch could imitate. The pilot becomes blocking as
-soon as its check can be required; there is no advisory-only stage beyond that point.
+and only trusted maintainers and their agents push branches to the canary,
+`AI Review / required` MAY come from a source that a branch could imitate. The pilot becomes
+blocking as soon as its check can be required; there is no advisory-only stage beyond that
+point.
 
 The pull request that introduces a local implementation cannot be reviewed by it, because
 its base revision does not carry the reviewer yet. That pull request merges on
