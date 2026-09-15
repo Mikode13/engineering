@@ -70,7 +70,9 @@ The execution reports exactly one outcome:
 `SUGGESTION` and pre-existing findings MUST appear only in the review summary, with
 pre-existing `SHOULD FIX` and `BLOCKER` findings listed as follow-up work. Introduced
 `SHOULD FIX` and `BLOCKER` findings MUST create review conversations that remain unresolved
-until a maintainer accepts a correction or records why the finding is not applicable.
+until a maintainer accepts a correction or records why the finding is not applicable. A
+blocking finding that cannot be published as a review conversation MUST fail
+`AI Review / required`, even when other blocking findings were published.
 
 The stable check `AI Review / required` MUST succeed only when the review completed for
 the current head commit. It MUST fail for `incomplete`. The repository ruleset MUST require
@@ -119,7 +121,8 @@ target lists only repositories that run the reviewer. It MUST NOT be added to a 
 that also targets repositories without the reviewer, such as the one that requires
 `CI / required`, because a check that nothing reports blocks every pull request there. The
 ruleset MUST NOT require the check for a repository until that repository has produced a
-successful `AI Review / required` result under that exact name.
+successful `AI Review / required` result under that exact name, and until its workflow
+satisfies the trusted-revision rule in [Security boundary](#security-boundary).
 
 ## Provider, account, and budget
 
@@ -153,10 +156,13 @@ or grant an exemption.
 The reviewer implementation, its instructions, and the repository context it treats as
 trusted MUST come from a trusted revision: the pinned reusable workflow, or the base
 revision for a local implementation. They MUST NOT be read from the pull request head.
-GitHub reads a `pull_request` workflow from the head, so a pull request that changes the
-review caller or a local implementation changes the gate that judges it. Maintainers MUST
-review such a change as a change to the gate rather than rely on its own
-`AI Review / required` result.
+The workflow that receives the provider credential or reports `AI Review / required` MUST
+also be loaded from a trusted revision before the check is required. GitHub reads a
+`pull_request` workflow from the pull request head, so the change under review could edit
+such a workflow to expose the credential or to report a passing check without a review. A
+pinned caller does not prevent that on its own, because it is read from the head too. A
+ruleset rule that requires a pinned workflow, or a workflow that GitHub loads from the base
+revision without running code or configuration from the head, satisfies this rule.
 
 Analysis MUST use read-only repository access and MUST NOT execute pull request code with
 provider credentials or a privileged GitHub token. Publication MUST use the minimum
@@ -201,14 +207,16 @@ the gate for every other pull request at the same time.
 `slop-lab` is the canary. It MAY run a local, temporary implementation before the reusable
 workflow exists, so the central workflow is built from exercised provider execution,
 structured output, and publication rather than from assumptions. The local implementation
-MUST follow every other rule in this standard. The pilot is blocking; there is no
-advisory-only stage.
+MUST follow every other rule in this standard, except that its workflow MAY be read from the
+pull request head while its check is not required and only trusted maintainers and their
+agents push branches to the canary. The pilot becomes blocking as soon as its check can be
+required; there is no advisory-only stage beyond that point.
 
 The pull request that introduces a local implementation cannot be reviewed by it, because
 its base revision does not carry the reviewer yet. That pull request merges on
 `CI / required` and human review, and its failing `AI Review / required` is expected. The
 canary's review ruleset is enabled only after a later pull request produces a successful
-result.
+result and the workflow is loaded from a trusted revision.
 
 Promotion replaces the local implementation with a caller pinned to the reusable workflow's
 full commit SHA and repeats the canary's cases to confirm that the results do not change.
