@@ -103,10 +103,11 @@ result.
 
 ## Required check and rulesets
 
-The caller job MUST be named `AI Review` and the called aggregate job MUST be named
-`required`, so GitHub reports the required status context as `AI Review / required`. A
-local implementation MUST report the same context, so that moving it to the reusable
-workflow changes no ruleset.
+The review MUST report one stable status context, `AI Review / required`, on the pull
+request head commit. A job-based implementation names its caller job `AI Review` and its
+aggregate job `required`; an implementation that publishes a check run through a GitHub App
+uses the same name. A local implementation MUST report the same context, so that moving it
+to the reusable workflow changes no ruleset.
 
 GitHub reports a job skipped by its condition as successful, and a skipped required check
 does not prevent a merge. The job that reports `AI Review / required` MUST therefore run
@@ -156,13 +157,20 @@ or grant an exemption.
 The reviewer implementation, its instructions, and the repository context it treats as
 trusted MUST come from a trusted revision: the pinned reusable workflow, or the base
 revision for a local implementation. They MUST NOT be read from the pull request head.
-The workflow that receives the provider credential or reports `AI Review / required` MUST
-also be loaded from a trusted revision before the check is required. GitHub reads a
-`pull_request` workflow from the pull request head, so the change under review could edit
-such a workflow to expose the credential or to report a passing check without a review. A
-pinned caller does not prevent that on its own, because it is read from the head too. A
-ruleset rule that requires a pinned workflow, or a workflow that GitHub loads from the base
-revision without running code or configuration from the head, satisfies this rule.
+Before the check is required, neither the provider credential nor the check may be within
+reach of the change under review. Under `pull_request`, GitHub runs every workflow as the
+pull request branch defines it, including workflows the branch adds, and gives a branch of
+the same repository the repository's secrets. Therefore:
+
+- the provider credential MUST live in an environment whose deployment branches are limited
+  to the default branch, and the job that uses it MUST run in the default branch's context,
+  for example through `pull_request_target` or `workflow_run`, refuse forks before it reads
+  the credential, and never execute code or configuration from the head; and
+- `AI Review / required` MUST come from a source that a branch cannot act as: a ruleset rule
+  that requires a pinned workflow, or a check run published by a dedicated GitHub App that
+  the review ruleset names as the check's source.
+
+A pinned caller alone satisfies neither, because it is read from the head too.
 
 Analysis MUST use read-only repository access and MUST NOT execute pull request code with
 provider credentials or a privileged GitHub token. Publication MUST use the minimum
@@ -237,9 +245,14 @@ review requires a new ADR.
 - [`Mikode13/harness-cli`](https://github.com/Mikode13/harness-cli)
 - [GitHub: Using conditions to control job execution](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/using-conditions-to-control-job-execution)
 - [GitHub: Creating rulesets for a repository](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)
+- [GitHub: Deployments and environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments)
+- [GitHub: Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)
 - [GitHub: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 - [GitHub: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
 
 Version-sensitive research performed on 2026-09-15: GitHub documents that a job skipped by
-its condition reports success and does not block a required check, and that a ruleset
-bypass can be limited to pull requests.
+its condition reports success and does not block a required check, that a ruleset bypass can
+be limited to pull requests, that a job triggered by `pull_request` cannot use an environment
+whose deployment branches exclude `refs/pull/*/merge`, that a required status check can name
+an app as its expected source, and that push rulesets are available only to private and
+internal repositories.
