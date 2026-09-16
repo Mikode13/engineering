@@ -72,11 +72,12 @@ The execution reports exactly one outcome:
 | `clean`       | Review completed with no `BLOCKER` and no finding of the change.     |
 | `incomplete`  | Review could not reach a trustworthy result.                         |
 
-Only a `BLOCKER` holds the merge back, whatever its origin. `AI Review / required` MUST
-fail for `blocked` and `incomplete`, and MUST succeed for the other outcomes of a review
-completed for the current head commit. Provider errors, exhausted quota, timeouts, invalid
-structured output, missing required context, and budget enforcement MUST produce
-`incomplete`, never `clean`.
+Only a `BLOCKER` fails `AI Review / required`, whatever its origin. The check MUST fail for
+`blocked` and `incomplete`, and MUST succeed for the other outcomes of a review completed for
+the current head commit. Other findings of the change still wait for a person to resolve their
+conversations, as [Publication](#publication) requires, but never fail the check. Provider
+errors, exhausted quota, timeouts, invalid structured output, missing required context, and
+budget enforcement MUST produce `incomplete`, never `clean`.
 
 ### Publication
 
@@ -143,10 +144,18 @@ for every non-draft pull request targeting the default branch, and MUST fail whe
 cannot publish a completed review for the current head commit: when analysis failed, was
 cancelled, or was skipped, when the trusted reviewer implementation is unavailable, and
 when the pull request comes from a fork that cannot receive the provider credential. Only a
-draft pull request MAY skip it. A workflow that a ruleset requires runs only for the default
-activity types, so marking a draft ready does not start it again; such a workflow MUST fail
-for a draft instead of skipping it, and it MUST NOT use `cancel-in-progress`, which GitHub
-advises against for required workflows, so a superseded run has to stop itself.
+draft pull request MAY skip it.
+
+A workflow that a ruleset requires runs only for the default activity types, so marking a
+draft ready does not start it again, and re-running a run repeats the event that started it.
+Such a workflow MUST fail for a draft instead of skipping it, because a skipped run would let
+the pull request merge unreviewed once it is ready. It MUST read the draft state from the API
+when it runs, not from its triggering event, so that re-running it after the pull request
+leaves draft reviews the current head without a new commit. The implementation SHOULD start
+that re-run itself when a pull request leaves draft, for example from a trusted default-branch
+workflow for `ready_for_review`; until it does, a maintainer re-runs the failed check. Such a
+workflow MUST NOT use `cancel-in-progress`, which GitHub advises against for required
+workflows, so a superseded run has to stop itself.
 
 The check MUST be required through an organization ruleset dedicated to the review, whose
 target lists only repositories that run the reviewer. It MUST NOT be added to a ruleset
@@ -221,15 +230,17 @@ solution is appropriate. Resolving an incorrect finding MUST include a short rea
 review conversation. A code correction SHOULD produce a new commit and therefore a fresh
 review.
 
-Only the repository owner MAY merge past a `blocked` review, and an authorized maintainer MAY
-bypass an `incomplete` one, in either case only for an exceptional need. The pull request
-MUST record the reason, the reviewed head commit, and the person accepting the risk. A
-provider failure or quota incident MUST NOT silently disable the gate for later pull requests.
+Only an organization owner MAY merge past a `blocked` or `incomplete` review, and only for
+an exceptional need. The pull request MUST record the reason, the reviewed head commit, and the
+person accepting the risk. A provider failure or quota incident MUST NOT silently disable the
+gate for later pull requests.
 
-The review ruleset SHOULD grant that bypass only to authorized maintainers and only for
-pull requests, so each exception is a decision about one merge. Disabling the ruleset or
-removing a repository from its target is not an exception mechanism, because it disables
-the gate for every other pull request at the same time.
+The review ruleset MUST grant its bypass only to organization owners and only for pull
+requests, so each exception is a decision about one merge. A ruleset bypass applies whatever
+made the check fail, so it cannot allow a merge past `incomplete` while refusing one past
+`blocked`; delegating either to other maintainers would need a separate check. Disabling the
+ruleset or removing a repository from its target is not an exception mechanism, because it
+disables the gate for every other pull request at the same time.
 
 ## Adoption
 
