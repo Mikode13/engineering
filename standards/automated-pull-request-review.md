@@ -1,7 +1,7 @@
 # Automated pull request review standard
 
 - Status: Active
-- Last reviewed: 2026-09-15
+- Last reviewed: 2026-09-16
 - Related ADRs:
   [ADR 0017: Use AI as a required pull request reviewer](../adr/0017-use-ai-as-a-required-pull-request-reviewer.md)
 
@@ -67,12 +67,20 @@ The execution reports exactly one outcome:
 | `blocked`    | Review completed with at least one supported blocking finding. |
 | `incomplete` | Review could not reach a trustworthy result.                   |
 
-`SUGGESTION` and pre-existing findings MUST appear only in the review summary, with
-pre-existing `SHOULD FIX` and `BLOCKER` findings listed as follow-up work. Introduced
-`SHOULD FIX` and `BLOCKER` findings MUST create review conversations that remain unresolved
-until a maintainer accepts a correction or records why the finding is not applicable. A
-blocking finding that cannot be published as a review conversation MUST fail
+Introduced `SHOULD FIX` and `BLOCKER` findings MUST create review conversations that remain
+unresolved until a maintainer accepts a correction or records why the finding is not
+applicable. A blocking finding that cannot be published as a review conversation MUST fail
 `AI Review / required`, even when other blocking findings were published.
+
+`SUGGESTION` and pre-existing findings MUST NOT leave an unresolved review conversation. One
+located on a line of the diff SHOULD be published as a review comment on that line and
+resolved when it is published, so it stays visible where it applies without holding back the
+merge; if it cannot be resolved, `AI Review / required` MUST fail. Any other non-blocking
+finding MUST appear in the review summary. Pre-existing `SHOULD FIX` and `BLOCKER` findings
+MUST be identified as follow-up work.
+
+The review summary MUST state the outcome and name each blocking finding with its location. It
+SHOULD NOT repeat reasoning already published in a comment.
 
 The stable check `AI Review / required` MUST succeed only when the review completed for
 the current head commit. It MUST fail for `incomplete`. The repository ruleset MUST require
