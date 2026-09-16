@@ -74,8 +74,9 @@ The execution reports exactly one outcome:
 
 Only a `BLOCKER` fails `AI Review / required`, whatever its origin. The check MUST fail for
 `blocked` and `incomplete`, and MUST succeed for the other outcomes of a review completed for
-the current head commit. Other findings of the change still wait for a person to resolve their
-conversations, as [Publication](#publication) requires, but never fail the check. Provider
+the current head commit. A `SHOULD FIX` of the change holds the merge through its conversation
+until a person resolves it, as [Publication](#publication) requires, and a `SUGGESTION` never
+holds it. Provider
 errors, exhausted quota, timeouts, invalid structured output, missing required context, and
 budget enforcement MUST produce `incomplete`, never `clean`.
 
@@ -90,11 +91,13 @@ An incidental `SHOULD FIX` or `SUGGESTION` MUST NOT open a review conversation, 
 appear in the review summary with its severity, title, and location, so that a maintainer can
 triage it.
 
-The repository ruleset MUST require that review conversations are resolved, so every comment is
-read before a merge without failing the check. A `SHOULD FIX` conversation is resolved after
-a correction, or with a link to follow-up work or the reason it can wait. A `SUGGESTION`
-conversation MAY be resolved once read. The implementation MUST NOT resolve, reopen, or delete
-a conversation: resolving one is a person's decision.
+The repository ruleset MUST require that review conversations are resolved. A `SHOULD FIX`
+conversation stays open, so it holds the merge until a person resolves it after a correction,
+or with a link to follow-up work or the reason it can wait. A `SUGGESTION` MUST NOT hold the
+merge: the implementation MUST resolve its conversation as soon as it publishes it, so it stays
+visible on its line and anyone can reopen it to discuss it. Otherwise the implementation MUST
+NOT resolve, reopen, or delete a conversation, except to reopen a suggestion's conversation once
+when a later review finds the same defect at a higher severity.
 
 Each pull request has one review summary, which every later review MUST update in place rather
 than add another. It MUST state the outcome and name each `BLOCKER` with its location, and it
