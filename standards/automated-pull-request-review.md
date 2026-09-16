@@ -37,8 +37,8 @@ diff itself, not from the pull request title or description. A non-exempt change
 intent source lacks required context.
 
 The reviewer MUST load only relevant context, distinguish introduced problems from
-pre-existing ones, and avoid repeating deterministic formatter, linter, compiler, or test
-output without additional reasoning.
+pre-existing ones and findings of the change from incidental ones, and avoid repeating
+deterministic formatter, linter, compiler, or test output without additional reasoning.
 
 Each finding MUST identify its location, evidence, likely consequence, and a direction for
 resolution. The reviewer MUST NOT modify code, approve the pull request, merge it, or claim
@@ -46,49 +46,68 @@ that a completed review proves correctness.
 
 ## Severity and outcomes
 
-Findings use these severities:
+A finding's severity measures the harm it does once merged, not where it was found or who
+introduced it:
 
-| Severity     | Meaning                                                                | Merge effect             |
-| ------------ | ---------------------------------------------------------------------- | ------------------------ |
-| `SUGGESTION` | Optional improvement or nice-to-have that does not affect correctness. | Informative              |
-| `SHOULD FIX` | Supported defect or material weakness that should be resolved.         | Blocking when introduced |
-| `BLOCKER`    | Supported severe defect, security risk, or unsafe merge consequence.   | Blocking when introduced |
+- `BLOCKER`: serious harm, such as an exploitable security weakness, a compromised dependency
+  or build, lost or corrupted data, financial loss, a severe architecture failure, or core
+  logic that does not work in normal use.
+- `SHOULD FIX`: something broken with bounded harm, such as a failure under particular
+  conditions or a wrong result of limited consequence.
+- `SUGGESTION`: nothing broken; an improvement worth reading.
 
 A finding is introduced when the pull request creates or widens it. A problem the change
-leaves unchanged is pre-existing, even when its lines appear in the diff. Pre-existing
-findings keep their verified severity but never block. A potentially blocking finding whose
-origin cannot be established produces `incomplete`.
+leaves unchanged is pre-existing, even when its lines appear in the diff. A finding belongs
+to the change when it is introduced, when its origin cannot be established, or when a
+pre-existing problem keeps the change from achieving its goal or an acceptance criterion.
+Any other finding is incidental.
 
 The execution reports exactly one outcome:
 
-| Outcome      | Condition                                                      |
-| ------------ | -------------------------------------------------------------- |
-| `clean`      | Review completed with no blocking findings.                    |
-| `blocked`    | Review completed with at least one supported blocking finding. |
-| `incomplete` | Review could not reach a trustworthy result.                   |
+| Outcome       | Condition                                                            |
+| ------------- | -------------------------------------------------------------------- |
+| `blocked`     | Review completed with at least one `BLOCKER`.                        |
+| `concerns`    | Review completed with a `SHOULD FIX` of the change and no `BLOCKER`. |
+| `suggestions` | Review completed with only `SUGGESTION` findings of the change.      |
+| `clean`       | Review completed with no `BLOCKER` and no finding of the change.     |
+| `incomplete`  | Review could not reach a trustworthy result.                         |
 
-Introduced `SHOULD FIX` and `BLOCKER` findings MUST create review conversations that remain
-unresolved until a maintainer accepts a correction or records why the finding is not
-applicable. A blocking finding that cannot be published as a review conversation MUST fail
-`AI Review / required`, even when other blocking findings were published.
+Only a `BLOCKER` holds the merge back, whatever its origin. `AI Review / required` MUST
+fail for `blocked` and `incomplete`, and MUST succeed for the other outcomes of a review
+completed for the current head commit. Provider errors, exhausted quota, timeouts, invalid
+structured output, missing required context, and budget enforcement MUST produce
+`incomplete`, never `clean`.
 
-`SUGGESTION` and pre-existing findings MUST NOT leave an unresolved review conversation. One
-located on a line of the diff SHOULD be published as a review comment on that line and
-resolved when it is published, so it stays visible where it applies without holding back the
-merge; if it cannot be resolved, `AI Review / required` MUST fail. Any other non-blocking
-finding MUST appear in the review summary. Pre-existing `SHOULD FIX` and `BLOCKER` findings
-MUST be identified as follow-up work.
+### Publication
 
-The review summary MUST state the outcome and name each blocking finding with its location. It
+A finding is published where a person reviewing by hand would put it. Each `BLOCKER` and each
+finding of the change located on a line of the diff MUST be published as a review comment on
+that line. A finding about a whole file MAY be commented on the file's first changed line if
+the comment says so; no finding may be attributed to a line the reviewer did not name. Any
+other `BLOCKER` or finding of the change MUST appear in the review summary with its reasoning.
+An incidental `SHOULD FIX` or `SUGGESTION` MUST NOT open a review conversation, and MUST
+appear in the review summary with its severity, title, and location, so that a maintainer can
+triage it.
+
+The repository ruleset MUST require that review conversations are resolved, so every comment is
+read before a merge without failing the check. A `SHOULD FIX` conversation is resolved after
+a correction, or with a link to follow-up work or the reason it can wait. A `SUGGESTION`
+conversation MAY be resolved once read. The implementation MUST NOT resolve, reopen, or delete
+a conversation: resolving one is a person's decision.
+
+Each pull request has one review summary, which every later review MUST update in place rather
+than add another. It MUST state the outcome and name each `BLOCKER` with its location, and it
 SHOULD NOT repeat reasoning already published in a comment.
 
-The stable check `AI Review / required` MUST succeed only when the review completed for
-the current head commit. It MUST fail for `incomplete`. The repository ruleset MUST require
-that review conversations are resolved, so a `blocked` outcome prevents merge even though
-the execution itself completed successfully.
+### Later reviews
 
-Provider errors, exhausted quota, timeouts, invalid structured output, missing required
-context, and budget enforcement MUST produce `incomplete`, never `clean`.
+Every review covers the whole pull request, from its base to the current head commit. A later
+review MUST recheck every finding that earlier reviews of the same pull request published, open
+or resolved, and report each one as present, fixed, or undetermined. A finding the reviewer does
+not discover again MUST NOT be treated as fixed. A present finding MUST NOT be published a second
+time, and a fixed one MAY be answered in its conversation for a person to resolve. An earlier
+`BLOCKER` that cannot be decided produces `incomplete`. Whether a person resolved a
+conversation is not evidence about the code and MUST NOT be given to the reviewer as such.
 
 ## Execution order and efficiency
 
@@ -201,10 +220,10 @@ solution is appropriate. Resolving an incorrect finding MUST include a short rea
 review conversation. A code correction SHOULD produce a new commit and therefore a fresh
 review.
 
-An authorized maintainer MAY bypass an `incomplete` review only for an exceptional need.
-The pull request MUST record the reason, the reviewed head commit, and the person accepting
-the risk. A provider failure or quota incident MUST NOT silently disable the gate for later
-pull requests.
+Only the repository owner MAY merge past a `blocked` review, and an authorized maintainer MAY
+bypass an `incomplete` one, in either case only for an exceptional need. The pull request
+MUST record the reason, the reviewed head commit, and the person accepting the risk. A
+provider failure or quota incident MUST NOT silently disable the gate for later pull requests.
 
 The review ruleset SHOULD grant that bypass only to authorized maintainers and only for
 pull requests, so each exception is a decision about one merge. Disabling the ruleset or
@@ -217,9 +236,9 @@ the gate for every other pull request at the same time.
 2. Pilot the executable reviewer in one canary repository, as described below.
 3. Evaluate representative historical changes with known defects and known-good changes.
 4. Move the proven implementation to `Mikode13/.github` as the reusable review workflow,
-   with fixtures for clean, blocked, incomplete, obsolete, pre-existing, and adversarial
+   with fixtures for every outcome and for obsolete, pre-existing, rechecked, and adversarial
    results, and replace the canary's local implementation with a pinned caller.
-5. Measure useful findings, false positives, omissions, duration, token use, and quota
+5. Measure useful findings, false positives, omissions, duration, estimated cost, and quota
    consumption before broader adoption.
 6. Adopt the reviewed workflow through immutable caller revisions, add each repository to
    the review ruleset target once its check has reported successfully, and require
