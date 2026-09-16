@@ -106,7 +106,8 @@ review MUST recheck every finding that earlier reviews of the same pull request 
 or resolved, and report each one as present, fixed, or undetermined. A finding the reviewer does
 not discover again MUST NOT be treated as fixed. A present finding MUST NOT be published a second
 time, and a fixed one MAY be answered in its conversation for a person to resolve. An earlier
-`BLOCKER` that cannot be decided produces `incomplete`. Whether a person resolved a
+finding that cannot be decided produces `incomplete` when its severity is `BLOCKER` or was never
+classified, because it may still describe blocking harm. Whether a person resolved a
 conversation is not evidence about the code and MUST NOT be given to the reviewer as such.
 
 ## Execution order and efficiency
