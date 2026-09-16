@@ -74,9 +74,8 @@ The execution reports exactly one outcome:
 
 Only a `BLOCKER` fails `AI Review / required`, whatever its origin. The check MUST fail for
 `blocked` and `incomplete`, and MUST succeed for the other outcomes of a review completed for
-the current head commit. A `SHOULD FIX` of the change holds the merge through its conversation
-until a person resolves it, as [Publication](#publication) requires, and a `SUGGESTION` never
-holds it. Provider
+the current head commit. Findings of the change below `BLOCKER` hold the merge only through
+their conversations, which a person resolves as [Publication](#publication) requires. Provider
 errors, exhausted quota, timeouts, invalid structured output, missing required context, and
 budget enforcement MUST produce `incomplete`, never `clean`.
 
@@ -91,13 +90,13 @@ An incidental `SHOULD FIX` or `SUGGESTION` MUST NOT open a review conversation, 
 appear in the review summary with its severity, title, and location, so that a maintainer can
 triage it.
 
-The repository ruleset MUST require that review conversations are resolved. A `SHOULD FIX`
-conversation stays open, so it holds the merge until a person resolves it after a correction,
-or with a link to follow-up work or the reason it can wait. A `SUGGESTION` MUST NOT hold the
-merge: the implementation MUST resolve its conversation as soon as it publishes it, so it stays
-visible on its line and anyone can reopen it to discuss it. Otherwise the implementation MUST
-NOT resolve, reopen, or delete a conversation, except to reopen a suggestion's conversation once
-when a later review finds the same defect at a higher severity.
+The repository ruleset MUST require that review conversations are resolved, so every
+conversation holds the merge until a person reads and resolves it. Each comment MUST say what
+resolving it takes. A `SHOULD FIX` conversation MUST be resolved only after a correction in the
+code or with a link to an issue that tracks it. A `SUGGESTION` conversation MAY be resolved once
+read, with or without a change. The implementation MUST NOT resolve or delete a conversation,
+and MUST NOT reopen one except once, when a later review finds a resolved suggestion's defect at
+a higher severity.
 
 Each pull request has one review summary, which every later review MUST update in place rather
 than add another. It MUST state the outcome and name each `BLOCKER` with its location, and it
