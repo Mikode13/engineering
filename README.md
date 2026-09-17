@@ -14,9 +14,10 @@ belong in their owning repositories.
 - [Templates](templates/README.md) provide reusable starting files with explicit
   placeholders.
 
-The [documentation standard](standards/documentation.md) defines ownership and required
-project artifacts. The [documentation writing standard](standards/documentation-writing.md)
-defines the expected technical writing style.
+The [documentation standard](standards/documentation.md) defines ownership, required
+project artifacts, and current architecture documentation. The
+[documentation writing standard](standards/documentation-writing.md) defines the expected
+technical writing style.
 
 ## Documenting a decision
 
