@@ -12,6 +12,8 @@ consumable packages belong in their owning repositories.
   authoring rules.
 - Use [the standards index](standards/README.md) for current requirements and standard
   authoring rules.
+- Use [the learnings index](learnings/README.md) for what earlier work taught, and add new
+  learnings there instead of restating a lesson elsewhere.
 - Use [the templates index](templates/README.md) when creating or updating reusable files.
 - Follow the [documentation standard](standards/documentation.md) for ownership and
   artifact placement.
