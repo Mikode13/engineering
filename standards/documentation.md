@@ -1,7 +1,7 @@
 # Documentation standard
 
 - Status: Active
-- Last reviewed: 2026-08-30
+- Last reviewed: 2026-09-20
 - Related ADRs: [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md)
 
 ## Scope
@@ -24,6 +24,7 @@ Documentation MUST have one authoritative owner:
 | Effective licensing terms                                                     | The owning project's root `LICENSE`          |
 | Significant project-specific decisions                                        | The owning project's `docs/decisions.md`     |
 | Cross-project decisions, standards, handbook guidance, and reusable templates | `Mikode13/engineering`                       |
+| What MiKode work taught us, with its evidence                                 | `Mikode13/engineering` `learnings/`          |
 | Supported organization profile and community health defaults                  | `Mikode13/.github`                           |
 
 Other documents SHOULD link to the authoritative source instead of copying its complete
