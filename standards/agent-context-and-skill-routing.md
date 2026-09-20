@@ -52,7 +52,7 @@ repository knowledge.
 
 ## Canonical entry instruction
 
-The proposed router is `mikode-router`. After acceptance, adopting hosts and repositories
+The router is `mikode-router`. After acceptance, adopting hosts and repositories
 use this minimal instruction in a location their host actually loads:
 
 ```text
@@ -95,4 +95,5 @@ remains owned by the review workflow.
 ## References
 
 - [Documentation ownership](documentation.md)
-- [Router implementation proposal](https://github.com/Mikode13/skills/pull/15)
+- [`mikode-router` skill](https://github.com/Mikode13/skills/blob/main/skills/mikode-router/SKILL.md)
+- [Skill routing guide](https://github.com/Mikode13/skills/blob/main/docs/skill-routing.md)
