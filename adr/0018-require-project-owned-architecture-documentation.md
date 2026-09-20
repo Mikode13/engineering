@@ -1,6 +1,6 @@
 # ADR 0018: Require project-owned architecture documentation
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-09-10
 - Domains: Shared
 - Applies to: All active MiKode project repositories
