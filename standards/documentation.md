@@ -1,7 +1,7 @@
 # Documentation standard
 
-- Status: Draft
-- Last reviewed: 2026-09-10
+- Status: Active
+- Last reviewed: 2026-09-20
 - Related ADRs:
   [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md),
   [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md)
