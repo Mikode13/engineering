@@ -1,7 +1,7 @@
 # Documentation writing standard
 
 - Status: Active
-- Last reviewed: 2026-08-31
+- Last reviewed: 2026-09-20
 - Related ADRs: [ADR 0014: Use concise explanatory writing for technical documentation](../adr/0014-use-concise-explanatory-technical-documentation.md)
 
 ## Scope
@@ -119,9 +119,11 @@ A project README MUST provide or clearly link to the information required to:
 - install or prepare it;
 - run or use it successfully for the first time.
 
-A README SHOULD also expose the project's architecture and major components when they are
-important to understanding the project. Detailed architecture or component documentation
-MAY live under `docs/` when that keeps the README easier to navigate.
+A README SHOULD summarize the project's architecture and major components when they are
+important to understanding the project. When applicable policy defines a project-owned
+architecture document, the README MUST link to that authoritative document instead of
+duplicating its detail. Other detailed component documentation MAY live under `docs/` when
+that keeps the README easier to navigate.
 
 The README is an entry point and navigation document, not a requirement to place all
 project documentation in one file.

@@ -1,6 +1,6 @@
 # ADR 0018: Require project-owned architecture documentation
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-09-10
 - Domains: Shared
 - Applies to: All active MiKode project repositories
@@ -25,12 +25,18 @@ still have architecture. They own responsibilities, expose contracts to consumer
 depend on other components even when their implementation is small. Their architectural
 documentation should therefore be concise, not absent or padded with generic sections.
 
+For this decision, an active repository is a MiKode repository that is not archived. This
+includes application, package, documentation, skill, and workflow repositories such as
+`Mikode13/engineering` and `Mikode13/.github`.
+
 [ADR 0012](0012-use-repository-owned-documentation-with-central-governance.md) established
 that project documentation stays with the repository that owns it and that
 `docs/decisions.md` preserves significant project-specific reasoning. It permits focused
 architecture documents but does not provide one predictable current-state source. The
-automated architecture reviewer now makes that missing source a concrete cross-project
-need: every review should start from project-owned context instead of inventing it.
+automated pull request reviewer required by
+[ADR 0017](0017-use-ai-as-a-required-pull-request-reviewer.md) can apply the architecture
+review skill, which makes that missing source a concrete cross-project need: every review
+should start from project-owned context instead of inventing it.
 
 ## Decision
 
@@ -74,9 +80,10 @@ an architectural change without evidence. A deliberate and supported evolution m
 both code and documentation without being treated as a violation of the previous design.
 
 All existing active repositories will add an accurate architecture document before the
-automated architecture gate is enabled for them. After adoption, a missing document or a
-material contradiction between the document and the project blocks the normal merge flow.
-The related standard defines document contents, maintenance, validation, and migration.
+automated pull request review required by ADR 0017 begins enforcing this requirement for
+them. After adoption, that review reports a missing document or a material contradiction
+between the document and the project as a blocking finding. The related standard defines
+document contents, maintenance, validation, and migration.
 
 ## Alternatives considered
 
@@ -137,6 +144,7 @@ event-driven systems. Shared review principles are useful; one mandatory structu
 ## Related standards
 
 - [Documentation standard](../standards/documentation.md)
+- [Automated pull request review standard](../standards/automated-pull-request-review.md)
 
 ## References
 

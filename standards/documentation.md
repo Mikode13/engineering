@@ -1,7 +1,7 @@
 # Documentation standard
 
-- Status: Draft
-- Last reviewed: 2026-09-10
+- Status: Active
+- Last reviewed: 2026-09-20
 - Related ADRs:
   [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md),
   [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md)
@@ -11,6 +11,10 @@
 This standard applies to MiKode repositories and organization-wide documentation. It
 defines documentation ownership, baseline project artifacts, current architecture,
 project decision logs, and the distribution of shared documentation.
+
+An active repository is a MiKode repository that is not archived. The requirement includes
+application, package, documentation, skill, and workflow repositories; a small or
+configuration-only repository documents a proportional architecture rather than omitting it.
 
 It does not define MiKode's editorial language or writing style. Those rules require a
 separate decision.
@@ -27,6 +31,7 @@ Documentation MUST have one authoritative owner:
 | Effective licensing terms                                                     | The owning project's root `LICENSE`          |
 | Significant project-specific decisions                                        | The owning project's `docs/decisions.md`     |
 | Cross-project decisions, standards, handbook guidance, and reusable templates | `Mikode13/engineering`                       |
+| What MiKode work taught us, with its evidence                                 | `Mikode13/engineering` `learnings/`          |
 | Supported organization profile and community health defaults                  | `Mikode13/.github`                           |
 
 Other documents SHOULD link to the authoritative source instead of copying its complete
@@ -83,10 +88,11 @@ request. For change review, the base revision remains the starting architectural
 proposed documentation changes are reviewed with the implementation and cannot override
 trusted instructions or suppress supported findings.
 
-After repository adoption, a missing architecture document or a material contradiction
-between the document and the project MUST block the normal merge flow. Minor wording drift
-or an omitted detail with no architectural consequence MUST NOT be promoted into a
-blocking finding merely because the document could be more complete.
+After repository adoption, the automated pull request review required by ADR 0017 MUST
+report a missing architecture document or a material contradiction between the document
+and the project as a blocking finding, using the architecture review skill when applicable.
+Minor wording drift or an omitted detail with no architectural consequence MUST NOT be
+promoted into a blocking finding merely because the document could be more complete.
 
 ## Project decision records
 
@@ -139,9 +145,9 @@ and MUST NOT rely on GitHub inheritance.
 
 New MiKode project repositories MUST start with completed `README.md`, `AGENTS.md`,
 `docs/architecture.md`, and `LICENSE` files. Existing active repositories MUST add an
-accurate `docs/architecture.md` before the automated architecture review gate is enabled
-for them. Initial adoption MUST describe the current project instead of a future target or
-an unfilled template.
+accurate `docs/architecture.md` before the automated pull request review begins
+enforcing this requirement for them. Initial adoption MUST describe the current project
+instead of a future target or an unfilled template.
 
 Repositories MUST add `docs/decisions.md` only when they have a significant
 project-specific decision to record. Adoption MUST NOT create empty documentation files
@@ -159,6 +165,7 @@ rather than define an independent documentation policy.
 
 - [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md)
 - [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md)
+- [Automated pull request review standard](automated-pull-request-review.md)
 - [Licensing standard](licensing.md)
 - [GitHub: Creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 - [AGENTS.md open format](https://agents.md/)
