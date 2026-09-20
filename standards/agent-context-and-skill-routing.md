@@ -1,18 +1,18 @@
 # Agent context and skill routing standard
 
-- Status: Draft
-- Last reviewed: 2026-09-12
+- Status: Active
+- Last reviewed: 2026-09-20
 - Related ADRs:
   [ADR 0019: Use progressive context and shared skill routing](../adr/0019-use-progressive-context-and-shared-skill-routing.md)
 
 ## Scope
 
-This proposal applies to agent-assisted MiKode work and shared skill workflows across
+This standard applies to agent-assisted MiKode work and shared skill workflows across
 supported hosts. It governs instruction selection and loading. It does not define
 multi-agent execution, change task permissions, or prescribe personal conversation habits.
 
-The rules become effective after explicit acceptance. Publishing the router skill alone
-does not activate this standard or demonstrate adoption in a host.
+Publishing the router skill alone does not demonstrate adoption in a host; each adopting
+host must document and verify how it loads the canonical entry instruction.
 
 ## Ownership
 
@@ -52,7 +52,7 @@ repository knowledge.
 
 ## Canonical entry instruction
 
-The router is `mikode-router`. After acceptance, adopting hosts and repositories
+The router is `mikode-router`. Adopting hosts and repositories
 use this minimal instruction in a location their host actually loads:
 
 ```text
@@ -66,7 +66,7 @@ An installation MAY use supported host-level guidance or a minimal project-local
 It MUST document and verify its loading mechanism. Do not assume a file in another
 repository becomes agent context merely because it exists.
 
-The host integration location remains to be selected during the pilot. This proposal does
+The host integration location remains to be selected during the pilot. This standard does
 not install the hook in any repository or change existing host configuration.
 
 ## Validation and adoption
