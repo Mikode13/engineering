@@ -6,6 +6,8 @@ placeholder, verify the result, and copy the completed file into the target repo
 ## Available templates
 
 - [ADR.template.md](ADR.template.md) — starting file for a new Architecture Decision Record.
+- [architecture.template.md](architecture.template.md) — starting file for a project's
+  required `docs/architecture.md` current-state description.
 - [LICENSE.template](LICENSE.template) — MIT License text with the Commons Clause License
   Condition v1.0.
 - [Husky hook templates](husky/README.md) — shared pre-push hooks for source-code and
@@ -33,6 +35,15 @@ Replace the guidance sentences in each section with real content, keep the statu
 `Proposed` until the decision is confirmed, and add the new ADR to the
 [ADR index](../adr/README.md). The template and ADR index define the authoring and indexing
 rules.
+
+### architecture.template.md replacements
+
+Copy the completed file to `docs/architecture.md` in the target project. Replace
+`{{PROJECT_NAME}}` and every instructional placeholder with accurate current-state
+information. Remove optional sections that would add no project-specific understanding;
+do not leave placeholders or invent layers for a small project. Follow the
+[documentation standard](../standards/documentation.md) for required content and
+maintenance.
 
 The license template is not legal advice and is not effective for a project until it has
 been completed, placed at the target repository's root, referenced by package metadata,
