@@ -30,6 +30,8 @@ approved. Add each standard once under the matching status section in this index
   canonical validation contracts, immutable CI revisions, and controlled rollout.
 - [Automated pull request review standard](automated-pull-request-review.md) — required AI
   second-opinion review, enforcement, provider operation, and guarded rollout.
+- [Agent context and skill routing standard](agent-context-and-skill-routing.md) —
+  progressive loading, shared workflow selection, and verified host adoption.
 - [Automated npm publication standard](automated-npm-publication.md) — semantic-release
   versioning, trusted publication, and guarded recovery.
 - [Cross-platform script utilities standard](cross-platform-script-utilities.md) — portable
