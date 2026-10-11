@@ -4,6 +4,12 @@ Learnings record what MiKode work taught us: GitHub behaviour we only found by r
 how a model behaves in a role, and the process mistakes we made. Without a record, that
 knowledge stays in closed pull requests, run logs, and chat sessions until it is forgotten.
 
+This folder keeps what applies across projects or to the organization. What one project's
+work taught it lives in that project's `docs/learnings.md`, in the same format, as the
+[documentation standard](../standards/documentation.md#project-learnings) requires. A
+project learning that turns out to apply more widely moves here, and the project links to
+it.
+
 ## How a learning differs from a decision or a rule
 
 - A [standard](../standards/README.md) states a current requirement.
