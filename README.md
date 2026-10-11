@@ -11,13 +11,13 @@ belong in their owning repositories.
 - [Architecture Decision Records](adr/README.md) preserve significant decisions and their
   trade-offs.
 - [Standards](standards/README.md) define the current rules for MiKode projects.
-- [Learnings](learnings/README.md) record what our work taught us and link to the rules it
-  produced.
+- [Learnings](learnings/README.md) record what our work taught us across projects and link
+  to the rules it produced. Each project keeps its own in `docs/learnings.md`.
 - [Templates](templates/README.md) provide reusable starting files with explicit
   placeholders.
 
 The [documentation standard](standards/documentation.md) defines ownership, required
-project artifacts, and current architecture documentation. The
+project artifacts, current architecture documentation, and project learnings. The
 [documentation writing standard](standards/documentation-writing.md) defines the expected
 technical writing style.
 

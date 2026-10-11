@@ -1,16 +1,17 @@
 # Documentation standard
 
-- Status: Active
-- Last reviewed: 2026-09-20
+- Status: Draft
+- Last reviewed: 2026-10-11
 - Related ADRs:
   [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md),
-  [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md)
+  [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md),
+  [ADR 0020: Keep project learnings in the owning repository](../adr/0020-keep-project-learnings-in-the-owning-repository.md)
 
 ## Scope
 
 This standard applies to MiKode repositories and organization-wide documentation. It
 defines documentation ownership, baseline project artifacts, current architecture,
-project decision logs, and the distribution of shared documentation.
+project decision logs, project learnings, and the distribution of shared documentation.
 
 An active repository is a MiKode repository that is not archived. The requirement includes
 application, package, documentation, skill, and workflow repositories; a small or
@@ -30,8 +31,9 @@ Documentation MUST have one authoritative owner:
 | Agent-specific project context and instructions                               | The owning project's root `AGENTS.md`        |
 | Effective licensing terms                                                     | The owning project's root `LICENSE`          |
 | Significant project-specific decisions                                        | The owning project's `docs/decisions.md`     |
+| What a project's own work taught it, with its evidence                        | The owning project's `docs/learnings.md`     |
 | Cross-project decisions, standards, handbook guidance, and reusable templates | `Mikode13/engineering`                       |
-| What MiKode work taught us, with its evidence                                 | `Mikode13/engineering` `learnings/`          |
+| What MiKode work taught us across projects, with its evidence                 | `Mikode13/engineering` `learnings/`          |
 | Supported organization profile and community health defaults                  | `Mikode13/.github`                           |
 
 Other documents SHOULD link to the authoritative source instead of copying its complete
@@ -51,8 +53,8 @@ initialization:
   artifacts when applicable.
 
 The repository MUST create `docs/decisions.md` when it records its first significant
-project-specific decision. It MUST NOT create an empty placeholder decision log during
-initialization.
+project-specific decision, and `docs/learnings.md` when it records its first learning. It
+MUST NOT create an empty placeholder for either during initialization.
 
 Projects MAY add other maintained documents under `docs/` for project concepts or
 operations. Those documents MUST NOT establish a project-local ADR sequence, status
@@ -112,8 +114,9 @@ Each entry MUST contain:
 - **Consequences**.
 
 An entry MAY contain **Alternatives considered** when alternatives were genuinely
-evaluated and **Lesson** when the decision produced a useful transferable insight. These
-optional sections MUST NOT appear as empty or formulaic placeholders.
+evaluated. It MUST NOT appear as an empty or formulaic placeholder. An entry MUST NOT
+contain a **Lesson** section: what a decision taught belongs in `docs/learnings.md`, and
+the entry links to it.
 
 The decision log MUST use plain Markdown. It MUST NOT require tool-specific metadata or
 front matter.
@@ -125,6 +128,29 @@ but SHOULD NOT duplicate its complete rules.
 When a significant project decision changes the current architecture, the decision log
 preserves why the change was made and `docs/architecture.md` describes the resulting
 current state.
+
+## Project learnings
+
+A learning records what the project's own work taught it: something was done one way, the
+work taught something, and now it is done another way. Its evidence is a run, a
+measurement, a review, a pull request or a commit. A learning MUST be appended to
+`docs/learnings.md` in the pull request that learns it.
+
+The file MUST use the format of the central [learnings](../learnings/README.md), so a
+learning can move there without being rewritten. Learnings are numbered and grouped by
+theme, and each MUST state:
+
+- what happened and what it taught;
+- its evidence; and
+- where it is enforced now, when it is enforced anywhere.
+
+A learning that led to a decision MUST link to its `docs/decisions.md` entry instead of
+repeating it. A learning that applies across projects or to the organization belongs in
+the central `learnings/`. When a project learning turns out to apply more widely, it moves
+there, and the project links to it.
+
+The file MUST use plain Markdown, and MUST NOT require tool-specific metadata or front
+matter.
 
 ## Central templates and GitHub defaults
 
@@ -150,8 +176,12 @@ enforcing this requirement for them. Initial adoption MUST describe the current 
 instead of a future target or an unfilled template.
 
 Repositories MUST add `docs/decisions.md` only when they have a significant
-project-specific decision to record. Adoption MUST NOT create empty documentation files
-or directories.
+project-specific decision to record, and `docs/learnings.md` only when they have a
+learning to record. Adoption MUST NOT create empty documentation files or directories.
+
+An existing **Lesson** section in a decision log MUST move to `docs/learnings.md` when a
+pull request next changes that repository's `docs/decisions.md`. Until then it is
+tolerated.
 
 After every active repository has migrated, applicable repository validation and review
 MUST block a missing or materially contradictory architecture document. Rollout work MUST
@@ -165,6 +195,8 @@ rather than define an independent documentation policy.
 
 - [ADR 0012: Use repository-owned documentation with central governance](../adr/0012-use-repository-owned-documentation-with-central-governance.md)
 - [ADR 0018: Require project-owned architecture documentation](../adr/0018-require-project-owned-architecture-documentation.md)
+- [ADR 0020: Keep project learnings in the owning repository](../adr/0020-keep-project-learnings-in-the-owning-repository.md)
+- [Learnings](../learnings/README.md)
 - [Automated pull request review standard](automated-pull-request-review.md)
 - [Licensing standard](licensing.md)
 - [GitHub: Creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
